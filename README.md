@@ -14,7 +14,7 @@ Futures
     - [x] items in scene
   
 * Character
-  - [x]move left and right
+  - [x] move left and right
     - [ ] animations
   - [x] jump
     - [ ] animations
@@ -25,11 +25,14 @@ Futures
 * Npc
   - [ ] move left, right, jump 
   - [ ] path
+  - [ ] dialog
   - [ ] meele attack
   - [ ] range attack
   - [ ] sounds
   
 * Traps
+
+* Quests
 
 * Platforms
   - [x] climbing platform (jump up, climb down)

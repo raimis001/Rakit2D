@@ -10,26 +10,35 @@ Futures
     - down, up, key
     - keyboard, button or axis
   - inventory system
-    - [need] define items
+    - [ ] define items
+    - [x] items in scene
   
+* Character
+  - [x]move left and right
+    - [ ] animations
+  - [x] jump
+    - [ ] animations
+  - [ ] meele attack
+  - [ ] range attack
+  - [ ] sounds
 
-- Character
-  - [done ]move left and right
-    - [need] animations
-  - [done] jump
-    - [need] animations
-  - [need] meele attack
-  - [need] range attack
-  - [need] sounds
-
-- platforms
-  - [done] climbing platform (jump up, climb down)
-  - [done] moving platform
+* Npc
+  - [ ] move left, right, jump 
+  - [ ] path
+  - [ ] meele attack
+  - [ ] range attack
+  - [ ] sounds
   
-- doors
-  - [done] interact with player open
-  - [done] press interact key to open
-  - [done] define inventory item to open
-    - [done] delete item from inventory if needed
-  - [done] close on exit door (if needed)
-  - [need] sounds
+* Traps
+
+* Platforms
+  - [x] climbing platform (jump up, climb down)
+  - [x] moving platform
+  
+* Doors
+  - [x] interact with player open
+  - [x] press interact key to open
+  - [x] define inventory item to open
+    - [x] delete item from inventory if needed
+  - [x] close on exit door (if needed)
+  - [ ] sounds

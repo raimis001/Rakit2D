@@ -42,3 +42,6 @@ Futures
     - [x] delete item from inventory if needed
   - [x] close on exit door (if needed)
   - [ ] sounds
+
+
+[Watch the video](https://www.youtube.com/watch?v=AQA1-tUi8NU)

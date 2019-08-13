@@ -47,4 +47,4 @@ Futures
   - [ ] sounds
 
 
-[Watch the video](https://www.youtube.com/watch?v=AQA1-tUi8NU)
+[![](http://img.youtube.com/vi/AQA1-tUi8NU/0.jpg)](http://www.youtube.com/watch?v=AQA1-tUi8NU "2D Ra Gamekit")

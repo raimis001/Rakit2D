@@ -9,7 +9,6 @@ public class Player : MonoBehaviour
 	[Range(0.5f, 5f)]
 	public float jumpSpeed = 1;
 
-	public LayerMask groundLayer;
 	public ContactFilter2D groundFilter;
 
 	private Rigidbody2D body;

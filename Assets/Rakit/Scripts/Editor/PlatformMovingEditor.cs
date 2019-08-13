@@ -2,7 +2,18 @@
 using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
-
+/*
+ //Auto fit styles:
+ EditorGUILayout.BeginVertical("Box");
+ EditorGUILayout.BeginVertical("Button");
+ EditorGUILayout.BeginVertical("TextArea");
+ EditorGUILayout.BeginVertical("Window");
+ EditorGUILayout.BeginVertical("Textfield");
+ EditorGUILayout.BeginVertical("HorizontalScrollbar"); //Fixed height
+ EditorGUILayout.BeginVertical("Label"); //No style
+ EditorGUILayout.BeginVertical("Toggle"); //Just puts a non usable CB to the left 
+ EditorGUILayout.BeginVertical("Toolbar"); //Fixed height
+ */
 
 [CustomEditor(typeof(PlatformMoving))]
 public class PlatformMovingEditor : Editor
@@ -12,6 +23,7 @@ public class PlatformMovingEditor : Editor
 	Transform transform => platform.transform;
 
 	float testSlider;
+  bool nodesFold;
 	private void OnEnable()
 	{
 		platform = target as PlatformMoving;
@@ -45,51 +57,59 @@ public class PlatformMovingEditor : Editor
 			Undo.RecordObject(target, "Changed platform");
 
 		EditorGUILayout.Separator();
-		EditorGUILayout.LabelField("Nodes");
 
-		EditorGUILayout.BeginVertical("box");
+    int delete = -1;
+    nodesFold = EditorGUILayout.Foldout(nodesFold, "Nodes");
+    if (nodesFold)
+    {
 
-		EditorGUILayout.LabelField("Node 0");
+      EditorGUILayout.BeginVertical("Textfield");
 
-		EditorGUI.BeginChangeCheck();
-		float fDelay = EditorGUILayout.FloatField("Wait Time", platform.zeroDelay);
-		if (EditorGUI.EndChangeCheck())
-		{
-			Undo.RecordObject(target, "Changed zero delay");
-			platform.zeroDelay = fDelay;
-		}
+      EditorGUILayout.LabelField("Node 0");
 
-		EditorGUILayout.EndVertical();
+      EditorGUILayout.BeginHorizontal("Box");
+      EditorGUILayout.LabelField("", GUILayout.Width(5));
+      EditorGUI.BeginChangeCheck();
+      float fDelay = EditorGUILayout.FloatField("Wait Time", platform.zeroDelay);
+      if (EditorGUI.EndChangeCheck())
+      {
+        Undo.RecordObject(target, "Changed zero delay");
+        platform.zeroDelay = fDelay;
+      }
 
-		int delete = -1;
-		for (int i = 0; i < platform.nodes.Count; i++)
-		{
-			EditorGUI.BeginChangeCheck();
-			PlatformNode node = platform.nodes[i];
+      EditorGUILayout.EndHorizontal();
+      EditorGUILayout.EndVertical();
 
-			EditorGUILayout.BeginVertical("box");
+      for (int i = 0; i < platform.nodes.Count; i++)
+      {
+        EditorGUI.BeginChangeCheck();
+        PlatformNode node = platform.nodes[i];
 
-			EditorGUILayout.BeginHorizontal();
-			EditorGUILayout.LabelField("Node " + (i + 1).ToString() + "   " + string.Format("x:{0:0.000} y:{1:0.000}", node.position.x, node.position.y));
-			if (GUILayout.Button("Delete", GUILayout.Width(100)))
-			{
-				
-				delete = i;
-			}
+        EditorGUILayout.BeginVertical("Textfield");
 
-			EditorGUILayout.EndHorizontal();
+        EditorGUILayout.BeginHorizontal();
+        EditorGUILayout.LabelField("Node " + (i + 1).ToString() + "   " + string.Format("x:{0:0.000} y:{1:0.000}", node.position.x, node.position.y));
+        if (GUILayout.Button("Delete", GUILayout.Width(50)))
+        {
+          delete = i;
+        }
+        EditorGUILayout.EndHorizontal();
 
-			float wDelay = EditorGUILayout.FloatField("Wait Time", node.waitOnNode);
+        EditorGUILayout.BeginHorizontal("Box");
 
-			EditorGUILayout.EndVertical();
+        EditorGUILayout.LabelField("", GUILayout.Width(5));
+        float wDelay = EditorGUILayout.FloatField("Wait Time", node.waitOnNode);
 
-			if (EditorGUI.EndChangeCheck())
-			{
-				Undo.RecordObject(target, "Changed node " + i);
-				node.waitOnNode = wDelay;
-			}
-		}
+        EditorGUILayout.EndHorizontal();
+        EditorGUILayout.EndVertical();
 
+        if (EditorGUI.EndChangeCheck())
+        {
+          Undo.RecordObject(target, "Changed node " + i);
+          node.waitOnNode = wDelay;
+        }
+      }
+    }
 
 		Vector3 last = platform.nodes.Count > 0 ? platform.nodes[platform.nodes.Count - 1].position : Vector3.zero;
 		if (GUILayout.Button("Add Node"))

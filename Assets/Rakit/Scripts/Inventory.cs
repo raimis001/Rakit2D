@@ -1,14 +1,31 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
-[System.Serializable]
+[Serializable]
 public class InventoryEvent : UnityEvent<string, int> { }
+
+[Serializable]
+public class InventoryItemName
+{
+  public string itemName;
+}
+
+[Serializable]
+public class InventoryItem
+{
+  public string name;
+  public Sprite icon;
+  public Color iconTint = Color.white;
+}
 
 public class Inventory : MonoBehaviour
 {
 	private static readonly Dictionary<string, int> items = new Dictionary<string, int>();
+
+  public List<InventoryItem> itemsDefine = new List<InventoryItem>();
 
 	public InventoryEvent OnInventoryChange;
 

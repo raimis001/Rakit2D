@@ -13,7 +13,7 @@ public class ItemInteract : TriggerInteract
 		if (markAsDestroy)
 			return;
 
-		if (operate != OperateKind.None)
+		if (operate != OperateKind.Touch)
 			return;
 
 		Operate();
@@ -23,7 +23,7 @@ public class ItemInteract : TriggerInteract
 	{
 		if (markAsDestroy)
 			return;
-		if (operate != OperateKind.None)
+		if (operate != OperateKind.Touch)
 			return;
 
 		Operate();

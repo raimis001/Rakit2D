@@ -3,12 +3,14 @@ using System.Collections.Generic;
 using UnityEngine;
 public enum OperateKind
 {
-	None, Keyboard, Interact
+	Touch, Keyboard, Interact, Disabled
 }
 
 public class TriggerInteract : Interact
 {
 	public OperateKind operate;
+  public InventoryItemName item;
+
 
 	internal bool isPlayer;
 
@@ -19,6 +21,9 @@ public class TriggerInteract : Interact
 
 	private void OnTriggerStay2D(Collider2D collision)
 	{
+    if (operate == OperateKind.Disabled)
+      return;
+
 		if (!Player.IsPlayer(collision))
 			return;
 
@@ -27,7 +32,9 @@ public class TriggerInteract : Interact
 	}
 	private void OnTriggerExit2D(Collider2D collision)
 	{
-		if (!Player.IsPlayer(collision))
+    if (operate == OperateKind.Disabled)
+      return;
+    if (!Player.IsPlayer(collision))
 			return;
 
 		isPlayer = false;
@@ -36,7 +43,10 @@ public class TriggerInteract : Interact
 
 	private void OnTriggerEnter2D(Collider2D collision)
 	{
-		if (!Player.IsPlayer(collision))
+    if (operate == OperateKind.Disabled)
+      return;
+
+    if (!Player.IsPlayer(collision))
 			return;
 
 		isPlayer = true;
@@ -45,7 +55,9 @@ public class TriggerInteract : Interact
 
 	private void Update()
 	{
-		if (operate != OperateKind.Keyboard)
+    if (operate == OperateKind.Disabled)
+      return;
+    if (operate != OperateKind.Keyboard)
 			return;
 		if (!isPlayer)
 			return;

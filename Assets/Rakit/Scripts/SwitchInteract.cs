@@ -35,7 +35,7 @@ public class SwitchInteract : TriggerInteract
 	}
 	protected override void OnPlayerEnter()
 	{
-		if (operate != OperateKind.None)
+		if (operate != OperateKind.Touch)
 			return;
 		if (isOpened)
 			return;

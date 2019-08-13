@@ -120,4 +120,9 @@ public class SM : MonoBehaviour
 	public static bool keyInteract => instance.interactKey.IsKey;
 	public static bool keyJump => instance.jumpKey.IsKey;
 	public static bool keyDown => instance.downKey.IsKey;
+
+  public void TestInventory(string item, int cnt)
+  {
+
+  }
 }

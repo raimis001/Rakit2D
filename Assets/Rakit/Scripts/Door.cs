@@ -5,7 +5,8 @@ using UnityEngine;
 
 public class Door : TriggerInteract
 {
-	public string itemName;
+  public string itemName => item.itemName;
+
 	[Tooltip("How many items need for operate")]
 	public int itemNeeded = 1;
 	[Tooltip("Remove item from inventory after use")]
@@ -44,7 +45,7 @@ public class Door : TriggerInteract
 	protected override void OnPlayerEnter()
 	{
 
-		if (operate != OperateKind.None)
+		if (operate != OperateKind.Touch)
 			return;
 
 		bool o = anim.GetBool("Opened");

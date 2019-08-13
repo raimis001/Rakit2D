@@ -20,6 +20,7 @@ Futures
     - [ ] animations
   - [ ] meele attack
   - [ ] range attack
+  - [ ] ded
   - [ ] sounds
 
 * Npc
@@ -28,6 +29,7 @@ Futures
   - [ ] dialog
   - [ ] meele attack
   - [ ] range attack
+  - [ ] ded
   - [ ] sounds
   
 * Traps

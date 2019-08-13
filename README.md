@@ -36,9 +36,17 @@ Futures
 
 * Quests
 
-* Platforms
+* Environment
   - [x] climbing platform (jump up, climb down)
   - [x] moving platform
+  - [ ] pushable box
+  
+* Switch
+  - [x] activate on enter
+  - [x] activate on keyboard
+  - [ ] activate/deactivate from objects
+  - [ ] activate on mass
+  - [ ] check inventory item  
   
 * Doors
   - [x] interact with player open

@@ -12,6 +12,9 @@ Futures
   - inventory system
     - [x] define items
     - [x] items in scene
+  - checkpoint
+    - [ ] save
+    - [ ] load
   
 * Character
   - [x] move left and right

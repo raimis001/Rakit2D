@@ -47,17 +47,18 @@ public class InventoryItemProperty : PropertyDrawer
 
     string val = prop.FindPropertyRelative("itemName").stringValue;
 
-    string[] options = new string[inventory.itemsDefine.Count];
+    string[] options = new string[inventory.itemsDefine.Count+1];
+    options[0] = "None";
     for (int i = 0; i < inventory.itemsDefine.Count; i++)
     {
-      options[i] = inventory.itemsDefine[i].name;
-      if (options[i] == val)
-        selected = i;
+      options[i+1] = inventory.itemsDefine[i].name;
+      if (options[i+1] == val)
+        selected = i+1;
     }
 
     selected = EditorGUI.Popup(position, selected, options);
 
-    prop.FindPropertyRelative("itemName").stringValue = options[selected];
+    prop.FindPropertyRelative("itemName").stringValue = selected == 0 ? "" : options[selected];
 
     EditorGUI.EndProperty();
   }

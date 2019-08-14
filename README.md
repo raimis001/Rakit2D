@@ -10,7 +10,7 @@ Futures
     - down, up, key
     - keyboard, button or axis
   - inventory system
-    - [ ] define items
+    - [x] define items
     - [x] items in scene
   
 * Character
@@ -35,6 +35,8 @@ Futures
 * Traps
 
 * Quests
+
+* UI
 
 * Environment
   - [x] climbing platform (jump up, climb down)

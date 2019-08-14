@@ -8,9 +8,11 @@ public class InventoryEditor : Editor
 {
   Inventory inventory;
   bool itemsFold;
+  List<bool> previewFold = new List<bool>();
   private void OnEnable()
   {
     inventory = target as Inventory;
+
   }
 
   public override void OnInspectorGUI()
@@ -23,7 +25,7 @@ public class InventoryEditor : Editor
 
     int delete = -1;
     itemsFold = EditorGUILayout.Foldout(itemsFold, "Iems");
-   // if (itemsFold)
+    if (itemsFold)
     {
       for (int i = 0; i < inventory.itemsDefine.Count; i++)
       {
@@ -53,8 +55,17 @@ public class InventoryEditor : Editor
 
         EditorGUILayout.EndHorizontal();
 
+        int previousIndentLevel = EditorGUI.indentLevel;
+        EditorGUI.indentLevel = 2;
+        //item.icon = (Sprite)EditorGUILayout.ObjectField(item.icon, typeof(Sprite), false, GUILayout.Height(100), GUILayout.Width(100));
 
-        if (item.icon)
+        if (i >= previewFold.Count)
+          previewFold.Add(false);
+
+        previewFold[i] = EditorGUILayout.Foldout(previewFold[i], "Preview");
+        EditorGUI.indentLevel = previousIndentLevel;
+
+        if (previewFold[i] && item.icon)
         {
           SetTextureImporterFormat(item.icon.texture, true);
 

@@ -9,6 +9,8 @@ public class Player : MonoBehaviour
 	[Range(0.5f, 5f)]
 	public float jumpSpeed = 1;
 
+  public Animator animator;
+
 	public ContactFilter2D groundFilter;
 
 	private Rigidbody2D body;
@@ -53,6 +55,7 @@ public class Player : MonoBehaviour
 
 			body.AddForce(new Vector2(0, 5) * jumpSpeed, ForceMode2D.Impulse);
 			_isGrounded = false;
+      animator.SetTrigger("Jump");
 			return;
 		}
 
@@ -63,10 +66,32 @@ public class Player : MonoBehaviour
 		groundChecked = false;
 		Vector2 move = body.velocity;
 		move.x = SM.keyMove * Time.deltaTime * speed * 100f;
-		body.velocity = move;
-	}
 
-	bool groundChecked;
+    animator.SetBool("Grounded", isGrounded);
+
+    if (Mathf.Abs(move.x) < 0.1f)
+    {
+      animator.SetFloat("Speed",0);
+      move.x = 0;
+    }
+    else
+    {
+      bool nRight = move.x < 0;
+      bool isRight = animator.GetBool("Right");
+      if (nRight != isRight) {
+
+        animator.SetBool("Right", nRight);
+        animator.SetTrigger("ChangeDirection");
+      }
+
+      animator.SetFloat("Speed", 1);
+    }
+
+    body.velocity = move;
+  }
+
+
+  bool groundChecked;
 	bool _isGrounded;
 	bool isGrounded => groundChecked ? _isGrounded : GroundCheck();
 

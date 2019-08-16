@@ -55,13 +55,11 @@ public class InventoryEditor : Editor
 
         EditorGUILayout.EndHorizontal();
 
-        int previousIndentLevel = EditorGUI.indentLevel;
-        EditorGUI.indentLevel = 2;
-        //item.icon = (Sprite)EditorGUILayout.ObjectField(item.icon, typeof(Sprite), false, GUILayout.Height(100), GUILayout.Width(100));
-
         if (i >= previewFold.Count)
           previewFold.Add(false);
 
+        int previousIndentLevel = EditorGUI.indentLevel;
+        EditorGUI.indentLevel = 2;
         previewFold[i] = EditorGUILayout.Foldout(previewFold[i], "Preview");
         EditorGUI.indentLevel = previousIndentLevel;
 
@@ -95,11 +93,6 @@ public class InventoryEditor : Editor
         }
         EditorGUILayout.EndVertical();
 
-        //int previousIndentLevel = EditorGUI.indentLevel;
-        //EditorGUI.indentLevel = 2;
-        //item.icon = (Sprite)EditorGUILayout.ObjectField(item.icon, typeof(Sprite), false, GUILayout.Height(100), GUILayout.Width(100));
-        //EditorGUI.indentLevel = previousIndentLevel;
-
         EditorGUILayout.EndVertical();
 
         if (EditorGUI.EndChangeCheck())
@@ -116,6 +109,7 @@ public class InventoryEditor : Editor
     {
       Undo.RecordObject(target, "added node");
       inventory.itemsDefine.Add(new InventoryItem() { name = "New item" });
+      itemsFold = true;
     }
 
     if (delete >= 0)

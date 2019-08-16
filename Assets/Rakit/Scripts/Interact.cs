@@ -7,4 +7,10 @@ using UnityEngine.Events;
 public class InteractEvent : UnityEvent<Interact> { }
 public class Interact : MonoBehaviour
 {
+
+  public virtual bool Operate(bool isKeyboard)
+  {
+    return true;
+  }
+  
 }

@@ -4,40 +4,25 @@ using UnityEngine;
 
 public class ItemInteract : TriggerInteract
 {
-	public string itemName;
-	public bool destroyOnGet;
+  [Header("Reward")]
+  public InventoryItemName itemReward;
+  public bool destroyOnGet = true;
 
 	bool markAsDestroy;
-	protected override void OnPlayerEnter()
-	{
-		if (markAsDestroy)
-			return;
 
-		if (operate != OperateKind.Touch)
-			return;
+  public override bool Operate(bool isKeyboard)
+  {
+    if (markAsDestroy)
+      return false;
 
-		Operate();
-	}
+    if (itemReward.itemName != "")
+      Inventory.Add(itemReward.itemName);
 
-	protected override void OnPlayerKey()
-	{
-		if (markAsDestroy)
-			return;
-		if (operate != OperateKind.Touch)
-			return;
-
-		Operate();
-	}
-	void Operate()
-	{
-		if (itemName != "")
-			Inventory.Add(itemName);
-
-		if (destroyOnGet)
-		{
-			markAsDestroy = true;
-			Destroy(gameObject, 1f);
-		}
-
-	}
+    if (destroyOnGet)
+    {
+      markAsDestroy = true;
+      Destroy(gameObject, 1f);
+    }
+    return true;
+  }
 }

@@ -9,62 +9,62 @@ public enum OperateKind
 public class TriggerInteract : Interact
 {
 	public OperateKind operate;
+
+  [Header("Inventory item")]
   public InventoryItemName item;
+  [Tooltip("How many items need for operate")]
+  public int itemNeeded = 1;
+  [Tooltip("Remove item from inventory after use")]
+  public bool removeOnUse;
 
+  protected string itemName => item.itemName;
+  protected bool isPlayer;
 
-	internal bool isPlayer;
-
-	protected virtual void OnPlayerConact() { }
 	protected virtual void OnPlayerEnter() { }
 	protected virtual void OnPlayerExit() { }
-	protected virtual void OnPlayerKey() { }
-
-	private void OnTriggerStay2D(Collider2D collision)
-	{
-    if (operate == OperateKind.Disabled)
-      return;
-
-		if (!Player.IsPlayer(collision))
-			return;
-
-		isPlayer = true;
-		OnPlayerConact();
-	}
+  	
 	private void OnTriggerExit2D(Collider2D collision)
 	{
-    if (operate == OperateKind.Disabled)
-      return;
     if (!Player.IsPlayer(collision))
 			return;
 
-		isPlayer = false;
-		OnPlayerExit();
+    isPlayer = false;
+    OnPlayerExit();
 	}
-
 	private void OnTriggerEnter2D(Collider2D collision)
 	{
-    if (operate == OperateKind.Disabled)
+    if (!Player.IsPlayer(collision))
       return;
 
-    if (!Player.IsPlayer(collision))
-			return;
+    isPlayer = true;
+    OnPlayerEnter();
 
-		isPlayer = true;
-		OnPlayerEnter();
+    if (operate != OperateKind.Touch)
+      return;
+
+    if (itemName != "")
+    {
+      if (Inventory.Have(itemName) < itemNeeded)
+        return;
+    }
+
+    if (!Operate(false))
+      return;
+
+    if (itemName != "" && removeOnUse)
+      Inventory.Remove(itemName);
+
 	}
 
 	private void Update()
 	{
-    if (operate == OperateKind.Disabled)
-      return;
     if (operate != OperateKind.Keyboard)
 			return;
 		if (!isPlayer)
 			return;
-
 		if (Input.GetKeyDown(KeyCode.E))
 		{
-			OnPlayerKey();
+			Operate(true);
 		}
 	}
 

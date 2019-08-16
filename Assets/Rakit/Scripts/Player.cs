@@ -5,6 +5,7 @@ using UnityEngine;
 public class Player : MonoBehaviour
 {
   public static bool IsDed;
+  private static Vector2 checkPoint;
 
 	[Range(0.5f, 10f)]
 	public float speed = 1;
@@ -17,6 +18,7 @@ public class Player : MonoBehaviour
 
 	private Rigidbody2D body;
 	
+
 
 	public static bool IsPlayer(Collider2D collider)
 	{
@@ -31,7 +33,9 @@ public class Player : MonoBehaviour
 		{
 			Debug.LogWarning("No rigidbody for player");
 		}
-	}
+    checkPoint = transform.position;
+
+  }
 
 	private void Start()
 	{
@@ -51,7 +55,13 @@ public class Player : MonoBehaviour
 	private void Update()
 	{
     if (IsDed)
+    {
+      if (SM.keyJump)
+      {
+        Respawn();
+      }
       return;
+    }
 
 		if (SM.keyJump)
 		{
@@ -135,11 +145,36 @@ public class Player : MonoBehaviour
     body.isKinematic = true;
     body.velocity = Vector2.zero;
     animator.SetTrigger("Ded");
+
+    Debug.Log("Player is ded");
+  }
+
+  public void SetSpawn(Vector2 pos)
+  {
+    if (!IsDed)
+      return;
+
+    IsDed = false;
+    transform.position = pos;
+    body.isKinematic = false;
+    body.velocity = Vector2.zero;
+    animator.SetTrigger("Respawn");
+    animator.SetFloat("Speed", 0);
+
+    Debug.Log("Player is respawn");
   }
 
   public static void Ded()
 	{
-		Debug.Log("Player is ded");
     SM.player.SetDed();
 	}
+  public static void Respawn()
+  {
+    SM.player.SetSpawn(checkPoint);
+  }
+  public static void Save()
+  {
+    Debug.Log("Save position");
+    checkPoint = SM.player.transform.position;
+  }
 }

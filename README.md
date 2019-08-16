@@ -13,8 +13,8 @@ Futures
     - [x] define items
     - [x] items in scene
   - checkpoint
-    - [ ] save
-    - [ ] load
+    - [x] save
+    - [x] load
   
 * Character
   - [x] move left and right

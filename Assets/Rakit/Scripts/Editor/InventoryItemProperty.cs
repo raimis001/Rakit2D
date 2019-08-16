@@ -56,7 +56,7 @@ public class InventoryItemProperty : PropertyDrawer
         selected = i+1;
     }
 
-    selected = EditorGUI.Popup(position, selected, options);
+    selected = EditorGUI.Popup(position,"Item name", selected, options);
 
     prop.FindPropertyRelative("itemName").stringValue = selected == 0 ? "" : options[selected];
 

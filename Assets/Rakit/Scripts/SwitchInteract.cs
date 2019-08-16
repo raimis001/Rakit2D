@@ -33,23 +33,11 @@ public class SwitchInteract : TriggerInteract
 		yield return new WaitForSeconds(1);
 		working = false;
 	}
-	protected override void OnPlayerEnter()
-	{
-		if (operate != OperateKind.Touch)
-			return;
-		if (isOpened)
-			return;
 
-		StartCoroutine(OperateSwitch(true));
-	}
-	protected override void OnPlayerKey()
-	{
-		if (operate != OperateKind.Keyboard)
-			return;
-		if (working)
-			return;
+  public override bool Operate(bool isKeyboard)
+  {
+    StartCoroutine(OperateSwitch(!isOpened));
+    return true;
+  }
 
-		StartCoroutine(OperateSwitch(!isOpened));
-
-	}
 }

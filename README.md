@@ -18,9 +18,10 @@ Futures
   
 * Character
   - [x] move left and right
-    - [ ] animations
+    - [x] animations
   - [x] jump
-    - [ ] animations
+    - [x] animations
+    - [ ] fall down animation
   - [ ] meele attack
   - [ ] range attack
   - [ ] ded

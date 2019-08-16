@@ -58,6 +58,7 @@ Futures
 * Doors
   - [x] interact with player open
   - [x] press interact key to open
+  - [x] open by activator (switch)
   - [x] define inventory item to open
     - [x] delete item from inventory if needed
   - [x] close on exit door (if needed)

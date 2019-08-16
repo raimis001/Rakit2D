@@ -21,7 +21,7 @@ Futures
     - [x] animations
   - [x] jump
     - [x] animations
-    - [ ] fall down animation
+    - [x] fall down animation
   - [ ] meele attack
   - [ ] range attack
   - [ ] ded
@@ -66,3 +66,9 @@ Futures
 
 
 [![](http://img.youtube.com/vi/AQA1-tUi8NU/0.jpg)](http://www.youtube.com/watch?v=AQA1-tUi8NU "2D Ra Gamekit")
+
+Used assets:
+Sunny Land
+https://assetstore.unity.com/packages/2d/characters/sunny-land-103349
+Fantasy 2D Character: Free
+https://assetstore.unity.com/packages/2d/characters/fantasy-2d-character-free-110506

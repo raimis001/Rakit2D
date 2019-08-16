@@ -68,6 +68,7 @@ public class Player : MonoBehaviour
 		move.x = SM.keyMove * Time.deltaTime * speed * 100f;
 
     animator.SetBool("Grounded", isGrounded);
+    animator.SetBool("Falling", move.y < -0.1f);
 
     if (Mathf.Abs(move.x) < 0.1f)
     {
@@ -88,6 +89,8 @@ public class Player : MonoBehaviour
     }
 
     body.velocity = move;
+
+    
   }
 
 

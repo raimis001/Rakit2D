@@ -33,6 +33,7 @@ public class Player : MonoBehaviour
 
 	private void Start()
 	{
+    //Time.timeScale = 0.1f;
 	}
 
 	private void OnEnable()
@@ -67,8 +68,8 @@ public class Player : MonoBehaviour
 		Vector2 move = body.velocity;
 		move.x = SM.keyMove * Time.deltaTime * speed * 100f;
 
-    animator.SetBool("Grounded", isGrounded);
     animator.SetBool("Falling", move.y < -0.1f);
+    animator.SetBool("Grounded", isGrounded);
 
     if (Mathf.Abs(move.x) < 0.1f)
     {
@@ -89,8 +90,6 @@ public class Player : MonoBehaviour
     }
 
     body.velocity = move;
-
-    
   }
 
 

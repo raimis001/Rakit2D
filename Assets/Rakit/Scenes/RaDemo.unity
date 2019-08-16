@@ -6844,6 +6844,21 @@ PrefabInstance:
       propertyPath: m_Name
       value: BurlayPlayer
       objectReference: {fileID: 0}
+    - target: {fileID: 5033429480058981116, guid: aff71a220e332304dbc1753f67bdf240,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5033429480058981116, guid: aff71a220e332304dbc1753f67bdf240,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5033429480058981116, guid: aff71a220e332304dbc1753f67bdf240,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: aff71a220e332304dbc1753f67bdf240, type: 3}
 --- !u!1001 &5031833707807831001

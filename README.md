@@ -24,7 +24,8 @@ Futures
     - [x] fall down animation
   - [ ] meele attack
   - [ ] range attack
-  - [ ] ded
+  - [x] ded
+    - [x] animation
   - [ ] sounds
 
 * Npc

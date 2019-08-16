@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
+  public static bool IsDed;
+
 	[Range(0.5f, 10f)]
 	public float speed = 1;
 	[Range(0.5f, 5f)]
@@ -14,7 +16,7 @@ public class Player : MonoBehaviour
 	public ContactFilter2D groundFilter;
 
 	private Rigidbody2D body;
-	private Collider2D groundCollider;
+	
 
 	public static bool IsPlayer(Collider2D collider)
 	{
@@ -48,6 +50,8 @@ public class Player : MonoBehaviour
 
 	private void Update()
 	{
+    if (IsDed)
+      return;
 
 		if (SM.keyJump)
 		{
@@ -64,7 +68,10 @@ public class Player : MonoBehaviour
 
 	private void FixedUpdate()
 	{
-		groundChecked = false;
+    if (IsDed)
+      return;
+
+    groundChecked = false;
 		Vector2 move = body.velocity;
 		move.x = SM.keyMove * Time.deltaTime * speed * 100f;
 
@@ -100,22 +107,39 @@ public class Player : MonoBehaviour
 	bool GroundCheck()
 	{
 		groundChecked = true;
-		groundCollider = null;
-
 		_isGrounded = body.IsTouching(groundFilter);
-		if (!_isGrounded)
-			return false;
-
-		Collider2D[] colliders = new Collider2D[1];
-		body.GetContacts(groundFilter, colliders);
-		groundCollider = colliders[0];
-		//Debug.Log("Ground - " + colliders[0].name);
 		return _isGrounded;
 	}
 	
+  private bool GetGroundCollider(out Collider2D collider)
+  {
+    collider = null;
+    if (!isGrounded)
+      return false;
 
-	public static void Ded()
+    Collider2D[] colliders = new Collider2D[1];
+    if (body.GetContacts(groundFilter, colliders) < 1)
+      return false;
+
+    //Debug.Log("Ground - " + colliders[0].name);
+    collider = colliders[0];
+    return true;
+  }
+
+  public void SetDed()
+  {
+    if (IsDed)
+      return;
+
+    IsDed = true;
+    body.isKinematic = true;
+    body.velocity = Vector2.zero;
+    animator.SetTrigger("Ded");
+  }
+
+  public static void Ded()
 	{
 		Debug.Log("Player is ded");
+    SM.player.SetDed();
 	}
 }

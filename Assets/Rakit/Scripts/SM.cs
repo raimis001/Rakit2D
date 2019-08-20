@@ -111,7 +111,12 @@ public class SM : MonoBehaviour
 	public KeyBind jumpKey = new KeyBind() { type = KeyType.Button, inputName="Jump", kind = KeyKind.Down };
 	public KeyBind downKey = new KeyBind() { type = KeyType.Axis, inputName = "Vertical", axisCheck = -0.1f };
 
-	private void Awake()
+  [Header("Dialog choices")]
+  public KeyBind choice1 = new KeyBind() { type = KeyType.Key, key = KeyCode.Alpha1, kind = KeyKind.Down };
+  public KeyBind choice2 = new KeyBind() { type = KeyType.Key, key = KeyCode.Alpha2, kind = KeyKind.Down };
+  public KeyBind choice3 = new KeyBind() { type = KeyType.Key, key = KeyCode.Alpha3, kind = KeyKind.Down };
+
+  private void Awake()
 	{
 		instance = this;
 	}
@@ -120,6 +125,12 @@ public class SM : MonoBehaviour
 	public static bool keyInteract => instance.interactKey.IsKey;
 	public static bool keyJump => instance.jumpKey.IsKey;
 	public static bool keyDown => instance.downKey.IsKey;
+
+  public static bool dialogChoice1 => instance.choice1.IsKey;
+  public static bool dialogChoice2 => instance.choice2.IsKey;
+  public static bool dialogChoice3 => instance.choice3.IsKey;
+
+  public static bool dialogOpened;
 
   public void TestInventory(string item, int cnt)
   {

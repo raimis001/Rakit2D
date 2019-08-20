@@ -475,11 +475,20 @@ MonoBehaviour:
   canvas: {fileID: 1474601326}
   caption: 
   dialogs:
-  - description: 
+  - idString: start
+    description: Hey! Pst... come here!
+    choises:
+    - caption: Ignore message...
+      nextDialog: 
+    - caption: What you need?
+      nextDialog: next1
+  - idString: next1
+    description: 'Do you need cool weapon?
+
+      I know one '
     choises: []
-  - description: 
-    choises: []
-  - description: 
+  - idString: 
+    description: 
     choises: []
 --- !u!4 &196291017
 Transform:
@@ -6867,6 +6876,30 @@ MonoBehaviour:
     inputName: Vertical
     axisCheck: -0.1
     key: 0
+    isShift: 0
+    isControl: 0
+    kind: 0
+  choice1:
+    type: 0
+    inputName: 
+    axisCheck: 0
+    key: 49
+    isShift: 0
+    isControl: 0
+    kind: 0
+  choice2:
+    type: 0
+    inputName: 
+    axisCheck: 0
+    key: 50
+    isShift: 0
+    isControl: 0
+    kind: 0
+  choice3:
+    type: 0
+    inputName: 
+    axisCheck: 0
+    key: 51
     isShift: 0
     isControl: 0
     kind: 0

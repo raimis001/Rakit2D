@@ -473,10 +473,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   actor: {fileID: 1113026900}
   canvas: {fileID: 1474601326}
-  caption: 
+  kind: 2
+  caption: Dedly sign
   dialogs:
   - idString: start
     description: Hey! Pst... come here!
+    itemReward:
+      itemName: 
     choises:
     - caption: Ignore message...
       nextDialog: 
@@ -485,11 +488,22 @@ MonoBehaviour:
   - idString: next1
     description: 'Do you need cool weapon?
 
-      I know one '
-    choises: []
+      I know where one is.'
+    itemReward:
+      itemName: 
+    choises:
+    - caption: Continue...
+      nextDialog: next2
   - idString: 
-    description: 
-    choises: []
+    description: 'Here ir key, you need find door and open it with this key.
+
+      On
+      the other side you find sword!'
+    itemReward:
+      itemName: 
+    choises:
+    - caption: Thank you!
+      nextDialog: 
 --- !u!4 &196291017
 Transform:
   m_ObjectHideFlags: 0

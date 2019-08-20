@@ -20,6 +20,7 @@ public class DialogItem
   public string idString;
   [TextArea]
   public string description;
+  public InventoryItemName itemReward;
 
   public List<DialogChoise> choises;
 

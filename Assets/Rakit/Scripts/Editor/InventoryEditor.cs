@@ -12,7 +12,6 @@ public class InventoryEditor : Editor
   private void OnEnable()
   {
     inventory = target as Inventory;
-
   }
 
   public override void OnInspectorGUI()

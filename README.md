@@ -38,6 +38,9 @@ Futures
   - [ ] sounds
   
 * Traps
+  - [x] activate on player
+  - [x] activate/deactivate on switch
+  - [x] ded on activate
 
 * Quests
 

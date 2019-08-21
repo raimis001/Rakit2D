@@ -75,6 +75,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7054282739156130838}
+  - component: {fileID: 2034546431}
+  - component: {fileID: 2034546432}
   m_Layer: 0
   m_Name: Scene
   m_TagString: Untagged
@@ -99,6 +101,106 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2034546431
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7054282739156130839}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 485590522c84d3a4895b8c7ff503147d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  itemsDefine:
+  - name: keyRed
+    icon: {fileID: 21300000, guid: 8abef52b05b50bd4cbf1c9be905ae85d, type: 3}
+    iconTint: {r: 0.7264151, g: 0.2775454, b: 0.2775454, a: 1}
+    prefab: {fileID: 6783511296129889866, guid: 6e96aa099c206c443a9f790062971f4c,
+      type: 3}
+  - name: keyGreen
+    icon: {fileID: 21300000, guid: 8abef52b05b50bd4cbf1c9be905ae85d, type: 3}
+    iconTint: {r: 0, g: 0.7735849, b: 0.16389516, a: 1}
+    prefab: {fileID: 6783511296129889866, guid: 58860afb5cb40014588408e1077b6ddc,
+      type: 3}
+  OnInventoryChange:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 2034546432}
+        m_MethodName: TestInventory
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_TypeName: InventoryEvent, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+      PublicKeyToken=null
+--- !u!114 &2034546432
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7054282739156130839}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8ef77340b0510014bbe193602a5c522b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  horizontal: Horizontal
+  interactKey:
+    type: 0
+    inputName: 
+    axisCheck: 0
+    key: 101
+    isShift: 0
+    isControl: 0
+    kind: 0
+  jumpKey:
+    type: 1
+    inputName: Jump
+    axisCheck: 0
+    key: 0
+    isShift: 0
+    isControl: 0
+    kind: 0
+  downKey:
+    type: 2
+    inputName: Vertical
+    axisCheck: -0.1
+    key: 0
+    isShift: 0
+    isControl: 0
+    kind: 0
+  choice1:
+    type: 0
+    inputName: 
+    axisCheck: 0
+    key: 49
+    isShift: 0
+    isControl: 0
+    kind: 0
+  choice2:
+    type: 0
+    inputName: 
+    axisCheck: 0
+    key: 50
+    isShift: 0
+    isControl: 0
+    kind: 0
+  choice3:
+    type: 0
+    inputName: 
+    axisCheck: 0
+    key: 51
+    isShift: 0
+    isControl: 0
+    kind: 0
 --- !u!1 &7054282739554495652
 GameObject:
   m_ObjectHideFlags: 0
@@ -168,10 +270,10 @@ MonoBehaviour:
   m_DeadZoneHeight: 0.1
   m_DeadZoneDepth: 0
   m_UnlimitedSoftZone: 0
-  m_SoftZoneWidth: 0.8
-  m_SoftZoneHeight: 0.8
+  m_SoftZoneWidth: 0.42
+  m_SoftZoneHeight: 0.47
   m_BiasX: 0
-  m_BiasY: 0
+  m_BiasY: -0.2410001
   m_CenterOnActivate: 1
   m_GroupFramingMode: 2
   m_AdjustmentMode: 2
@@ -209,7 +311,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7054282740168802557}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -1.11, y: -0.9, z: -10}
+  m_LocalPosition: {x: 60.08, y: 0.22, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 7054282739554495655}
@@ -280,7 +382,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7054282740451914028}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -1.11, y: -0.9, z: -10}
+  m_LocalPosition: {x: 60.08, y: 0.22, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 7054282739156130838}

@@ -103,7 +103,7 @@ public class SM : MonoBehaviour
 	public static Inventory inventory;
 	public static Player player;
 
-	private static SM instance;
+	public static SM instance;
 
 	[Header("Key bindings")]
 	public string horizontal = "Horizontal";

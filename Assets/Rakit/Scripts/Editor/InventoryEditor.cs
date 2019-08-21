@@ -9,6 +9,7 @@ public class InventoryEditor : Editor
   Inventory inventory;
   bool itemsFold;
   List<bool> previewFold = new List<bool>();
+
   private void OnEnable()
   {
     inventory = target as Inventory;
@@ -18,9 +19,8 @@ public class InventoryEditor : Editor
   {
     //base.OnInspectorGUI();
 
-    this.serializedObject.Update();
+    serializedObject.Update();
     EditorGUILayout.PropertyField(this.serializedObject.FindProperty("OnInventoryChange"), true);
-    this.serializedObject.ApplyModifiedProperties();
 
     int delete = -1;
     itemsFold = EditorGUILayout.Foldout(itemsFold, "Iems");
@@ -45,6 +45,8 @@ public class InventoryEditor : Editor
         EditorGUILayout.BeginVertical();
         string iName = EditorGUILayout.TextField("Item name",item.name);
         Color iColor = EditorGUILayout.ColorField("Tint color", item.iconTint);
+
+        GameObject prefab = (GameObject)EditorGUILayout.ObjectField("Prefab", item.prefab, typeof(GameObject), true);
 
         if (GUILayout.Button("Delete")) 
         {
@@ -100,7 +102,7 @@ public class InventoryEditor : Editor
           item.name = iName;
           item.icon = iIcon;
           item.iconTint = iColor;
-          
+          item.prefab = prefab;
         }
       }
     }
@@ -116,6 +118,7 @@ public class InventoryEditor : Editor
       inventory.itemsDefine.RemoveAt(delete);
     }
 
+    serializedObject.ApplyModifiedProperties();
     EditorUtility.SetDirty(target);
 
   }

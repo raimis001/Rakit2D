@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 6783511296129889865}
   - component: {fileID: 6783511296129889871}
   m_Layer: 0
-  m_Name: KeyItem
+  m_Name: KeyGreen
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -77,7 +77,7 @@ MonoBehaviour:
   itemNeeded: 1
   removeOnUse: 0
   itemReward:
-    itemName: 
+    itemName: keyGreen
   destroyOnGet: 1
 --- !u!1 &6783511296159873102
 GameObject:
@@ -150,7 +150,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 8abef52b05b50bd4cbf1c9be905ae85d, type: 3}
-  m_Color: {r: 0.7647059, g: 0.09283786, b: 0.019607842, a: 1}
+  m_Color: {r: 0, g: 0.7764706, b: 0.16470589, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0

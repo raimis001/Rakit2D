@@ -9,25 +9,6 @@ using UnityEngine.UIElements;
 public class InventoryItemProperty : PropertyDrawer
 {
 
-  //public override VisualElement CreatePropertyGUI(SerializedProperty property)
-  //{
-  //  // Create property container element.
-  //  var container = new VisualElement();
-
-  //  // Create property fields.
-  //  var amountField = new PropertyField(property.FindPropertyRelative("itemName"));
-  //  //var unitField = new PropertyField(property.FindPropertyRelative("unit"));
-  //  //var nameField = new PropertyField(property.FindPropertyRelative("name"), "Fancy Name");
-
-  //  // Add fields to the container.
-  //  container.Add(amountField);
-  //  //container.Add(unitField);
-  //  //container.Add(nameField);
-
-  //  return container;
-  //}
-
-
   int selected = 0;
   Inventory inventory;
   public override void OnGUI(Rect position, SerializedProperty prop, GUIContent label)
@@ -49,6 +30,7 @@ public class InventoryItemProperty : PropertyDrawer
 
     string[] options = new string[inventory.itemsDefine.Count+1];
     options[0] = "None";
+    selected = 0;
     for (int i = 0; i < inventory.itemsDefine.Count; i++)
     {
       options[i+1] = inventory.itemsDefine[i].name;

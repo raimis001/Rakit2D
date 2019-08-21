@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
+using Random = UnityEngine.Random;
 
 [Serializable]
 public class InventoryEvent : UnityEvent<string, int> { }
@@ -19,6 +20,7 @@ public class InventoryItem
   public string name;
   public Sprite icon;
   public Color iconTint = Color.white;
+  public GameObject prefab;
 }
 
 public class Inventory : MonoBehaviour
@@ -63,4 +65,19 @@ public class Inventory : MonoBehaviour
 		}
 		return 0;
 	}
+
+  public void DropItem(Vector3 position, string itemName)
+  {
+    InventoryItem item = itemsDefine.Find(itm => itm.name == itemName);
+    if (item == null)
+      return;
+
+    position.x += Random.Range(0.5f, 1) * Mathf.Sign(Random.Range(-1,1));
+    Instantiate(item.prefab, position, Quaternion.identity);
+  }
+
+  internal static void Drop(Vector3 position, string itemName)
+  {
+    SM.inventory.DropItem(position,itemName);
+  }
 }

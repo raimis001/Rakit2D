@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public enum DialogKind
@@ -37,9 +38,13 @@ public class Dialogs : MonoBehaviour
   public string caption;
   public List<DialogItem> dialogs;
 
+  public TMP_Text textCaption;
+  public TMP_Text textText;
+  public TMP_Text textChoice;
+
   CanvasGroup group;
   Transform cameraTransform;
-
+  int currentDialog = -1;
   float distance => Vector2.Distance(cameraTransform.position, transform.position);
 
   private void Start()
@@ -61,10 +66,16 @@ public class Dialogs : MonoBehaviour
 
     cameraTransform = Camera.main.transform;
     group = canvas.GetComponent<CanvasGroup>();
+
+    if (dialogs != null && dialogs.Count > 0)
+      currentDialog = 0;
   }
 
   private void Update()
   {
+    if (actor)
+      transform.position = actor.position;
+
     if (!canvas)
       return;
     if (!cameraTransform)
@@ -79,10 +90,73 @@ public class Dialogs : MonoBehaviour
       case DialogKind.OnKey:
         CheckKey();
         break;
-    }      
+    }
+
+    if (!SM.dialogOpened)
+      return;
+    if (currentDialog < 0)
+      return;
+
+    DialogItem item = dialogs[currentDialog];
+    if (item.choises.Count < 1)
+      return;
+
+    if (SM.dialogChoice1)
+    {
+      HitChoice(0);
+      return;
+    }
+
+    if (SM.dialogChoice2)
+    {
+      HitChoice(1);
+      return;
+    }
+
+    if (SM.dialogChoice3)
+    {
+      HitChoice(2);
+      return;
+    }
+
   }
 
+  void HitChoice(int choice)
+  {
 
+    DialogItem item = dialogs[currentDialog];
+
+    if (item.itemReward.itemName != "")
+    {
+      Inventory.Drop(transform.position, item.itemReward.itemName);
+    }
+
+    if (item.choises.Count < choice + 1)
+      return;
+
+    int next = FindDialogId(item.choises[choice].nextDialog);
+    if (next < 0)
+      return;
+
+    currentDialog = next;
+
+    DrawDialog();
+
+  }
+
+  int FindDialogId(string id)
+  {
+    if (id == "")
+      return -1;
+
+    for (int i = 0; i < dialogs.Count; i++)
+    {
+      if (dialogs[i].idString == id)
+        return i;
+    }
+
+    return -1;
+  }
 
   void CheckKey()
   {
@@ -101,6 +175,7 @@ public class Dialogs : MonoBehaviour
 
     SM.dialogOpened = true;
     canvas.gameObject.SetActive(true);
+    DrawDialog();
 
   }
 
@@ -120,7 +195,11 @@ public class Dialogs : MonoBehaviour
     }
 
     if (!canvas.gameObject.activeInHierarchy)
+    {
+      SM.dialogOpened = true;
       canvas.gameObject.SetActive(true);
+      DrawDialog();
+    }
 
     if (dist < 2)
     {
@@ -139,5 +218,22 @@ public class Dialogs : MonoBehaviour
 
     dist -= 2;
     group.alpha = Mathf.Lerp(0, 1, 1 - dist / 2f);
+  }
+
+  void DrawDialog()
+  {
+    textCaption.text = caption;
+    if (currentDialog < 0)
+      return;
+
+    DialogItem item = dialogs[currentDialog];
+    textText.text = item.description;
+
+    string choice = "";
+    for (int i = 0; i < item.choises.Count; i++)
+      choice += string.Format("{0} {1}\n", i + 1, item.choises[i].caption);
+
+    textChoice.text = choice;
+
   }
 }

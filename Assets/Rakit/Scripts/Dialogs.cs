@@ -25,7 +25,6 @@ public class DialogItem
 
   public List<DialogChoise> choises;
 
-  internal bool showing;
   internal bool completed;
 }
 
@@ -126,8 +125,9 @@ public class Dialogs : MonoBehaviour
 
     DialogItem item = dialogs[currentDialog];
 
-    if (item.itemReward.itemName != "")
+    if (!item.completed && item.itemReward.itemName != "")
     {
+      item.completed = true;
       Inventory.Drop(transform.position, item.itemReward.itemName);
     }
 
@@ -231,7 +231,10 @@ public class Dialogs : MonoBehaviour
 
     string choice = "";
     for (int i = 0; i < item.choises.Count; i++)
-      choice += string.Format("{0} {1}\n", i + 1, item.choises[i].caption);
+    {
+      if (item.choises[i].caption != "")
+        choice += string.Format("{0} {1}\n", i + 1, item.choises[i].caption);
+    }
 
     textChoice.text = choice;
 

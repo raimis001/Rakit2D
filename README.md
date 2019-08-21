@@ -31,7 +31,7 @@ Futures
 * Npc
   - [ ] move left, right, jump 
   - [ ] path
-  - [ ] dialog
+  - [x] dialog
   - [ ] meele attack
   - [ ] range attack
   - [ ] ded
@@ -42,6 +42,9 @@ Futures
 * Quests
 
 * UI
+  - [x] dialog
+  - [ ] lives params
+  - [ ] item list
 
 * Environment
   - [x] climbing platform (jump up, climb down)

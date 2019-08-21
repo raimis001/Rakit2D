@@ -27,3 +27,11 @@ The following packages were added:
   com.unity.learn.iet-framework@0.1.17-preview
   com.unity.package-manager-ui@2.0.7
   com.unity.postprocessing@2.1.4
+
+=== Wed Aug 21 12:38:06 2019
+
+Packages were changed.
+Update Mode: updateDependencies
+
+The following packages were updated:
+  com.unity.ide.rider from version 1.0.8 to 1.1.0

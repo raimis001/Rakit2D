@@ -7641,6 +7641,18 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 6783511296129889866, guid: a13192ac75a9c33499d6d4ccf3680ba0,
         type: 3}
+    - target: {fileID: 2034546432, guid: cd7e024ea06b4764a9c63e1ab81783eb, type: 3}
+      propertyPath: attack.type
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 2034546432, guid: cd7e024ea06b4764a9c63e1ab81783eb, type: 3}
+      propertyPath: attack.key
+      value: 323
+      objectReference: {fileID: 0}
+    - target: {fileID: 2034546432, guid: cd7e024ea06b4764a9c63e1ab81783eb, type: 3}
+      propertyPath: attack.isControl
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: cd7e024ea06b4764a9c63e1ab81783eb, type: 3}
 --- !u!1001 &7190155478542755907

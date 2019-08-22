@@ -80,6 +80,9 @@ public class Player : MonoBehaviour
       return;
     }
 
+    if (SM.dialogOpened)
+      return;
+
 		if (SM.keyJump)
 		{
 			if (!isGrounded)
@@ -90,6 +93,12 @@ public class Player : MonoBehaviour
       animator.SetTrigger("Jump");
 			return;
 		}
+
+    if (SM.keyAttack)
+    {
+      Debug.Log("Attack");
+      return;
+    }
 
 	}
 

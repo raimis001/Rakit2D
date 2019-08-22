@@ -74,8 +74,7 @@ public class Inventory : MonoBehaviour
 
   public void DropItem(Vector3 position, string itemName)
   {
-    InventoryItem item = itemsDefine.Find(itm => itm.name == itemName);
-    if (item == null)
+    if (!GetDefine(itemName, out InventoryItem item))
       return;
 
     position.x += Random.Range(0.5f, 1) * Mathf.Sign(Random.Range(-1,1));
@@ -85,5 +84,10 @@ public class Inventory : MonoBehaviour
   internal static void Drop(Vector3 position, string itemName)
   {
     SM.inventory.DropItem(position,itemName);
+  }
+  internal static bool GetDefine(string itemName, out InventoryItem item)
+  {
+    item = SM.inventory.itemsDefine.Find(itm => itm.name == itemName);
+    return item != null;
   }
 }

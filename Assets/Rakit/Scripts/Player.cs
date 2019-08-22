@@ -16,6 +16,20 @@ public class Player : MonoBehaviour
   [Header("Weapons")]
   public bool isMeele;
   public bool isRange;
+  private int _currentWeapon;
+  internal int currentWeapon
+  {
+    set
+    {
+      if (_currentWeapon == value)
+        return;
+
+      _currentWeapon = value;
+      animator.SetInteger("Weapon", _currentWeapon);
+      animator.SetTrigger("SwitchWeapon");
+
+    }
+  }
 
   [Header("Components")]
   public Animator animator;

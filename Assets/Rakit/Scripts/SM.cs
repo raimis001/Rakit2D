@@ -132,8 +132,21 @@ public class SM : MonoBehaviour
 
   public static bool dialogOpened;
 
-  public void TestInventory(string item, int cnt)
+  public void TestInventory(string itemName, int cnt)
   {
+    if (!Inventory.GetDefine(itemName, out InventoryItem item))
+      return;
 
+    if (item.kind == InventoryItemKind.MeeleWeapon)
+    {
+      player.isMeele = true;
+      player.currentWeapon = 1;
+    }
+
+    if (item.kind == InventoryItemKind.RangeWeapon)
+    {
+      player.isRange = true;
+      player.currentWeapon = 2;
+    }
   }
 }

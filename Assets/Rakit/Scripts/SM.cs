@@ -81,10 +81,10 @@ public struct KeyBind
           mouse = 0;
           break;
         case KeyCode.Mouse1:
-          mouse = 1;
+          mouse = 2;
           break;
         case KeyCode.Mouse2:
-          mouse = 2;
+          mouse = 1;
           break;
       }
 

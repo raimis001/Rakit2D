@@ -44,6 +44,9 @@ public class InventoryEditor : Editor
 
         EditorGUILayout.BeginVertical();
         string iName = EditorGUILayout.TextField("Item name",item.name);
+
+        InventoryItemKind kind = (InventoryItemKind)EditorGUILayout.EnumPopup("Type",item.kind);
+
         Color iColor = EditorGUILayout.ColorField("Tint color", item.iconTint);
 
         GameObject prefab = (GameObject)EditorGUILayout.ObjectField("Prefab", item.prefab, typeof(GameObject), true);
@@ -103,6 +106,7 @@ public class InventoryEditor : Editor
           item.icon = iIcon;
           item.iconTint = iColor;
           item.prefab = prefab;
+          item.kind = kind;
         }
       }
     }

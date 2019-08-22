@@ -7,20 +7,23 @@ public class Player : MonoBehaviour
   public static bool IsDed;
   private static Vector2 checkPoint;
 
+  [Header("Move params")]
 	[Range(0.5f, 10f)]
 	public float speed = 1;
 	[Range(0.5f, 5f)]
 	public float jumpSpeed = 1;
 
-  public Animator animator;
+  [Header("Weapons")]
+  public bool isMeele;
+  public bool isRange;
 
+  [Header("Components")]
+  public Animator animator;
 	public ContactFilter2D groundFilter;
 
 	private Rigidbody2D body;
-	
 
-
-	public static bool IsPlayer(Collider2D collider)
+  public static bool IsPlayer(Collider2D collider)
 	{
 		return collider.GetComponent<Player>() != null;
 	}

@@ -5,6 +5,11 @@ using UnityEngine;
 using UnityEngine.Events;
 using Random = UnityEngine.Random;
 
+public enum InventoryItemKind
+{
+  Item, MeeleWeapon, RangeWeapon
+}
+
 [Serializable]
 public class InventoryEvent : UnityEvent<string, int> { }
 
@@ -18,6 +23,7 @@ public class InventoryItemName
 public class InventoryItem
 {
   public string name;
+  public InventoryItemKind kind;
   public Sprite icon;
   public Color iconTint = Color.white;
   public GameObject prefab;

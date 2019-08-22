@@ -41,6 +41,7 @@ Futures
   - [x] activate on player
   - [x] activate/deactivate on switch
   - [x] ded on activate
+  - [x] close on exit zone
 
 * Quests
 

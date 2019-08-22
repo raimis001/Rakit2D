@@ -149,8 +149,8 @@ CapsuleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.17750333, y: 0.5916776}
-  m_Size: {x: 1.3283514, y: 3.501951}
+  m_Offset: {x: -0.17750333, y: 1.76}
+  m_Size: {x: 1.3283514, y: 3.5}
   m_Direction: 0
 --- !u!114 &5029064407519728107
 MonoBehaviour:
@@ -166,6 +166,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 1
   jumpSpeed: 1
+  isMeele: 0
+  isRange: 0
   animator: {fileID: 4942875929760949116}
   groundFilter:
     useTriggers: 0
@@ -1212,8 +1214,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5029514509530678410}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 1.01, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 5033849629843096276}

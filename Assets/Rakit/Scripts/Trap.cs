@@ -20,13 +20,12 @@ public class Trap : TriggerInteract
       return false;
 
     anim.SetBool("active", true);
-    Debug.Log("");
-
     return true;
   }
   protected override void OnPlayerExit()
   {
-    Invoke("CloseTrap", closeAfter);
+    if (closeAfter > -1)
+      Invoke("CloseTrap", closeAfter);
   }
 
   private void CloseTrap()
@@ -37,7 +36,7 @@ public class Trap : TriggerInteract
   public void OnActivate(Interact actor)
   {
     disabled = false;
-    
+
   }
   public void OnDeactivate(Interact actor)
   {

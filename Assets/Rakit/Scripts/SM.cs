@@ -169,6 +169,9 @@ public class SM : MonoBehaviour
 
   [Header("Weapon")]
   public KeyBind attack = new KeyBind() { type = KeyType.Key, key = KeyCode.None, isControl = true, kind = KeyKind.Down };
+  public KeyBind weapon1 = new KeyBind() { type = KeyType.Key, key = KeyCode.Alpha1, kind = KeyKind.Down };
+  public KeyBind weapon2 = new KeyBind() { type = KeyType.Key, key = KeyCode.Alpha1, kind = KeyKind.Down };
+
   private void Awake()
   {
     instance = this;
@@ -184,6 +187,8 @@ public class SM : MonoBehaviour
   public static bool dialogChoice3 => instance.choice3.IsKey;
 
   public static bool keyAttack => instance.attack.IsKey;
+  public static bool keyWeapon1 => instance.weapon1.IsKey;
+  public static bool keyWeapon2 => instance.weapon2.IsKey;
 
   public static bool dialogOpened;
 

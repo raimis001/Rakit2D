@@ -15,7 +15,10 @@ public class Player : MonoBehaviour
 
   [Header("Weapons")]
   public bool isMeele;
+  public WeaponTrigger meeleTrigger;
+  public float meeleCooldown = 1;
   public bool isRange;
+
   private int _currentWeapon;
   internal int currentWeapon
   {
@@ -56,8 +59,9 @@ public class Player : MonoBehaviour
 
 	private void Start()
 	{
-    //Time.timeScale = 0.1f;
-	}
+    //Time.timeScale = 0.1f;\
+    meeleTrigger.coolDown = meeleCooldown;
+  }
 
 	private void OnEnable()
 	{
@@ -94,9 +98,30 @@ public class Player : MonoBehaviour
 			return;
 		}
 
-    if (SM.keyAttack)
+    if (isMeele && SM.keyWeapon1)
     {
-      Debug.Log("Attack");
+
+      currentWeapon = _currentWeapon == 1 ? 0 : 1;
+      return;
+    }
+    if (isRange && SM.keyWeapon2)
+    {
+      currentWeapon = _currentWeapon == 2 ? 0 : 2;
+      return;
+    }
+
+    if (_currentWeapon > 0 && SM.keyAttack)
+    {
+      if (_currentWeapon == 1)
+      {
+        if (meeleTrigger.attacking)
+          return;
+
+        meeleTrigger.coolDown = meeleCooldown;
+        meeleTrigger.attacking = true;
+      }
+
+      animator.SetTrigger("Attack");
       return;
     }
 
@@ -146,7 +171,6 @@ public class Player : MonoBehaviour
 		_isGrounded = body.IsTouching(groundFilter);
 		return _isGrounded;
 	}
-	
   private bool GetGroundCollider(out Collider2D collider)
   {
     collider = null;
@@ -161,7 +185,6 @@ public class Player : MonoBehaviour
     collider = colliders[0];
     return true;
   }
-
   public void SetDed()
   {
     if (IsDed)
@@ -174,7 +197,6 @@ public class Player : MonoBehaviour
 
     Debug.Log("Player is ded");
   }
-
   public void SetSpawn(Vector2 pos)
   {
     if (!IsDed)
@@ -189,7 +211,6 @@ public class Player : MonoBehaviour
 
     Debug.Log("Player is respawn");
   }
-
   public static void Ded()
 	{
     SM.player.SetDed();
@@ -203,4 +224,6 @@ public class Player : MonoBehaviour
     Debug.Log("Save position");
     checkPoint = SM.player.transform.position;
   }
+
+
 }

@@ -74,9 +74,9 @@ Futures
 
 
 [![](http://img.youtube.com/vi/AQA1-tUi8NU/0.jpg)](http://www.youtube.com/watch?v=AQA1-tUi8NU "2D Ra Gamekit")
+[![](http://img.youtube.com/vi/tLiYf1E80tI/0.jpg)](http://www.youtube.com/watch?v=tLiYf1E80tI "Dialog making")
 
 Used assets:
 
 [Sunny Land](https://assetstore.unity.com/packages/2d/characters/sunny-land-103349)
-
 [Fantasy 2D Character: Free](https://assetstore.unity.com/packages/2d/characters/fantasy-2d-character-free-110506)

@@ -25,7 +25,6 @@ public class WeaponTrigger : MonoBehaviour
     }
   }
 
-
   private void OnTriggerEnter2D(Collider2D collision)
   {
     if (!_attacking)
@@ -40,6 +39,7 @@ public class WeaponTrigger : MonoBehaviour
     _cooldown = true;
     actor.Attack(1);
   }
+
   void EndAttack()
   {
     _cooldown = false;

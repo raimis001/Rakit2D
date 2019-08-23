@@ -166,8 +166,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 1
   jumpSpeed: 1
-  isMeele: 1
+  isMeele: 0
   meeleTrigger: {fileID: 5737779480654449570}
+  meeleCooldown: 1
   isRange: 0
   animator: {fileID: 4942875929760949116}
   groundFilter:

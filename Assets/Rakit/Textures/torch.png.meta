@@ -352,8 +352,8 @@ TextureImporter:
       boneIndex[1]: 0
       boneIndex[2]: 0
       boneIndex[3]: 0
-    - weight[0]: 0.96787965
-      weight[1]: 0.0321203
+    - weight[0]: 0.9678798
+      weight[1]: 0.032120302
       weight[2]: 0
       weight[3]: 0
       boneIndex[0]: 3
@@ -368,9 +368,9 @@ TextureImporter:
       boneIndex[1]: 2
       boneIndex[2]: 1
       boneIndex[3]: 0
-    - weight[0]: 0.5061617
-      weight[1]: 0.328325
-      weight[2]: 0.16551335
+    - weight[0]: 0.50616163
+      weight[1]: 0.32832497
+      weight[2]: 0.16551334
       weight[3]: 0
       boneIndex[0]: 2
       boneIndex[1]: 3
@@ -480,21 +480,21 @@ TextureImporter:
       boneIndex[1]: 0
       boneIndex[2]: 0
       boneIndex[3]: 0
-    - weight[0]: 0.80393684
-      weight[1]: 0.12167877
-      weight[2]: 0.07438433
+    - weight[0]: 0.80393696
+      weight[1]: 0.121678784
+      weight[2]: 0.07438434
       weight[3]: 0
       boneIndex[0]: 2
       boneIndex[1]: 3
       boneIndex[2]: 1
       boneIndex[3]: 0
-    - weight[0]: 0.58085537
-      weight[1]: 0.37339917
-      weight[2]: 0.045745462
+    - weight[0]: 0.8960334
+      weight[1]: 0.07056735
+      weight[2]: 0.03339925
       weight[3]: 0
       boneIndex[0]: 1
-      boneIndex[1]: 0
-      boneIndex[2]: 2
+      boneIndex[1]: 2
+      boneIndex[2]: 0
       boneIndex[3]: 0
     - weight[0]: 1
       weight[1]: 0
@@ -528,20 +528,20 @@ TextureImporter:
       boneIndex[1]: 1
       boneIndex[2]: 0
       boneIndex[3]: 0
-    - weight[0]: 0.9841888
-      weight[1]: 0.015811147
+    - weight[0]: 0.9841889
+      weight[1]: 0.015811149
       weight[2]: 0
       weight[3]: 0
       boneIndex[0]: 1
       boneIndex[1]: 2
       boneIndex[2]: 0
       boneIndex[3]: 0
-    - weight[0]: 0.5342637
-      weight[1]: 0.46573633
+    - weight[0]: 0.97573614
+      weight[1]: 0.024263866
       weight[2]: 0
       weight[3]: 0
-      boneIndex[0]: 0
-      boneIndex[1]: 1
+      boneIndex[0]: 1
+      boneIndex[1]: 0
       boneIndex[2]: 0
       boneIndex[3]: 0
     secondaryTextures: []

@@ -5,6 +5,8 @@ public class WeaponTrigger : MonoBehaviour
 {
   internal float coolDown = 1;
   private bool _attacking;
+  private bool _cooldown;
+
   internal bool attacking
   {
     get
@@ -17,25 +19,30 @@ public class WeaponTrigger : MonoBehaviour
         return;
 
       _attacking = value;
+
       if (_attacking)
         Invoke("EndAttack", coolDown);
     }
   }
+
+
   private void OnTriggerEnter2D(Collider2D collision)
   {
     if (!_attacking)
       return;
+    if (_cooldown)
+      return;
 
-    Interact actor = collision.GetComponent<Interact>();
+    Interact actor = collision.GetComponentInParent<Interact>();
     if (!actor)
       return;
 
+    _cooldown = true;
     actor.Attack(1);
-
-    Debug.Log("Weapon trigger");
   }
   void EndAttack()
   {
+    _cooldown = false;
     _attacking = false;
   }
 }

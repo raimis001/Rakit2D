@@ -1,5 +1,6 @@
 # Rakit2D
 Unity 2D gamekit for beginers
+Unity 3D 2019.3 alpha + LWRP 2D eksperimental
 
 Futures
 
@@ -22,7 +23,7 @@ Futures
   - [x] jump
     - [x] animations
     - [x] fall down animation
-  - [ ] meele attack
+  - [x] meele attack
   - [ ] range attack
   - [x] ded
     - [x] animation
@@ -79,4 +80,5 @@ Futures
 Used assets:
 
 [Sunny Land](https://assetstore.unity.com/packages/2d/characters/sunny-land-103349)
+
 [Fantasy 2D Character: Free](https://assetstore.unity.com/packages/2d/characters/fantasy-2d-character-free-110506)

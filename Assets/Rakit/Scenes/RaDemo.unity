@@ -518,7 +518,7 @@ BoxCollider2D:
     adaptiveTiling: 1
   m_AutoTiling: 1
   serializedVersion: 2
-  m_Size: {x: 1.6, y: 1.45}
+  m_Size: {x: 1.6, y: 1.6}
   m_EdgeRadius: 0
 --- !u!212 &238273584
 SpriteRenderer:
@@ -9243,10 +9243,20 @@ PrefabInstance:
       propertyPath: m_Name
       value: BurlayPlayer
       objectReference: {fileID: 0}
-    - target: {fileID: 5029064407519728101, guid: aff71a220e332304dbc1753f67bdf240,
+    - target: {fileID: 5033849629843096276, guid: aff71a220e332304dbc1753f67bdf240,
         type: 3}
-      propertyPath: m_Offset.y
-      value: 1.45
+      propertyPath: m_LocalPosition.x
+      value: -0.078
+      objectReference: {fileID: 0}
+    - target: {fileID: 5033415904639209484, guid: aff71a220e332304dbc1753f67bdf240,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.024
+      objectReference: {fileID: 0}
+    - target: {fileID: 5033415904639209484, guid: aff71a220e332304dbc1753f67bdf240,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0.07
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: aff71a220e332304dbc1753f67bdf240, type: 3}
@@ -9322,6 +9332,16 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
+    - target: {fileID: 5031833706943607762, guid: 299c02be7fb175549aa67eed1af9f365,
+        type: 3}
+      propertyPath: m_Offset.y
+      value: -0.012583137
+      objectReference: {fileID: 0}
+    - target: {fileID: 5031833706943607762, guid: 299c02be7fb175549aa67eed1af9f365,
+        type: 3}
+      propertyPath: m_Size.y
+      value: 1.0648338
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 299c02be7fb175549aa67eed1af9f365, type: 3}
 --- !u!1001 &5328493454695849731

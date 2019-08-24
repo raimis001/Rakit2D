@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3668687153303876123}
   - component: {fileID: 3668687153303876122}
-  m_Layer: 0
+  m_Layer: 4
   m_Name: lava (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -91,7 +91,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3668687153344940745}
   - component: {fileID: 3668687153344940744}
-  m_Layer: 0
+  m_Layer: 4
   m_Name: lava
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -174,7 +174,7 @@ GameObject:
   - component: {fileID: 3668687153358899609}
   - component: {fileID: 6143177098754703066}
   - component: {fileID: 217364887330725117}
-  m_Layer: 0
+  m_Layer: 4
   m_Name: Lava
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -265,7 +265,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3668687153673755756}
   - component: {fileID: 3668687153673755759}
-  m_Layer: 0
+  m_Layer: 4
   m_Name: Mask
   m_TagString: Untagged
   m_Icon: {fileID: 0}

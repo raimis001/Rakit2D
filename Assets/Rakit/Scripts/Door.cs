@@ -5,16 +5,20 @@ using UnityEngine;
 
 public class Door : TriggerInteract
 {
-
+  public GameObject icon;
 	
 	public bool closeOnExit;
 
 	Animator anim;
 	bool working;
-	private void Awake()
+  bool opened => anim.GetBool("Opened");
+  private void Awake()
 	{
 		anim = GetComponent<Animator>();
-	}
+
+    if (!opened && item.itemName != "")
+      icon.SetActive(true);
+  }
 
 	public void OpenDoor(Interact i)
 	{
@@ -53,7 +57,9 @@ public class Door : TriggerInteract
     if (working)
       return false;
 
-    bool opened = anim.GetBool("Opened");
+    if (!opened && item.itemName != "")
+      icon.SetActive(false);
+
 
     if (isKeyboard)
     {
@@ -62,6 +68,7 @@ public class Door : TriggerInteract
     }
     if (opened)
       return false;
+
 
     StartCoroutine(OperateDoor(true));
     return true;

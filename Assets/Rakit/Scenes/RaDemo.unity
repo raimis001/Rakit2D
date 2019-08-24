@@ -7180,7 +7180,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1672491795}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 71.181, y: 2.132, z: 0}
+  m_LocalPosition: {x: 73.58, y: 2.132, z: 0}
   m_LocalScale: {x: 0.43877953, y: 0.8568234, z: 1}
   m_Children:
   - {fileID: 2130798837}
@@ -7940,7 +7940,7 @@ MonoBehaviour:
       m_Calls: []
   m_text: 'Get/hide weapon press 1
 
-    Attack wall prese LMB
+    Attack wall press LMB
 
     to destroy'
   m_isRightToLeft: 0
@@ -8706,7 +8706,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2130798832}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 5.67, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1672491798}
@@ -9242,6 +9242,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: BurlayPlayer
+      objectReference: {fileID: 0}
+    - target: {fileID: 5029064407519728101, guid: aff71a220e332304dbc1753f67bdf240,
+        type: 3}
+      propertyPath: m_Offset.y
+      value: 1.45
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: aff71a220e332304dbc1753f67bdf240, type: 3}

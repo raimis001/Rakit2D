@@ -295,6 +295,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7054282739156130838}
+  - component: {fileID: 5467474086570156826}
   - component: {fileID: 2034546431}
   - component: {fileID: 2034546432}
   m_Layer: 0
@@ -322,7 +323,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &2034546431
+--- !u!114 &5467474086570156826
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -331,52 +332,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 7054282739156130839}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 485590522c84d3a4895b8c7ff503147d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  itemsDefine:
-  - name: keyRed
-    kind: 0
-    icon: {fileID: 21300000, guid: 8abef52b05b50bd4cbf1c9be905ae85d, type: 3}
-    iconTint: {r: 0.7264151, g: 0.2775454, b: 0.2775454, a: 1}
-    prefab: {fileID: 6783511296129889866, guid: 6e96aa099c206c443a9f790062971f4c,
-      type: 3}
-  - name: keyGreen
-    kind: 0
-    icon: {fileID: 21300000, guid: 8abef52b05b50bd4cbf1c9be905ae85d, type: 3}
-    iconTint: {r: 0, g: 0.7735849, b: 0.16389516, a: 1}
-    prefab: {fileID: 6783511296129889866, guid: 58860afb5cb40014588408e1077b6ddc,
-      type: 3}
-  - name: sword
-    kind: 1
-    icon: {fileID: 21300000, guid: d9d955207cd9bf24ca00ed292731333f, type: 3}
-    iconTint: {r: 1, g: 1, b: 1, a: 1}
-    prefab: {fileID: 6783511296129889866, guid: a13192ac75a9c33499d6d4ccf3680ba0,
-      type: 3}
-  OnInventoryChange:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 2034546432}
-        m_MethodName: TestInventory
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
---- !u!114 &2034546432
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7054282739156130839}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8ef77340b0510014bbe193602a5c522b, type: 3}
+  m_Script: {fileID: 11500000, guid: bce43ef6e4b8ad44da8d5fbee3b3d25a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   horizontal: Horizontal
@@ -452,6 +408,63 @@ MonoBehaviour:
     isShift: 0
     isControl: 0
     kind: 0
+--- !u!114 &2034546431
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7054282739156130839}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 485590522c84d3a4895b8c7ff503147d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  itemsDefine:
+  - name: keyRed
+    kind: 0
+    icon: {fileID: 21300000, guid: 8abef52b05b50bd4cbf1c9be905ae85d, type: 3}
+    iconTint: {r: 0.7264151, g: 0.2775454, b: 0.2775454, a: 1}
+    prefab: {fileID: 6783511296129889866, guid: 6e96aa099c206c443a9f790062971f4c,
+      type: 3}
+  - name: keyGreen
+    kind: 0
+    icon: {fileID: 21300000, guid: 8abef52b05b50bd4cbf1c9be905ae85d, type: 3}
+    iconTint: {r: 0, g: 0.7735849, b: 0.16389516, a: 1}
+    prefab: {fileID: 6783511296129889866, guid: 58860afb5cb40014588408e1077b6ddc,
+      type: 3}
+  - name: sword
+    kind: 1
+    icon: {fileID: 21300000, guid: d9d955207cd9bf24ca00ed292731333f, type: 3}
+    iconTint: {r: 1, g: 1, b: 1, a: 1}
+    prefab: {fileID: 6783511296129889866, guid: a13192ac75a9c33499d6d4ccf3680ba0,
+      type: 3}
+  OnInventoryChange:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 2034546432}
+        m_MethodName: TestInventory
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &2034546432
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7054282739156130839}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8ef77340b0510014bbe193602a5c522b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &7054282739554495652
 GameObject:
   m_ObjectHideFlags: 0

@@ -14,15 +14,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   tasksList:
   - name: UI
-    description: 'Lives
-
-      Health
-
-      Items (Inventory ?)
+    description: 'Items (Inventory ?)
 
 '
     priority: 3
-    status: 0
+    status: 1
     type: 1
   - name: NPC
     description: 'Move right/left
@@ -47,3 +43,8 @@ MonoBehaviour:
     priority: 3
     status: 0
     type: 2
+  - name: UI Lives + HP
+    description: 
+    priority: 3
+    status: 2
+    type: 0

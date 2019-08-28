@@ -10,6 +10,12 @@ public class uiLives : MonoBehaviour
 
   private void Start()
   {
+    if (SM.MaxLives < 0)
+    {
+      livesPrefab.gameObject.SetActive(false);
+      return;
+    }
+
     lives.Add(livesPrefab);
 
     for (int i = 1; i < SM.MaxLives; i++)

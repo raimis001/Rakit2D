@@ -38,6 +38,9 @@ public class SM : MonoBehaviour
 
   public static void SetHp(float hp)
   {
+    if (MaxLives < 0)
+      return;
+
     Hp -= hp;
     if (Hp > 0)
     {

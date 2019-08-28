@@ -1,0 +1,3 @@
+[submodule "Assets/Unitasks"]
+	path = Assets/Unitasks
+	url = git@github.com:raimis001/Unitasks.git

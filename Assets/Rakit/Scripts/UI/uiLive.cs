@@ -10,7 +10,7 @@ public class uiLive : MonoBehaviour
   {
     set
     {
-      progressImage.fillAmount = Mathf.Clamp(0, 1, value);
+      progressImage.fillAmount = Mathf.Clamp(value, 0, 1);
     }
   }
 

@@ -48,7 +48,7 @@ Futures
 
 * UI
   - [x] dialog
-  - [ ] lives params
+  - [x] lives params
   - [ ] item list
 
 * Environment

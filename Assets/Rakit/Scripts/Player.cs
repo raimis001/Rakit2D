@@ -132,6 +132,7 @@ public class Player : MonoBehaviour
     if (IsDed)
       return;
 
+
     groundChecked = false;
 		Vector2 move = body.velocity;
 		move.x = SM.keyMove * Time.deltaTime * speed * 100f;
@@ -185,10 +186,12 @@ public class Player : MonoBehaviour
     collider = colliders[0];
     return true;
   }
-  public void SetDed()
+  private void SetDed()
   {
     if (IsDed)
       return;
+
+    SM.SetHp(1);
 
     IsDed = true;
     body.isKinematic = true;

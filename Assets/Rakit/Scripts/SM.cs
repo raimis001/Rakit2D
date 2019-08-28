@@ -31,6 +31,7 @@ public class SM : MonoBehaviour
   public static event LivesChange OnLivesChange;
 
   public static int Lives = 3;
+  public static int MaxLives => instance.maxLives;
   public static float Hp = 1;
 
   public int maxLives = 3;
@@ -47,11 +48,14 @@ public class SM : MonoBehaviour
     Lives--;
     if (Lives < 0)
     {
+      Hp = 0;
+      Lives = 0;
+      Debug.Log("Ded");
+      
       //TODO ded
       OnLivesChange.Invoke();
       return;
     }
-
     Hp = 1;
     OnLivesChange.Invoke();
 

@@ -12,4 +12,38 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e35624e37c97af544a659b5c756f15f0, type: 3}
   m_Name: NewTasks
   m_EditorClassIdentifier: 
-  tasksList: []
+  tasksList:
+  - name: UI
+    description: 'Lives
+
+      Health
+
+      Items (Inventory ?)
+
+'
+    priority: 3
+    status: 0
+    type: 1
+  - name: NPC
+    description: 'Move right/left
+
+      ??Jump
+
+      Patrollpath
+
+      Attack
+      meele
+
+      Attack range
+
+      Animations Move, Ded, Attack, Jump
+
+'
+    priority: 1
+    status: 0
+    type: 1
+  - name: Interact items
+    description: Pushable box
+    priority: 3
+    status: 0
+    type: 2

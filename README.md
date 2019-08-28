@@ -55,7 +55,7 @@ Futures
   - [x] climbing platform (jump up, climb down)
   - [x] moving platform
   - [ ] pushable box
-  - [ ] destroyable objects
+  - [x] destroyable objects
   
 * Switch
   - [x] activate on enter

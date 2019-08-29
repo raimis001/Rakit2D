@@ -90,4 +90,12 @@ public class Inventory : MonoBehaviour
     item = SM.inventory.itemsDefine.Find(itm => itm.name == itemName);
     return item != null;
   }
+  internal static IEnumerable<InventoryItem> GetItems()
+  {
+    foreach (string s in items.Keys)
+    {
+      InventoryItem item = SM.inventory.itemsDefine.Find(itm => itm.name == s);
+      yield return item;
+    }
+  }
 }

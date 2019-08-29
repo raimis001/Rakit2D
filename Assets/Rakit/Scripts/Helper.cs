@@ -9,4 +9,12 @@ public static class Helper
 		effector = coll.GetComponent<PlatformEffector2D>();
 		return effector != null;
 	}
+
+  public static void Clear(this Transform transform)
+  {
+    Transform[] ts = transform.GetComponentsInChildren<Transform>(true);
+    foreach (Transform t in ts)
+      GameObject.Destroy(t.gameObject);      
+  }
+
 }

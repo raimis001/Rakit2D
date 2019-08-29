@@ -7465,10 +7465,10 @@ RectTransform:
   m_Father: {fileID: 2028453374}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 50}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 194.985, y: -25}
+  m_SizeDelta: {x: 389.97, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &590799636
 MonoBehaviour:
@@ -14323,12 +14323,12 @@ PrefabInstance:
     - target: {fileID: 5033519508257231954, guid: aff71a220e332304dbc1753f67bdf240,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 21.28
+      value: -0.46
       objectReference: {fileID: 0}
     - target: {fileID: 5033519508257231954, guid: aff71a220e332304dbc1753f67bdf240,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 3.5
+      value: 0.06
       objectReference: {fileID: 0}
     - target: {fileID: 5033519508257231954, guid: aff71a220e332304dbc1753f67bdf240,
         type: 3}
@@ -15275,22 +15275,22 @@ PrefabInstance:
     - target: {fileID: 7054282740168802556, guid: cd7e024ea06b4764a9c63e1ab81783eb,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 3.5
+      value: 0.06
       objectReference: {fileID: 0}
     - target: {fileID: 7054282740168802556, guid: cd7e024ea06b4764a9c63e1ab81783eb,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 21.28
+      value: -0.46
       objectReference: {fileID: 0}
     - target: {fileID: 7054282740451914017, guid: cd7e024ea06b4764a9c63e1ab81783eb,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 3.5
+      value: 0.06
       objectReference: {fileID: 0}
     - target: {fileID: 7054282740451914017, guid: cd7e024ea06b4764a9c63e1ab81783eb,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 21.28
+      value: -0.46
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: cd7e024ea06b4764a9c63e1ab81783eb, type: 3}

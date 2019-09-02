@@ -18,7 +18,7 @@ MonoBehaviour:
 
 '
     priority: 3
-    status: 1
+    status: 2
     type: 1
   - name: NPC
     description: 'Move right/left
@@ -36,7 +36,7 @@ MonoBehaviour:
 
 '
     priority: 1
-    status: 0
+    status: 1
     type: 1
   - name: Interact items
     description: Pushable box
@@ -48,3 +48,8 @@ MonoBehaviour:
     priority: 3
     status: 2
     type: 0
+  - name: Paralx background
+    description: 
+    priority: 2
+    status: 0
+    type: 1

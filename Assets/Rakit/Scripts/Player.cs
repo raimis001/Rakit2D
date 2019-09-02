@@ -84,6 +84,8 @@ public class Player : MonoBehaviour
       return;
     }
 
+    //SM.SetHp(Time.deltaTime / 5f);
+
     if (SM.dialogOpened)
       return;
 
@@ -121,7 +123,7 @@ public class Player : MonoBehaviour
         meeleTrigger.attacking = true;
       }
 
-      animator.SetTrigger("Attack");
+      animator.SetTrigger("Attacked");
       return;
     }
 

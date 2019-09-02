@@ -49,7 +49,7 @@ Futures
 * UI
   - [x] dialog
   - [x] lives params
-  - [ ] item list
+  - [x] item list
 
 * Environment
   - [x] climbing platform (jump up, climb down)

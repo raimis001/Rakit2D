@@ -36,8 +36,10 @@ public class WeaponTrigger : MonoBehaviour
     if (!actor)
       return;
 
+    Debug.Log("Weapon attack!");
+
     _cooldown = true;
-    actor.Attack(1);
+    actor.Attacked(1);
   }
 
   void EndAttack()

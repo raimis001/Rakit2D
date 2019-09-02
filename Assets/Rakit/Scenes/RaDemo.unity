@@ -14613,7 +14613,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2024633823}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 81.87, y: 0, z: 0}
+  m_LocalPosition: {x: 82, y: 0, z: 0}
   m_LocalScale: {x: 0.35, y: 0.35, z: 1}
   m_Children:
   - {fileID: 49927983}
@@ -14635,11 +14635,14 @@ MonoBehaviour:
   anim: {fileID: 0}
   body: {fileID: 49927983}
   speed: 2
+  viewDistance: 4
+  bothDirection: 1
+  attackDistance: 1.34
   nodes:
-  - position: {x: 5.6330867, y: 0, z: 0}
-    waitOnNode: 0
-  - position: {x: 12.480861, y: 0, z: 0}
-    waitOnNode: 0
+  - position: {x: 0.045623776, y: 0, z: 0}
+    waitOnNode: 2
+  - position: {x: 14.200111, y: 0, z: 0}
+    waitOnNode: 1
 --- !u!1 &2028453373
 GameObject:
   m_ObjectHideFlags: 0

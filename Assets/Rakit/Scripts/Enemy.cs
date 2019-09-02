@@ -15,9 +15,16 @@ public class Enemy : Interact
   public Transform body;
   public float speed = 1;
 
+  [Range(0.0f, 20f)]
+  public float viewDistance = 3;
+  public bool bothDirection;
+
+  public float attackDistance = 1;
+
   public List<EnemyNode> nodes = new List<EnemyNode>();
 
-  private bool isRight {
+  private bool isRight
+  {
     set
     {
       if (anim.GetBool("isRight") == value)
@@ -52,7 +59,7 @@ public class Enemy : Interact
       yield return MoveToNode(targetNode);
       yield return ProcessNode(targetNode);
 
-      if (direction == -1 && targetNode == 0 ||  direction == 1 && targetNode == nodes.Count - 1)
+      if (direction == -1 && targetNode == 0 || direction == 1 && targetNode == nodes.Count - 1)
       {
         //Reach end node
         direction *= -1;
@@ -95,4 +102,31 @@ public class Enemy : Interact
   {
     Debug.Log(collision.name);
   }
+
+#if UNITY_EDITOR
+  private void OnDrawGizmos()
+  {
+    Vector3 offset = new Vector3(0, 0.5f);
+    if (!bothDirection)
+    {
+      offset.x = (body.localScale.x > 0 ? viewDistance : -viewDistance) / 2f;
+    }
+
+    Vector3 size = new Vector3(bothDirection ? viewDistance * 2 : viewDistance, 1);
+
+    Gizmos.color = new Color(0, 1, 0, 0.4f);
+    Gizmos.DrawCube(transform.position + offset, size);
+
+    UnityEditor.Handles.color = new Color(1.0f, 0, 0, 0.2f);
+    UnityEditor.Handles.DrawSolidArc(transform.position,-Vector3.forward,Vector3.left,180,attackDistance);
+
+    for (int i = 0; i < nodes.Count; i++)
+    {
+      UnityEditor.Handles.color = new Color(1, 1, 0, 0.5f);
+      UnityEditor.Handles.ConeHandleCap(i, transform.TransformPoint(nodes[i].position) + new Vector3(0, 0.25f, 0), Quaternion.Euler(90, 0, 0), 0.5f, EventType.Repaint);
+    }
+
+  }
+#endif
+
 }

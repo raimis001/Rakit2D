@@ -18,6 +18,7 @@ public class EnemyEditor : Editor
   {
     //base.OnInspectorGUI();
 
+    //Body transform
     EditorGUI.BeginChangeCheck();
     Transform bTransform = EditorGUILayout.ObjectField("Body", enemy.body, typeof(Transform), true) as Transform;
     if (EditorGUI.EndChangeCheck())
@@ -25,12 +26,39 @@ public class EnemyEditor : Editor
       Undo.RecordObject(target, "Changed body");
       enemy.body = bTransform;
     }
+
+    //Speed
     EditorGUI.BeginChangeCheck();
     float bSpeed = EditorGUILayout.FloatField("Speed", enemy.speed);
     if (EditorGUI.EndChangeCheck())
     {
       Undo.RecordObject(target, "Changed speed");
       enemy.speed = bSpeed;
+    }
+
+    //Distance
+    EditorGUI.BeginChangeCheck();
+    float bDist = EditorGUILayout.Slider("Sign distance", enemy.viewDistance, 1, 10);
+    if (EditorGUI.EndChangeCheck())
+    {
+      Undo.RecordObject(target, "Changed sign distance");
+      enemy.viewDistance = bDist;
+    }
+    //Attack distance
+    EditorGUI.BeginChangeCheck();
+    float bADist = EditorGUILayout.Slider("Attack distance", enemy.attackDistance, 1, enemy.viewDistance);
+    if (EditorGUI.EndChangeCheck())
+    {
+      Undo.RecordObject(target, "Changed sign distance");
+      enemy.attackDistance = bADist;
+    }
+    //Direction
+    EditorGUI.BeginChangeCheck();
+    bool bDir = EditorGUILayout.Toggle("Both direction", enemy.bothDirection);
+    if (EditorGUI.EndChangeCheck())
+    {
+      Undo.RecordObject(target, "Changed sign direction");
+      enemy.bothDirection = bDir;
     }
 
     int delete = -1;
@@ -68,14 +96,28 @@ public class EnemyEditor : Editor
           Undo.RecordObject(target, "Changed node " + i);
           node.waitOnNode = wDelay;
         }
+      }
 
-
+      if (GUILayout.Button("Add Node"))
+      {
+        Undo.RecordObject(target, "Add node");
+        Vector3 last = enemy.nodes[enemy.nodes.Count - 1].position + new Vector3(1, 0);
+        enemy.nodes.Add(new EnemyNode() { position = last });
       }
 
       EditorGUILayout.EndVertical();
-    }
-  }
 
+      if (delete > -1)
+      {
+        Undo.RecordObject(target, "Delete node " + delete);
+        enemy.nodes.RemoveAt(delete);
+      }
+
+   
+    }
+    EditorUtility.SetDirty(target);
+  }
+  
   private void OnSceneGUI()
   {
 
@@ -91,7 +133,6 @@ public class EnemyEditor : Editor
       Vector3 nPos = Handles.PositionHandle(wPos, Quaternion.identity);
 
       Handles.DrawDottedLine(lastNodePos, nPos, 10);
-      Handles.ConeHandleCap(i, nPos + new Vector3(0, 0.25f, 0), Quaternion.Euler(90, 0, 0), 0.5f, EventType.Repaint);
 
       if (EditorGUI.EndChangeCheck())
       {
@@ -102,9 +143,28 @@ public class EnemyEditor : Editor
       lastNodePos = nPos;
     }
 
-    //EditorUtility.SetDirty(target);
 
   }
+
+  //#if UNITY_EDITOR
+  //  private void OnDrawGizmosSelected()
+  //  {
+  //    //draw the cone of view
+  //    Vector3 forward = spriteFaceLeft ? Vector2.left : Vector2.right;
+  //    forward = Quaternion.Euler(0, 0, spriteFaceLeft ? -viewDirection : viewDirection) * forward;
+
+  //    if (GetComponent<SpriteRenderer>().flipX) forward.x = -forward.x;
+
+  //    Vector3 endpoint = transform.position + (Quaternion.Euler(0, 0, viewFov * 0.5f) * forward);
+
+  //    Handles.color = new Color(0, 1.0f, 0, 0.2f);
+  //    Handles.DrawSolidArc(transform.position, -Vector3.forward, (endpoint - transform.position).normalized, viewFov, viewDistance);
+
+  //    //Draw attack range
+  //    Handles.color = new Color(1.0f, 0, 0, 0.1f);
+  //    Handles.DrawSolidDisc(transform.position, Vector3.back, meleeRange);
+  //  }
+  //#endif
 }
 
 

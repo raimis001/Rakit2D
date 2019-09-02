@@ -14634,7 +14634,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   anim: {fileID: 0}
   body: {fileID: 49927983}
-  speed: 1
+  speed: 2
   nodes:
   - position: {x: 5.6330867, y: 0, z: 0}
     waitOnNode: 0

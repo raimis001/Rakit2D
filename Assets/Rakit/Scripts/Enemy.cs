@@ -17,7 +17,17 @@ public class Enemy : Interact
 
   public List<EnemyNode> nodes = new List<EnemyNode>();
 
-  private bool isRight => anim.GetBool("isRight");
+  private bool isRight {
+    set
+    {
+      if (anim.GetBool("isRight") == value)
+        return;
+
+      anim.SetBool("isRight", value);
+      anim.SetTrigger("turn");
+    }
+    get { return anim.GetBool("isRight"); }
+  }
   private Coroutine patroll;
   private void Start()
   {
@@ -35,10 +45,22 @@ public class Enemy : Interact
     }
 
     int targetNode = 0;
-
-    anim.SetFloat("speed", 1);
+    int direction = 1;
+    while (true)
+    {
+      anim.SetFloat("speed", 1);
       yield return MoveToNode(targetNode);
       yield return ProcessNode(targetNode);
+
+      if (direction == -1 && targetNode == 0 ||  direction == 1 && targetNode == nodes.Count - 1)
+      {
+        //Reach end node
+        direction *= -1;
+      }
+
+      targetNode += direction;
+
+    }
   }
 
   IEnumerator ProcessNode(int node)
@@ -53,14 +75,15 @@ public class Enemy : Interact
   {
     Vector3 targetPos = nodes[node].position;
 
-    while (Vector3.Distance(body.position, targetPos) > 0.1f)
+    isRight = body.localPosition.x < targetPos.x;
+
+    while (Vector3.Distance(body.localPosition, targetPos) > 0.1f)
     {
       body.localPosition = Vector3.MoveTowards(body.localPosition, targetPos, Time.deltaTime * speed);
       yield return null;
     }
 
     body.localPosition = targetPos;
-
   }
 
   public override void Attacked(int weapon)

@@ -12,7 +12,7 @@ AnimatorStateTransition:
     m_ConditionEvent: turn
     m_EventTreshold: 0
   - m_ConditionMode: 2
-    m_ConditionEvent: isRigh
+    m_ConditionEvent: isRight
     m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: 23835224237305474}
@@ -40,7 +40,7 @@ AnimatorStateTransition:
     m_ConditionEvent: turn
     m_EventTreshold: 0
   - m_ConditionMode: 1
-    m_ConditionEvent: isRigh
+    m_ConditionEvent: isRight
     m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: 7488761762792398685}
@@ -89,7 +89,7 @@ AnimatorController:
     m_DefaultInt: 0
     m_DefaultBool: 0
     m_Controller: {fileID: 0}
-  - m_Name: isRigh
+  - m_Name: isRight
     m_Type: 4
     m_DefaultFloat: 0
     m_DefaultInt: 0

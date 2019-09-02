@@ -550,7 +550,7 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 1
+  m_Mass: 10
   m_LinearDrag: 0
   m_AngularDrag: 0.05
   m_GravityScale: 1
@@ -558,7 +558,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 4
+  m_Constraints: 5
 --- !u!1 &50219803
 GameObject:
   m_ObjectHideFlags: 0
@@ -591,7 +591,7 @@ EdgeCollider2D:
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
-  m_EdgeRadius: 0
+  m_EdgeRadius: 0.02
   m_Points:
   - {x: 2.2638764, y: 4.307881}
   - {x: -2.2549188, y: -0.10119459}
@@ -9120,7 +9120,7 @@ MonoBehaviour:
       bevelSize: 0
       spriteIndex: 0
       corner: 1
-    - position: {x: 11.566683, y: -0.30704916, z: 0}
+    - position: {x: 11.582745, y: -0.22671318, z: 0}
       leftTangent: {x: 0, y: 0, z: 0}
       rightTangent: {x: 0, y: 0, z: 0}
       mode: 0
@@ -9129,7 +9129,7 @@ MonoBehaviour:
       bevelSize: 0
       spriteIndex: 0
       corner: 1
-    - position: {x: 14.53307, y: -0.2842641, z: 0}
+    - position: {x: 14.53307, y: -0.22802877, z: 0}
       leftTangent: {x: 0, y: 0, z: 0}
       rightTangent: {x: 0, y: 0, z: 0}
       mode: 0
@@ -9207,8 +9207,8 @@ SpriteShapeRenderer:
   - {fileID: 21300208, guid: 261212b977f594d5dbc48631a5c1295c, type: 3}
   - {fileID: 21300210, guid: 261212b977f594d5dbc48631a5c1295c, type: 3}
   m_LocalAABB:
-    m_Center: {x: 6.197404, y: 0.4918356, z: -0.0050399997}
-    m_Extent: {x: 8.602332, y: 3.257761, z: 0.0050399997}
+    m_Center: {x: 6.197404, y: 0.49237537, z: -0.0050399997}
+    m_Extent: {x: 8.602332, y: 3.2583008, z: 0.0050399997}
 --- !u!4 &813604618
 Transform:
   m_ObjectHideFlags: 0
@@ -14635,9 +14635,11 @@ MonoBehaviour:
   anim: {fileID: 0}
   body: {fileID: 49927983}
   speed: 2
+  speedBooster: 1.12
   viewDistance: 4
   bothDirection: 1
   attackDistance: 1.34
+  attackDamage: 38
   nodes:
   - position: {x: 0.045623776, y: 0, z: 0}
     waitOnNode: 2
@@ -15435,7 +15437,7 @@ PrefabInstance:
     - target: {fileID: 5033519508257231954, guid: aff71a220e332304dbc1753f67bdf240,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 80.63
+      value: 75.18
       objectReference: {fileID: 0}
     - target: {fileID: 5033519508257231954, guid: aff71a220e332304dbc1753f67bdf240,
         type: 3}
@@ -16402,7 +16404,7 @@ PrefabInstance:
     - target: {fileID: 7054282740168802556, guid: cd7e024ea06b4764a9c63e1ab81783eb,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 80.63
+      value: 75.18
       objectReference: {fileID: 0}
     - target: {fileID: 7054282740451914017, guid: cd7e024ea06b4764a9c63e1ab81783eb,
         type: 3}
@@ -16412,7 +16414,7 @@ PrefabInstance:
     - target: {fileID: 7054282740451914017, guid: cd7e024ea06b4764a9c63e1ab81783eb,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 80.63
+      value: 75.18
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: cd7e024ea06b4764a9c63e1ab81783eb, type: 3}

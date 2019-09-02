@@ -6,6 +6,7 @@ public class Player : MonoBehaviour
 {
   public static bool IsDed;
   private static Vector2 checkPoint;
+  public static Vector3 position => SM.player.transform.position;
 
   [Header("Move params")]
 	[Range(0.5f, 10f)]
@@ -83,6 +84,9 @@ public class Player : MonoBehaviour
       }
       return;
     }
+
+    if (coolDownHp > 0)
+      coolDownHp -= Time.deltaTime;
 
     //SM.SetHp(Time.deltaTime / 5f);
 
@@ -230,5 +234,19 @@ public class Player : MonoBehaviour
     checkPoint = SM.player.transform.position;
   }
 
+  private float coolDownHp = 0;
+  private void OnTriggerEnter2D(Collider2D collision)
+  {
+    if (coolDownHp > 0)
+      return;
 
+    Enemy enemy = collision.GetComponentInParent<Enemy>();
+    if (!enemy)
+      return;
+
+    Debug.Log(collision.name);
+    SM.SetHp(enemy.attackDamage / 100f);
+    coolDownHp = 1;
+    
+  }
 }

@@ -36,6 +36,15 @@ public class EnemyEditor : Editor
       enemy.speed = bSpeed;
     }
 
+    //speed boost
+    EditorGUI.BeginChangeCheck();
+    float bSpBoost = EditorGUILayout.Slider("Sign speed boost", enemy.speedBooster, 1, 3);
+    if (EditorGUI.EndChangeCheck())
+    {
+      Undo.RecordObject(target, "Changed speed boost");
+      enemy.speedBooster = bSpBoost;
+    }
+
     //Distance
     EditorGUI.BeginChangeCheck();
     float bDist = EditorGUILayout.Slider("Sign distance", enemy.viewDistance, 1, 10);
@@ -60,7 +69,16 @@ public class EnemyEditor : Editor
       Undo.RecordObject(target, "Changed sign direction");
       enemy.bothDirection = bDir;
     }
+    //Attack damage
+    EditorGUI.BeginChangeCheck();
+    float bADam = EditorGUILayout.Slider("Attack damage", enemy.attackDamage, 1, 100);
+    if (EditorGUI.EndChangeCheck())
+    {
+      Undo.RecordObject(target, "Changed damage ");
+      enemy.attackDamage = bADam;
+    }
 
+    //Nodes
     int delete = -1;
     nodesFold = EditorGUILayout.Foldout(nodesFold, "Nodes");
     if (nodesFold)
@@ -101,8 +119,9 @@ public class EnemyEditor : Editor
       if (GUILayout.Button("Add Node"))
       {
         Undo.RecordObject(target, "Add node");
-        Vector3 last = enemy.nodes[enemy.nodes.Count - 1].position + new Vector3(1, 0);
+        Vector3 last = enemy.nodes[enemy.nodes.Count - 1].position + new Vector3(2, 0);
         enemy.nodes.Add(new EnemyNode() { position = last });
+        EditorUtility.SetDirty(target);
       }
 
       EditorGUILayout.EndVertical();
@@ -111,11 +130,12 @@ public class EnemyEditor : Editor
       {
         Undo.RecordObject(target, "Delete node " + delete);
         enemy.nodes.RemoveAt(delete);
+        EditorUtility.SetDirty(target);
       }
 
    
     }
-    EditorUtility.SetDirty(target);
+    //EditorUtility.SetDirty(target);
   }
   
   private void OnSceneGUI()

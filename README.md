@@ -30,10 +30,10 @@ Futures
   - [ ] sounds
 
 * Npc
-  - [ ] move left, right, jump 
-  - [ ] path
+  - [x] move left, right, jump 
+  - [x] path
   - [x] dialog
-  - [ ] meele attack
+  - [x] meele attack
   - [ ] range attack
   - [ ] ded
   - [ ] sounds

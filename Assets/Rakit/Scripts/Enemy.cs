@@ -140,7 +140,24 @@ public class Enemy : Interact
   }
   private bool SeePlayer()
   {
-    return Vector3.Distance(Player.position, body.position) <= viewDistance;
+    Vector2 player = Player.position;
+    Vector2 self = body.position;
+
+    if (Mathf.Abs(player.y - self.y) > 1)
+      return false;
+
+    if (!bothDirection)
+    {
+      bool right = body.localScale.x > 0;
+      bool pright = player.x - self.x >= 0;
+      if (right && pright)
+        return Vector2.Distance(player, self) <= viewDistance;
+      if (!right && !pright)
+        return Vector2.Distance(player, self) <= viewDistance;
+      return false;
+    }
+
+    return Vector2.Distance(player, self) <= viewDistance;
   }
   private bool AttackPlayer()
   {

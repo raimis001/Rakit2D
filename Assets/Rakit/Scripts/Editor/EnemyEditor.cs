@@ -17,7 +17,7 @@ public class EnemyEditor : Editor
   public override void OnInspectorGUI()
   {
     //base.OnInspectorGUI();
-
+    bool editing = false;
     //Body transform
     EditorGUI.BeginChangeCheck();
     Transform bTransform = EditorGUILayout.ObjectField("Body", enemy.body, typeof(Transform), true) as Transform;
@@ -25,6 +25,7 @@ public class EnemyEditor : Editor
     {
       Undo.RecordObject(target, "Changed body");
       enemy.body = bTransform;
+      editing = true;
     }
 
     //Speed
@@ -34,6 +35,7 @@ public class EnemyEditor : Editor
     {
       Undo.RecordObject(target, "Changed speed");
       enemy.speed = bSpeed;
+      editing = true;
     }
 
     //speed boost
@@ -43,6 +45,7 @@ public class EnemyEditor : Editor
     {
       Undo.RecordObject(target, "Changed speed boost");
       enemy.speedBooster = bSpBoost;
+      editing = true;
     }
 
     //Distance
@@ -52,6 +55,7 @@ public class EnemyEditor : Editor
     {
       Undo.RecordObject(target, "Changed sign distance");
       enemy.viewDistance = bDist;
+      editing = true;
     }
     //Attack distance
     EditorGUI.BeginChangeCheck();
@@ -60,6 +64,7 @@ public class EnemyEditor : Editor
     {
       Undo.RecordObject(target, "Changed sign distance");
       enemy.attackDistance = bADist;
+      editing = true;
     }
     //Direction
     EditorGUI.BeginChangeCheck();
@@ -68,6 +73,7 @@ public class EnemyEditor : Editor
     {
       Undo.RecordObject(target, "Changed sign direction");
       enemy.bothDirection = bDir;
+      editing = true;
     }
     //Attack damage
     EditorGUI.BeginChangeCheck();
@@ -76,7 +82,10 @@ public class EnemyEditor : Editor
     {
       Undo.RecordObject(target, "Changed damage ");
       enemy.attackDamage = bADam;
+      editing = true;
     }
+    if (editing)
+      EditorUtility.SetDirty(target);
 
     //Nodes
     int delete = -1;

@@ -23,7 +23,8 @@ public class Enemy : Interact
   public float attackDistance = 1;
 
 
-  public float attackDamage = 1; 
+  public float attackDamage = 1;
+  public float attackCoolDown = 2;
 
 
   public List<EnemyNode> nodes = new List<EnemyNode>();
@@ -81,7 +82,19 @@ public class Enemy : Interact
       yield break;
 
     anim.SetFloat("speed", 0);
-    yield return new WaitForSeconds(nodes[node].waitOnNode);
+    float wait = nodes[node].waitOnNode;
+    while (wait > 0)
+    {
+      yield return null;
+      wait -= Time.deltaTime;
+      if (SeePlayer())
+      {
+        Debug.Log("I see player");
+        patroll = null;
+        StopAllCoroutines();
+        StartCoroutine(GotoPlayer());
+      }
+    }
   }
   IEnumerator MoveToNode(int node)
   {
@@ -117,8 +130,15 @@ public class Enemy : Interact
       if (!AttackPlayer())
       {
         //TODO moving
-        anim.SetFloat("speed", 1);
-        body.position = Vector3.MoveTowards(body.position, Player.position, Time.deltaTime * speed * speedBooster);
+        if (SeePlayer())
+        {
+          anim.SetFloat("speed", 1);
+          body.position = Vector3.MoveTowards(body.position, Player.position, Time.deltaTime * speed * speedBooster);
+        } else
+        {
+          StopAllCoroutines();
+          StartCoroutine(Patrolling());
+        }
       }
       else
       {
@@ -127,7 +147,7 @@ public class Enemy : Interact
         {
           //Debug.Log("ATTACKIG!");
           anim.SetTrigger("attack");
-          coolDown = 3;
+          coolDown = attackCoolDown;
         }
       }
 
@@ -165,7 +185,7 @@ public class Enemy : Interact
   }
   public override void Attacked(int weapon)
   {
-    base.Attacked(weapon);
+    Debug.Log("Attacking enemy");
   }
 
   private void OnTriggerEnter2D(Collider2D collision)

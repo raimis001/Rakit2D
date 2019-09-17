@@ -16,17 +16,17 @@ TagManager:
   - 
   - 
   - 
-  - Player
-  - PlayerWeapon
-  - Enemy
-  - EnemyWeapon
   - 
   - 
   - 
   - 
   - 
   - 
-  - Ground
+  - 
+  - 
+  - 
+  - 
+  - 
   - 
   - 
   - 
@@ -39,21 +39,18 @@ TagManager:
   - 
   - 
   m_SortingLayers:
-  - name: Skybox
-    uniqueID: 2837581319
+  - name: Back
+    uniqueID: 2145778667
     locked: 0
-  - name: BackLayer
-    uniqueID: 4207718269
+  - name: Cave
+    uniqueID: 2219472115
     locked: 0
   - name: Default
     uniqueID: 0
     locked: 0
-  - name: Interactive
-    uniqueID: 1117622853
-    locked: 0
-  - name: Player
-    uniqueID: 484189247
+  - name: Ground
+    uniqueID: 380460985
     locked: 0
   - name: UI
-    uniqueID: 695361371
+    uniqueID: 1633507171
     locked: 0

@@ -127,7 +127,7 @@ public class Player : MonoBehaviour
         meeleTrigger.attacking = true;
       }
 
-      animator.SetTrigger("Attacked");
+      animator.SetTrigger("Attack");
       return;
     }
 

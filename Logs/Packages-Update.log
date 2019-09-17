@@ -1,37 +1,18 @@
 
-=== Wed Aug  7 14:01:12 2019
+=== Tue Sep 17 10:37:28 2019
 
 Packages were changed.
 Update Mode: mergeDefaultDependencies
 
 The following packages were added:
+  com.unity.package-manager-ui@2.2.0
   com.unity.ext.nunit@1.0.0
-  com.unity.test-framework@1.0.17
-  com.unity.ide.vscode@1.0.7
-  com.unity.ide.rider@1.0.8
+  com.unity.test-framework@1.0.13
+  com.unity.ide.vscode@1.1.0
+  com.unity.ide.rider@1.1.0
   com.unity.ugui@1.0.0
   com.unity.modules.androidjni@1.0.0
 The following packages were updated:
   com.unity.collab-proxy from version 1.2.9 to 1.2.16
   com.unity.textmeshpro from version 2.0.0 to 2.0.1
   com.unity.timeline from version 0.0.0-builtin to 1.1.0
-
-=== Thu Aug  8 09:22:54 2019
-
-Packages were changed.
-Update Mode: mergeDefaultDependencies
-
-The following packages were added:
-  com.unity.cinemachine@2.2.9
-  com.unity.connect.share@1.0.4-preview
-  com.unity.learn.iet-framework@0.1.17-preview
-  com.unity.package-manager-ui@2.0.7
-  com.unity.postprocessing@2.1.4
-
-=== Wed Aug 21 12:38:06 2019
-
-Packages were changed.
-Update Mode: updateDependencies
-
-The following packages were updated:
-  com.unity.ide.rider from version 1.0.8 to 1.1.0

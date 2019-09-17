@@ -84,6 +84,16 @@ public class EnemyEditor : Editor
       enemy.attackDamage = bADam;
       editing = true;
     }
+    //Attack cooldown
+    EditorGUI.BeginChangeCheck();
+    float bCool = EditorGUILayout.FloatField("Attack cool dwon", enemy.attackCoolDown);
+    if (EditorGUI.EndChangeCheck())
+    {
+      Undo.RecordObject(target, "Changed cooldown");
+      enemy.attackDamage = bCool;
+      editing = true;
+    }
+
     if (editing)
       EditorUtility.SetDirty(target);
 

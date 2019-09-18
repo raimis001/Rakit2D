@@ -30,7 +30,7 @@ public class EnemyEditor : Editor
       editing = true;
     }
     #region SPEED
-    EditorGUILayout.LabelField("Speed",EditorStyles.boldLabel);
+    EditorGUILayout.LabelField("Speed", EditorStyles.boldLabel);
     EditorGUI.indentLevel = 1;
     GUI.backgroundColor = HexColor("#B3B3B3");
     EditorGUILayout.BeginVertical("Box");
@@ -126,12 +126,64 @@ public class EnemyEditor : Editor
     EditorGUILayout.EndVertical();
     #endregion
 
+
+    #region DAMAGE
+    EditorGUILayout.LabelField("Damage", EditorStyles.boldLabel);
+    EditorGUI.indentLevel = 1;
+    GUI.backgroundColor = HexColor("#B3B3B3");
+    EditorGUILayout.BeginVertical("Box");
+
+    //Meele damage
+    EditorGUI.BeginChangeCheck();
+    float mDam = EditorGUILayout.Slider("Meele damage", enemy.damageMeele, 1, 100);
+    if (EditorGUI.EndChangeCheck())
+    {
+      Undo.RecordObject(target, "Meele damage");
+      enemy.damageMeele = mDam;
+      editing = true;
+    }
+
+    //Range damage
+    EditorGUI.BeginChangeCheck();
+    float rDam = EditorGUILayout.Slider("Range damage", enemy.damageRange, 1, 100);
+    if (EditorGUI.EndChangeCheck())
+    {
+      Undo.RecordObject(target, "Range damage");
+      enemy.damageRange = rDam;
+      editing = true;
+    }
+    //Destroy on ded
+    EditorGUI.BeginChangeCheck();
+    bool bDestr = EditorGUILayout.Toggle("Destroy on ded", enemy.destroyOnDed);
+    if (EditorGUI.EndChangeCheck())
+    {
+      Undo.RecordObject(target, "Range damage");
+      enemy.destroyOnDed= bDestr;
+      editing = true;
+    }
+
+    //Destroy time
+    EditorGUI.BeginChangeCheck();
+    float fDestr = EditorGUILayout.FloatField("Destroy time", enemy.destroyTime);
+    if (EditorGUI.EndChangeCheck())
+    {
+      Undo.RecordObject(target, "Range damage");
+      enemy.destroyTime= fDestr;
+      editing = true;
+    }
+
+    EditorGUI.indentLevel = 0;
+    enemy.destroyOnDed = bDestr;
+    EditorGUILayout.EndVertical();
+    #endregion
+
+
     if (editing)
       EditorUtility.SetDirty(target);
 
     //Nodes
     int delete = -1;
-    nodesFold = EditorGUILayout.Foldout(nodesFold, "Nodes", new GUIStyle(EditorStyles.foldout) { fontStyle = FontStyle.Bold});
+    nodesFold = EditorGUILayout.Foldout(nodesFold, "Nodes", new GUIStyle(EditorStyles.foldout) { fontStyle = FontStyle.Bold });
     if (nodesFold)
     {
 
@@ -184,11 +236,11 @@ public class EnemyEditor : Editor
         EditorUtility.SetDirty(target);
       }
 
-   
+
     }
     //EditorUtility.SetDirty(target);
   }
-  
+
   private void OnSceneGUI()
   {
 

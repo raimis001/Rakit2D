@@ -21,11 +21,17 @@ public class Enemy : Interact
   public bool bothDirection;
 
   public float attackDistance = 1;
-
-
+  
   public float attackDamage = 1;
   public float attackCoolDown = 2;
 
+  public float damageMeele = 33f;
+  public float damageRange = 2f;
+  public bool destroyOnDed = false;
+  public float destroyTime = 1;
+
+  internal float hitpoints = 1;
+  internal bool isDed = false;
 
   public List<EnemyNode> nodes = new List<EnemyNode>();
 
@@ -41,25 +47,25 @@ public class Enemy : Interact
     }
     get { return anim.GetBool("isRight"); }
   }
-  private Coroutine patroll;
+
   private void Start()
   {
     if (!anim)
       anim = GetComponentInChildren<Animator>();
-    patroll = StartCoroutine(Patrolling());
+      StartCoroutine(Patrolling());
   }
+
 
   IEnumerator Patrolling()
   {
     if (nodes.Count < 1)
     {
-      patroll = null;
       yield break;
     }
 
     int targetNode = 0;
     int direction = 1;
-    while (true)
+    while (!isDed)
     {
       anim.SetFloat("speed", 1);
       yield return MoveToNode(targetNode);
@@ -90,7 +96,6 @@ public class Enemy : Interact
       if (SeePlayer())
       {
         Debug.Log("I see player");
-        patroll = null;
         StopAllCoroutines();
         StartCoroutine(GotoPlayer());
       }
@@ -110,7 +115,6 @@ public class Enemy : Interact
       if (SeePlayer())
       {
         Debug.Log("I see player");
-        patroll = null;
         StopAllCoroutines();
         StartCoroutine(GotoPlayer());
       }
@@ -186,6 +190,18 @@ public class Enemy : Interact
   public override void Attacked(int weapon)
   {
     Debug.Log("Attacking enemy");
+    if (isDed)
+      return;
+
+    hitpoints -= (weapon == 1 ? damageMeele : damageRange) / 100f;
+    if (hitpoints <= 0)
+    {
+      isDed = true;
+      StopAllCoroutines();
+      anim.SetTrigger("ded");
+      if (destroyOnDed)
+        Destroy(gameObject, destroyTime);
+    }
   }
 
   private void OnTriggerEnter2D(Collider2D collision)

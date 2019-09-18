@@ -16,6 +16,8 @@ public class EnemyEditor : Editor
   }
   public override void OnInspectorGUI()
   {
+    Color defaultColor = GUI.backgroundColor;
+
     //base.OnInspectorGUI();
     bool editing = false;
     //Body transform
@@ -27,6 +29,11 @@ public class EnemyEditor : Editor
       enemy.body = bTransform;
       editing = true;
     }
+    #region SPEED
+    EditorGUILayout.LabelField("Speed",EditorStyles.boldLabel);
+    EditorGUI.indentLevel = 1;
+    GUI.backgroundColor = HexColor("#B3B3B3");
+    EditorGUILayout.BeginVertical("Box");
 
     //Speed
     EditorGUI.BeginChangeCheck();
@@ -47,7 +54,26 @@ public class EnemyEditor : Editor
       enemy.speedBooster = bSpBoost;
       editing = true;
     }
+    EditorGUILayout.EndVertical();
+    GUI.backgroundColor = defaultColor;
+    EditorGUI.indentLevel = 0;
+    #endregion
 
+    #region DISTANCE
+    EditorGUILayout.LabelField("Distances", EditorStyles.boldLabel);
+    EditorGUI.indentLevel = 1;
+    GUI.backgroundColor = HexColor("#B3B3B3");
+    EditorGUILayout.BeginVertical("Box");
+
+    //Direction
+    EditorGUI.BeginChangeCheck();
+    bool bDir = EditorGUILayout.Toggle("Both direction", enemy.bothDirection);
+    if (EditorGUI.EndChangeCheck())
+    {
+      Undo.RecordObject(target, "Changed sign direction");
+      enemy.bothDirection = bDir;
+      editing = true;
+    }
     //Distance
     EditorGUI.BeginChangeCheck();
     float bDist = EditorGUILayout.Slider("Sign distance", enemy.viewDistance, 1, 10);
@@ -66,15 +92,17 @@ public class EnemyEditor : Editor
       enemy.attackDistance = bADist;
       editing = true;
     }
-    //Direction
-    EditorGUI.BeginChangeCheck();
-    bool bDir = EditorGUILayout.Toggle("Both direction", enemy.bothDirection);
-    if (EditorGUI.EndChangeCheck())
-    {
-      Undo.RecordObject(target, "Changed sign direction");
-      enemy.bothDirection = bDir;
-      editing = true;
-    }
+    EditorGUI.indentLevel = 0;
+    GUI.backgroundColor = defaultColor;
+    EditorGUILayout.EndVertical();
+    #endregion
+
+    #region ATTACK
+    EditorGUILayout.LabelField("Attack", EditorStyles.boldLabel);
+    EditorGUI.indentLevel = 1;
+    GUI.backgroundColor = HexColor("#B3B3B3");
+    EditorGUILayout.BeginVertical("Box");
+
     //Attack damage
     EditorGUI.BeginChangeCheck();
     float bADam = EditorGUILayout.Slider("Attack damage", enemy.attackDamage, 1, 100);
@@ -93,17 +121,21 @@ public class EnemyEditor : Editor
       enemy.attackDamage = bCool;
       editing = true;
     }
+    EditorGUI.indentLevel = 0;
+    GUI.backgroundColor = defaultColor;
+    EditorGUILayout.EndVertical();
+    #endregion
 
     if (editing)
       EditorUtility.SetDirty(target);
 
     //Nodes
     int delete = -1;
-    nodesFold = EditorGUILayout.Foldout(nodesFold, "Nodes");
+    nodesFold = EditorGUILayout.Foldout(nodesFold, "Nodes", new GUIStyle(EditorStyles.foldout) { fontStyle = FontStyle.Bold});
     if (nodesFold)
     {
 
-      EditorGUILayout.BeginVertical("Textfield");
+      EditorGUILayout.BeginVertical();
 
       for (int i = 0; i < enemy.nodes.Count; i++)
       {
@@ -120,7 +152,7 @@ public class EnemyEditor : Editor
         }
         EditorGUILayout.EndHorizontal();
 
-        EditorGUILayout.BeginHorizontal("Box");
+        EditorGUILayout.BeginHorizontal();
 
         EditorGUILayout.LabelField("", GUILayout.Width(5));
         float wDelay = EditorGUILayout.FloatField("Wait Time", node.waitOnNode);
@@ -184,7 +216,25 @@ public class EnemyEditor : Editor
 
 
   }
+  private Color HexColor(string hex)
+  {
+    ColorUtility.TryParseHtmlString(hex, out Color color);
+    return color;
+  }
 
+  private Texture2D MakeTex(int width, int height, Color col)
+  {
+    Color[] pix = new Color[width * height];
+
+    for (int i = 0; i < pix.Length; i++)
+      pix[i] = col;
+
+    Texture2D result = new Texture2D(width, height);
+    result.SetPixels(pix);
+    result.Apply();
+
+    return result;
+  }
   //#if UNITY_EDITOR
   //  private void OnDrawGizmosSelected()
   //  {

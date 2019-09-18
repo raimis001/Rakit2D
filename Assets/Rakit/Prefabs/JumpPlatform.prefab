@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2114582382}
   - component: {fileID: 2114582383}
-  m_Layer: 20
+  m_Layer: 14
   m_Name: Visual
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -45,7 +45,6 @@ SpriteRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
-  m_RayTracingMode: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -67,8 +66,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 1117622853
-  m_SortingLayer: 1
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: d3ae29bc873704d6197af9ad030f1b1c, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -94,7 +93,7 @@ GameObject:
   - component: {fileID: 1516348659935298549}
   - component: {fileID: 1516348659935298548}
   - component: {fileID: 8021740142931337174}
-  m_Layer: 20
+  m_Layer: 14
   m_Name: JumpPlatform
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -194,7 +193,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0c101e7e7e359024ba4a43ca66206683, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  canClimbDown: 1
+  canClimbDown: 0
   checkFilter:
     useTriggers: 0
     useLayerMask: 1
@@ -204,7 +203,7 @@ MonoBehaviour:
     useOutsideNormalAngle: 1
     layerMask:
       serializedVersion: 2
-      m_Bits: 1024
+      m_Bits: 256
     minDepth: 0
     maxDepth: 0
     minNormalAngle: 75

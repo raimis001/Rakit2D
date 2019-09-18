@@ -122,7 +122,6 @@ public class Enemy : Interact
 
       if (SeePlayer())
       {
-        Debug.Log("I see player");
         StopAllCoroutines();
         StartCoroutine(GotoPlayer());
       }
@@ -146,7 +145,7 @@ public class Enemy : Interact
         if (SeePlayer())
         {
           anim.SetFloat("speed", 1);
-          body.position = Vector3.MoveTowards(body.position, Player.position, Time.deltaTime * speed * speedBooster);
+          body.position = Vector3.MoveTowards(body.position, new Vector3(Player.position.x, body.position.y, body.position.z), Time.deltaTime * speed * speedBooster);
         } else
         {
           StopAllCoroutines();

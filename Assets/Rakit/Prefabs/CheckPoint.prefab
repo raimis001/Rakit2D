@@ -45,7 +45,6 @@ SpriteRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
-  m_RayTracingMode: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -153,6 +152,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 641e343edb97bbb40a3982ed197549c9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  rangeParent: {fileID: 0}
   operate: 0
   item:
     itemName: 
@@ -194,8 +194,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -0.016, y: 0.53}
-  m_SizeDelta: {x: 0.656, y: 0.315}
+  m_AnchoredPosition: {x: -0.0187, y: 0.5098}
+  m_SizeDelta: {x: 0.6459, y: 0.3606}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!23 &4533658059553067045
 MeshRenderer:
@@ -211,7 +211,6 @@ MeshRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
-  m_RayTracingMode: 2
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -233,8 +232,8 @@ MeshRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: 1633507171
+  m_SortingLayer: 3
   m_SortingOrder: 0
 --- !u!33 &4533658059553067046
 MeshFilter:
@@ -298,8 +297,8 @@ MonoBehaviour:
   m_outlineColor:
     serializedVersion: 2
     rgba: 4278190080
-  m_fontSize: 2.06
-  m_fontSizeBase: 2.06
+  m_fontSize: 2.3
+  m_fontSizeBase: 2.3
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18

@@ -263,7 +263,6 @@ public class Player : MonoBehaviour
     if (!enemy)
       return;
 
-    Debug.Log(collision.name);
     SM.SetHp(enemy.attackDamage / 100f);
     coolDownHp = 1;
     

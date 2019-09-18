@@ -42,6 +42,9 @@ public class SM : MonoBehaviour
 
   public static void SetHp(float hp)
   {
+    if (Player.IsDed)
+      return;
+
     if (MaxLives < 0)
       return;
 
@@ -52,6 +55,7 @@ public class SM : MonoBehaviour
       return;
     }
 
+    player.Ded();
     Lives--;
     if (Lives < 0)
     {

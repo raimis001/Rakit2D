@@ -9,7 +9,7 @@ public class DedZone : MonoBehaviour
 		if (!Player.IsPlayer(collision))
 			return;
 
-		Player.Ded();
+    SM.SetHp(1);
 
-	}
+  }
 }

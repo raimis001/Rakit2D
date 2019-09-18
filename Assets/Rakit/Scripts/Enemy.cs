@@ -138,6 +138,7 @@ public class Enemy : Interact
 
     while (attackSequence)
     {
+
       isRight = body.position.x < Player.position.x;
       if (!AttackPlayer())
       {
@@ -172,6 +173,9 @@ public class Enemy : Interact
   }
   private bool SeePlayer()
   {
+    if (Player.IsDed)
+      return false;
+
     Vector2 player = Player.position;
     Vector2 self = body.position;
 
@@ -193,6 +197,9 @@ public class Enemy : Interact
   }
   private bool AttackPlayer()
   {
+    if (Player.IsDed)
+      return false;
+
     return Vector3.Distance(body.position, Player.position) <= attackDistance;
   }
   public override void Attacked(int weapon)

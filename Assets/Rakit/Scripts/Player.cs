@@ -192,12 +192,10 @@ public class Player : MonoBehaviour
     collider = colliders[0];
     return true;
   }
-  private void SetDed()
+  public void Ded()
   {
     if (IsDed)
       return;
-
-    SM.SetHp(1);
 
     IsDed = true;
     body.isKinematic = true;
@@ -220,10 +218,6 @@ public class Player : MonoBehaviour
 
     Debug.Log("Player is respawn");
   }
-  public static void Ded()
-	{
-    SM.player.SetDed();
-	}
   public static void Respawn()
   {
     SM.player.SetSpawn(checkPoint);

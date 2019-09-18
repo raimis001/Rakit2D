@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
+using UnityEngine.UI;
 
 [CustomEditor(typeof(Enemy))]
 public class EnemyEditor : Editor
@@ -29,6 +30,7 @@ public class EnemyEditor : Editor
       enemy.body = bTransform;
       editing = true;
     }
+
     #region SPEED
     EditorGUILayout.LabelField("Speed", EditorStyles.boldLabel);
     EditorGUI.indentLevel = 1;
@@ -126,7 +128,6 @@ public class EnemyEditor : Editor
     EditorGUILayout.EndVertical();
     #endregion
 
-
     #region DAMAGE
     EditorGUILayout.LabelField("Damage", EditorStyles.boldLabel);
     EditorGUI.indentLevel = 1;
@@ -177,11 +178,54 @@ public class EnemyEditor : Editor
     EditorGUILayout.EndVertical();
     #endregion
 
+    #region CANVAS
+    EditorGUILayout.LabelField("Canvas", EditorStyles.boldLabel);
+    EditorGUI.indentLevel = 1;
+    GUI.backgroundColor = HexColor("#B3B3B3");
+    EditorGUILayout.BeginVertical("Box");
+
+    //Always show canvas
+    EditorGUI.BeginChangeCheck();
+    bool always = EditorGUILayout.Toggle("Always show canvas", enemy.alwaysShowCanvas);
+    if (EditorGUI.EndChangeCheck())
+    {
+      Undo.RecordObject(target, "Changed canvas");
+      enemy.alwaysShowCanvas = always;
+      editing = true;
+    }
+
+    //Canvas
+    EditorGUI.BeginChangeCheck();
+    GameObject canvas = (GameObject)EditorGUILayout.ObjectField("Canvas", enemy.canvas, typeof(GameObject), true);
+    if (EditorGUI.EndChangeCheck())
+    {
+      Undo.RecordObject(target, "Changed canvas");
+      enemy.canvas = canvas;
+      editing = true;
+    }
+
+    //Canvas
+    EditorGUI.BeginChangeCheck();
+    Image cImage = (Image)EditorGUILayout.ObjectField("Progress bar", enemy.progress, typeof(Image), true);
+    if (EditorGUI.EndChangeCheck())
+    {
+      Undo.RecordObject(target, "Changed progress bar");
+      enemy.progress = cImage;
+      editing = true;
+    }
+
+
+
+    EditorGUI.indentLevel = 0;
+    enemy.destroyOnDed = bDestr;
+    EditorGUILayout.EndVertical();
+    #endregion
+
 
     if (editing)
       EditorUtility.SetDirty(target);
 
-    //Nodes
+    #region NODES
     int delete = -1;
     nodesFold = EditorGUILayout.Foldout(nodesFold, "Nodes", new GUIStyle(EditorStyles.foldout) { fontStyle = FontStyle.Bold });
     if (nodesFold)
@@ -216,6 +260,7 @@ public class EnemyEditor : Editor
         {
           Undo.RecordObject(target, "Changed node " + i);
           node.waitOnNode = wDelay;
+          EditorUtility.SetDirty(target);
         }
       }
 
@@ -238,7 +283,8 @@ public class EnemyEditor : Editor
 
 
     }
-    //EditorUtility.SetDirty(target);
+    #endregion
+
   }
 
   private void OnSceneGUI()

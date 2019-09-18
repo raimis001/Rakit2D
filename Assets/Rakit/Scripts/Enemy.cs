@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 [System.Serializable]
 public class EnemyNode
@@ -30,6 +31,10 @@ public class Enemy : Interact
   public bool destroyOnDed = false;
   public float destroyTime = 1;
 
+  public GameObject canvas;
+  public Image progress;
+  public bool alwaysShowCanvas;
+
   internal float hitpoints = 1;
   internal bool isDed = false;
 
@@ -53,6 +58,9 @@ public class Enemy : Interact
     if (!anim)
       anim = GetComponentInChildren<Animator>();
       StartCoroutine(Patrolling());
+
+    if (canvas)
+      canvas.SetActive(alwaysShowCanvas);
   }
 
 
@@ -194,6 +202,12 @@ public class Enemy : Interact
       return;
 
     hitpoints -= (weapon == 1 ? damageMeele : damageRange) / 100f;
+    if (canvas && progress)
+    {
+      canvas.SetActive(true);
+      progress.fillAmount = hitpoints;
+    }
+
     if (hitpoints <= 0)
     {
       isDed = true;

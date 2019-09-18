@@ -38,7 +38,7 @@ public class SM : MonoBehaviour
 
   [Header("Debug")]
   [Range(0, 1)]
-  public float timeScale = 1;
+  public float timeScale = 3;
 
   public static void SetHp(float hp)
   {

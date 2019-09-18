@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2335060762466328151}
   - component: {fileID: 6749979060891769303}
-  m_Layer: 12
+  m_Layer: 9
   m_Name: EeDedL (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -93,7 +93,7 @@ GameObject:
   - component: {fileID: 5470559285640066675}
   - component: {fileID: 3150755594504232454}
   - component: {fileID: 677133223169150953}
-  m_Layer: 12
+  m_Layer: 9
   m_Name: Canvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -204,7 +204,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2335859582811916859}
   - component: {fileID: 4503470636448438594}
-  m_Layer: 12
+  m_Layer: 9
   m_Name: EeDedL
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -285,7 +285,7 @@ GameObject:
   - component: {fileID: 8771783297019860578}
   - component: {fileID: 3551648049547368982}
   - component: {fileID: 5545802152851032982}
-  m_Layer: 12
+  m_Layer: 9
   m_Name: Fill
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -308,7 +308,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.5}
   m_AnchorMax: {x: 1, y: 0.5}
-  m_AnchoredPosition: {x: 0.0013, y: 0}
+  m_AnchoredPosition: {x: -0.00000011920929, y: 0}
   m_SizeDelta: {x: -0.022, y: 0.06}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &3551648049547368982
@@ -358,7 +358,8 @@ GameObject:
   - component: {fileID: 5198654116197411971}
   - component: {fileID: 5198654116218587781}
   - component: {fileID: 370866105602164775}
-  m_Layer: 12
+  - component: {fileID: 2139668634}
+  m_Layer: 9
   m_Name: orc_weapon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -373,7 +374,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5198654116197707939}
   m_LocalRotation: {x: 0, y: 0, z: 0.06966942, w: 0.9975702}
-  m_LocalPosition: {x: 0.66, y: 0.44, z: 0.27652723}
+  m_LocalPosition: {x: 0.66, y: 0.44, z: 0.2765272}
   m_LocalScale: {x: 0.22772291, y: 0.22772291, z: 0.22772291}
   m_Children: []
   m_Father: {fileID: 5198654116197411973}
@@ -450,6 +451,28 @@ EdgeCollider2D:
   - {x: 4.045829, y: -0.9179703}
   - {x: 4.9406767, y: 2.6992323}
   - {x: 1.1115041, y: 3.240236}
+--- !u!68 &2139668634
+EdgeCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5198654116197707939}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_EdgeRadius: 0.02
+  m_Points:
+  - {x: -0.25521383, y: 2.0941308}
+  - {x: 0.4139105, y: -1.9893178}
+  - {x: 4.3230557, y: -1.0839064}
+  - {x: 4.9738574, y: 2.7441788}
+  - {x: 0.9352377, y: 3.3617485}
+  - {x: -0.2705627, y: 2.1893065}
 --- !u!1 &5198654116197707941
 GameObject:
   m_ObjectHideFlags: 0
@@ -460,7 +483,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5198654116197411973}
   - component: {fileID: 5198654116218587783}
-  m_Layer: 12
+  m_Layer: 9
   m_Name: orc _R_hand
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -542,7 +565,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5198654116197411975}
   - component: {fileID: 5198654116218587801}
-  m_Layer: 12
+  m_Layer: 9
   m_Name: orc_body
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -630,7 +653,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5198654116197411985}
   - component: {fileID: 5198654116218587795}
-  m_Layer: 12
+  m_Layer: 9
   m_Name: orc _L_arm
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -645,13 +668,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5198654116197707953}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.7376138, y: 0.18357098, z: -1.4782457}
+  m_LocalPosition: {x: -0.7376138, y: 0.18357098, z: -1.478246}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 5198654116197411987}
   m_Father: {fileID: 5198654116197411975}
   m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0.2749176}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: -0.7294922}
 --- !u!212 &5198654116218587795
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -712,7 +735,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5198654116197411987}
   - component: {fileID: 5198654116218587797}
-  m_Layer: 12
+  m_Layer: 9
   m_Name: orc_L_hand
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -794,7 +817,7 @@ GameObject:
   - component: {fileID: 5198654116197411989}
   - component: {fileID: 5198654116218587799}
   - component: {fileID: 5198654116197707958}
-  m_Layer: 12
+  m_Layer: 9
   m_Name: orc_head
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -809,7 +832,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5198654116197707957}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.14581591, y: -0.12459409, z: -0.68611145}
+  m_LocalPosition: {x: 0.1458159, y: -0.12459409, z: -0.6861115}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 2335859582811916859}
@@ -895,7 +918,7 @@ GameObject:
   - component: {fileID: 5198654116197807626}
   - component: {fileID: 5198654116197707945}
   - component: {fileID: 5198654116197707944}
-  m_Layer: 12
+  m_Layer: 9
   m_Name: orc
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -944,7 +967,7 @@ Rigidbody2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5198654116197707959}
-  m_BodyType: 0
+  m_BodyType: 1
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
@@ -983,7 +1006,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5198654116197411993}
   - component: {fileID: 5198654116218587803}
-  m_Layer: 12
+  m_Layer: 9
   m_Name: orc _R_leg
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -998,12 +1021,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5198654116197707961}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.27376735, y: -1.0220294, z: -0.36320865}
+  m_LocalPosition: {x: 0.27376735, y: -1.0220294, z: -0.3632087}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 5198654116197411975}
   m_RootOrder: 4
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: -0.6496582}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: -0.37805176}
 --- !u!212 &5198654116218587803
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -1064,7 +1087,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5198654116197411995}
   - component: {fileID: 5198654116218587805}
-  m_Layer: 12
+  m_Layer: 9
   m_Name: orc _L_leg
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1079,12 +1102,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5198654116197707963}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.2869641, y: -0.99844784, z: -0.64838624}
+  m_LocalPosition: {x: -0.2869641, y: -0.99844784, z: -0.6483862}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 5198654116197411975}
   m_RootOrder: 2
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: -0.6289673}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: -0.26257324}
 --- !u!212 &5198654116218587805
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -1145,7 +1168,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5198654116197411997}
   - component: {fileID: 5198654116218587807}
-  m_Layer: 12
+  m_Layer: 9
   m_Name: orc_pants
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1226,7 +1249,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5198654116197411999}
   - component: {fileID: 5198654116218587793}
-  m_Layer: 12
+  m_Layer: 9
   m_Name: orc _R_arm
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1247,7 +1270,7 @@ Transform:
   - {fileID: 5198654116197411973}
   m_Father: {fileID: 5198654116197411975}
   m_RootOrder: 3
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0.44758606}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: -0.27868652}
 --- !u!212 &5198654116218587793
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -1308,7 +1331,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5198654116691219204}
   - component: {fileID: 5198654116691219205}
-  m_Layer: 12
+  m_Layer: 9
   m_Name: orc_body_sprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1389,7 +1412,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5198654118180490840}
   - component: {fileID: 5198654118180490843}
-  m_Layer: 12
+  m_Layer: 9
   m_Name: Enemy
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1403,7 +1426,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5198654118180490855}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 79.97, y: 0, z: 0}
   m_LocalScale: {x: 0.35, y: 0.35, z: 1}
   m_Children:
@@ -1424,27 +1447,28 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a07265051359f904e8b284e48b4581e6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  rangeParent: {fileID: 5198654116197411991}
   anim: {fileID: 0}
   body: {fileID: 5198654116197411991}
-  speed: 1
-  speedBooster: 1
-  viewDistance: 1
-  bothDirection: 0
-  attackDistance: 1
-  attackDamage: 40
+  speed: 0.8
+  speedBooster: 1.1
+  viewDistance: 2.21
+  bothDirection: 1
+  attackDistance: 1.213
+  attackDamage: 10
   attackCoolDown: 2
-  damageMeele: 33
-  damageRange: 2
-  destroyOnDed: 0
-  destroyTime: 1
+  damageMeele: 34
+  damageRange: 10
+  destroyOnDeath: 0
+  destroyTime: 2
   canvas: {fileID: 3031008480971319446}
   progress: {fileID: 5545802152851032982}
   alwaysShowCanvas: 1
   nodes:
   - position: {x: 0.045623776, y: 0, z: 0}
-    waitOnNode: 2
-  - position: {x: 17.299324, y: 0, z: 0}
     waitOnNode: 3
+  - position: {x: 23.798565, y: 0, z: 0}
+    waitOnNode: 2
 --- !u!1 &5753957766103052538
 GameObject:
   m_ObjectHideFlags: 0
@@ -1456,7 +1480,7 @@ GameObject:
   - component: {fileID: 5887962955200055619}
   - component: {fileID: 3841478983937483131}
   - component: {fileID: 690877648078027823}
-  m_Layer: 12
+  m_Layer: 9
   m_Name: Slider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1480,7 +1504,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.5}
   m_AnchorMax: {x: 1, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchoredPosition: {x: -0.00000011920929, y: 0}
   m_SizeDelta: {x: 0, y: 0.0839}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &3841478983937483131

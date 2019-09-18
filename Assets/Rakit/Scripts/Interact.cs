@@ -8,9 +8,11 @@ public class InteractEvent : UnityEvent<Interact> { }
 public class Interact : MonoBehaviour
 {
 
-  public virtual void Attacked(int weapon)
-  {
+  public Transform rangeParent;
 
+  public virtual bool Attacked(int weapon)
+  {
+    return false;
   }
 
   public virtual bool Operate(bool isKeyboard)

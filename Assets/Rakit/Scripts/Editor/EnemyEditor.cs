@@ -18,9 +18,10 @@ public class EnemyEditor : Editor
   public override void OnInspectorGUI()
   {
     Color defaultColor = GUI.backgroundColor;
-
     //base.OnInspectorGUI();
     bool editing = false;
+
+    
     //Body transform
     EditorGUI.BeginChangeCheck();
     Transform bTransform = EditorGUILayout.ObjectField("Body", enemy.body, typeof(Transform), true) as Transform;
@@ -30,11 +31,20 @@ public class EnemyEditor : Editor
       enemy.body = bTransform;
       editing = true;
     }
+    //Projectile parent
+    EditorGUI.BeginChangeCheck();
+    bTransform = EditorGUILayout.ObjectField("Projectile transform", enemy.rangeParent, typeof(Transform), true) as Transform;
+    if (EditorGUI.EndChangeCheck())
+    {
+      Undo.RecordObject(target, "Changed body");
+      enemy.rangeParent = bTransform;
+      editing = true;
+    }
 
     #region SPEED
     EditorGUILayout.LabelField("Speed", EditorStyles.boldLabel);
     EditorGUI.indentLevel = 1;
-    GUI.backgroundColor = HexColor("#B3B3B3");
+    GUI.backgroundColor = RaStyle.HexColor("#B3B3B3");
     EditorGUILayout.BeginVertical("Box");
 
     //Speed
@@ -64,7 +74,7 @@ public class EnemyEditor : Editor
     #region DISTANCE
     EditorGUILayout.LabelField("Distances", EditorStyles.boldLabel);
     EditorGUI.indentLevel = 1;
-    GUI.backgroundColor = HexColor("#B3B3B3");
+    GUI.backgroundColor = RaStyle.HexColor("#B3B3B3");
     EditorGUILayout.BeginVertical("Box");
 
     //Direction
@@ -102,7 +112,7 @@ public class EnemyEditor : Editor
     #region ATTACK
     EditorGUILayout.LabelField("Attack", EditorStyles.boldLabel);
     EditorGUI.indentLevel = 1;
-    GUI.backgroundColor = HexColor("#B3B3B3");
+    GUI.backgroundColor = RaStyle.HexColor("#B3B3B3");
     EditorGUILayout.BeginVertical("Box");
 
     //Attack damage
@@ -131,7 +141,7 @@ public class EnemyEditor : Editor
     #region DAMAGE
     EditorGUILayout.LabelField("Damage", EditorStyles.boldLabel);
     EditorGUI.indentLevel = 1;
-    GUI.backgroundColor = HexColor("#B3B3B3");
+    GUI.backgroundColor = RaStyle.HexColor("#B3B3B3");
     EditorGUILayout.BeginVertical("Box");
 
     //Meele damage
@@ -174,14 +184,14 @@ public class EnemyEditor : Editor
     }
 
     EditorGUI.indentLevel = 0;
-    enemy.destroyOnDeath  = bDestr;
+    GUI.backgroundColor = defaultColor;
     EditorGUILayout.EndVertical();
     #endregion
 
     #region CANVAS
     EditorGUILayout.LabelField("Canvas", EditorStyles.boldLabel);
     EditorGUI.indentLevel = 1;
-    GUI.backgroundColor = HexColor("#B3B3B3");
+    GUI.backgroundColor = RaStyle.HexColor("#B3B3B3");
     EditorGUILayout.BeginVertical("Box");
 
     //Always show canvas
@@ -214,10 +224,8 @@ public class EnemyEditor : Editor
       editing = true;
     }
 
-
-
     EditorGUI.indentLevel = 0;
-    enemy.destroyOnDeath  = bDestr;
+    GUI.backgroundColor = defaultColor;
     EditorGUILayout.EndVertical();
     #endregion
 
@@ -313,25 +321,6 @@ public class EnemyEditor : Editor
     }
 
 
-  }
-  private Color HexColor(string hex)
-  {
-    ColorUtility.TryParseHtmlString(hex, out Color color);
-    return color;
-  }
-
-  private Texture2D MakeTex(int width, int height, Color col)
-  {
-    Color[] pix = new Color[width * height];
-
-    for (int i = 0; i < pix.Length; i++)
-      pix[i] = col;
-
-    Texture2D result = new Texture2D(width, height);
-    result.SetPixels(pix);
-    result.Apply();
-
-    return result;
   }
   //#if UNITY_EDITOR
   //  private void OnDrawGizmosSelected()

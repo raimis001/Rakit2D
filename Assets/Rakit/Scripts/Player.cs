@@ -18,7 +18,13 @@ public class Player : MonoBehaviour
   public bool isMeele;
   public WeaponTrigger meeleTrigger;
   public float meeleCooldown = 1;
+
   public bool isRange;
+  public Projectile rangeProjectile;
+  public Transform projectileStart;
+  public float projectileForce = 1;
+  public bool destroyAfterShot;
+  public float destroyTime = 1;
 
   private int _currentWeapon;
   internal int currentWeapon
@@ -56,6 +62,10 @@ public class Player : MonoBehaviour
 		}
     checkPoint = transform.position;
 
+    groundFilter.useLayerMask = true;
+    groundFilter.useOutsideNormalAngle = true;
+    groundFilter.minNormalAngle = 255;
+    groundFilter.maxNormalAngle = 285;
   }
 
 	private void Start()
@@ -127,6 +137,20 @@ public class Player : MonoBehaviour
         meeleTrigger.attacking = true;
       }
 
+      if (_currentWeapon == 2)
+      {
+        Projectile proj = Instantiate(rangeProjectile);
+        proj.transform.position = projectileStart.position;
+        Vector3 rot = proj.transform.eulerAngles;
+        if (isRight)
+          rot.z = 180 - rot.z;
+
+        proj.transform.eulerAngles = rot;
+
+
+        proj.Shot(projectileForce, isRight ? 1 : -1, destroyAfterShot ? destroyTime : -1);
+      }
+
       animator.SetTrigger("Attack");
       return;
     }
@@ -154,7 +178,7 @@ public class Player : MonoBehaviour
     else
     {
       bool nRight = move.x < 0;
-      bool isRight = animator.GetBool("Right");
+      //bool isRight = animator.GetBool("Right");
       if (nRight != isRight) {
 
         animator.SetBool("Right", nRight);
@@ -171,8 +195,9 @@ public class Player : MonoBehaviour
   bool groundChecked;
 	bool _isGrounded;
 	bool isGrounded => groundChecked ? _isGrounded : GroundCheck();
+  bool isRight => animator.GetBool("Right");
 
-	bool GroundCheck()
+  bool GroundCheck()
 	{
 		groundChecked = true;
 		_isGrounded = body.IsTouching(groundFilter);

@@ -14,13 +14,13 @@ TagManager:
   - UI
   - 
   - 
+  - Player
+  - Enemy
+  - Arrow
   - 
   - 
   - 
-  - 
-  - 
-  - 
-  - 
+  - Ground
   - 
   - 
   - 
@@ -50,6 +50,9 @@ TagManager:
     locked: 0
   - name: Ground
     uniqueID: 380460985
+    locked: 0
+  - name: Player
+    uniqueID: 1569802845
     locked: 0
   - name: UI
     uniqueID: 1633507171

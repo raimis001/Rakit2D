@@ -11,14 +11,16 @@ public class DestroyableInteract : Interact
     hitMax = hitPoints;
     anim = GetComponent<Animator>();
   }
-  public override void Attacked(int weapon)
+  public override bool Attacked(int weapon)
   {
     if (hitPoints < 1)
-      return;
+      return false;
 
     hitPoints--;
     anim.SetInteger("step",hitMax - hitPoints);
     if (hitPoints < 1)
       Destroy(gameObject);
+
+    return true;
   }
 }

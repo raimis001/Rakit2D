@@ -202,11 +202,11 @@ public class Enemy : Interact
 
     return Vector3.Distance(body.position, Player.position) <= attackDistance;
   }
-  public override void Attacked(int weapon)
+  public override bool Attacked(int weapon)
   {
     Debug.Log("Attacking enemy");
     if (isDeath)
-      return;
+      return false;
 
     hitpoints -= (weapon == 1 ? damageMeele : damageRange) / 100f;
     if (canvas && progress)
@@ -223,6 +223,7 @@ public class Enemy : Interact
       if (destroyOnDeath )
         Destroy(gameObject, destroyTime);
     }
+    return true;
   }
 
   private void OnTriggerEnter2D(Collider2D collision)

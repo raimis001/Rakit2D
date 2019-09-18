@@ -52,7 +52,7 @@ public class Projectile : MonoBehaviour
       return;
 
     disabled = true;
-    Debug.Log("Arrow");
+
     body.isKinematic = true;
     body.velocity = Vector2.zero;
     body.angularVelocity = 0;

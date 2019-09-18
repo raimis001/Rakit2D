@@ -204,7 +204,7 @@ public class Enemy : Interact
   }
   public override bool Attacked(int weapon)
   {
-    Debug.Log("Attacking enemy");
+
     if (isDeath)
       return false;
 

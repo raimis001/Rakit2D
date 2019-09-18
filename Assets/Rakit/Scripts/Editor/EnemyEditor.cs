@@ -155,11 +155,11 @@ public class EnemyEditor : Editor
     }
     //Destroy on ded
     EditorGUI.BeginChangeCheck();
-    bool bDestr = EditorGUILayout.Toggle("Destroy on ded", enemy.destroyOnDed);
+    bool bDestr = EditorGUILayout.Toggle("Destroy on death", enemy.destroyOnDeath );
     if (EditorGUI.EndChangeCheck())
     {
       Undo.RecordObject(target, "Range damage");
-      enemy.destroyOnDed= bDestr;
+      enemy.destroyOnDeath = bDestr;
       editing = true;
     }
 
@@ -174,7 +174,7 @@ public class EnemyEditor : Editor
     }
 
     EditorGUI.indentLevel = 0;
-    enemy.destroyOnDed = bDestr;
+    enemy.destroyOnDeath  = bDestr;
     EditorGUILayout.EndVertical();
     #endregion
 
@@ -217,7 +217,7 @@ public class EnemyEditor : Editor
 
 
     EditorGUI.indentLevel = 0;
-    enemy.destroyOnDed = bDestr;
+    enemy.destroyOnDeath  = bDestr;
     EditorGUILayout.EndVertical();
     #endregion
 

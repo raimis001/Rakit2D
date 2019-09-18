@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
-  public static bool IsDed;
+  public static bool IsDeath;
   private static Vector2 checkPoint;
   public static Vector3 position => SM.player.transform.position;
 
@@ -76,7 +76,7 @@ public class Player : MonoBehaviour
 
 	private void Update()
 	{
-    if (IsDed)
+    if (IsDeath)
     {
       if (SM.keyJump)
       {
@@ -135,7 +135,7 @@ public class Player : MonoBehaviour
 
 	private void FixedUpdate()
 	{
-    if (IsDed)
+    if (IsDeath)
       return;
 
 
@@ -192,24 +192,24 @@ public class Player : MonoBehaviour
     collider = colliders[0];
     return true;
   }
-  public void Ded()
+  public void Death()
   {
-    if (IsDed)
+    if (IsDeath)
       return;
 
-    IsDed = true;
+    IsDeath = true;
     body.isKinematic = true;
     body.velocity = Vector2.zero;
-    animator.SetTrigger("Ded");
+    animator.SetTrigger("Death");
 
-    Debug.Log("Player is ded");
+    Debug.Log("Player is death");
   }
   public void SetSpawn(Vector2 pos)
   {
-    if (!IsDed)
+    if (!IsDeath)
       return;
 
-    IsDed = false;
+    IsDeath = false;
     transform.position = pos;
     body.isKinematic = false;
     body.velocity = Vector2.zero;

@@ -28,7 +28,7 @@ public class Enemy : Interact
 
   public float damageMeele = 33f;
   public float damageRange = 2f;
-  public bool destroyOnDed = false;
+  public bool destroyOnDeath  = false;
   public float destroyTime = 1;
 
   public GameObject canvas;
@@ -36,7 +36,7 @@ public class Enemy : Interact
   public bool alwaysShowCanvas;
 
   internal float hitpoints = 1;
-  internal bool isDed = false;
+  internal bool isDeath = false;
 
   public List<EnemyNode> nodes = new List<EnemyNode>();
 
@@ -73,7 +73,7 @@ public class Enemy : Interact
 
     int targetNode = 0;
     int direction = 1;
-    while (!isDed)
+    while (!isDeath)
     {
       anim.SetFloat("speed", 1);
       yield return MoveToNode(targetNode);
@@ -173,7 +173,7 @@ public class Enemy : Interact
   }
   private bool SeePlayer()
   {
-    if (Player.IsDed)
+    if (Player.IsDeath)
       return false;
 
     Vector2 player = Player.position;
@@ -197,7 +197,7 @@ public class Enemy : Interact
   }
   private bool AttackPlayer()
   {
-    if (Player.IsDed)
+    if (Player.IsDeath)
       return false;
 
     return Vector3.Distance(body.position, Player.position) <= attackDistance;
@@ -205,7 +205,7 @@ public class Enemy : Interact
   public override void Attacked(int weapon)
   {
     Debug.Log("Attacking enemy");
-    if (isDed)
+    if (isDeath)
       return;
 
     hitpoints -= (weapon == 1 ? damageMeele : damageRange) / 100f;
@@ -217,10 +217,10 @@ public class Enemy : Interact
 
     if (hitpoints <= 0)
     {
-      isDed = true;
+      isDeath = true;
       StopAllCoroutines();
-      anim.SetTrigger("ded");
-      if (destroyOnDed)
+      anim.SetTrigger("death");
+      if (destroyOnDeath )
         Destroy(gameObject, destroyTime);
     }
   }

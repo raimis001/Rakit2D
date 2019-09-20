@@ -23,20 +23,15 @@ MonoBehaviour:
   - name: NPC
     description: 'Move right/left
 
-      ??Jump
-
       Patrollpath
 
-      Attack
-      meele
-
-      Attack range
+      Attack meele
 
       Animations Move, Ded, Attack, Jump
 
 '
     priority: 1
-    status: 1
+    status: 2
     type: 1
   - name: Interact items
     description: Pushable box
@@ -51,5 +46,17 @@ MonoBehaviour:
   - name: Paralx background
     description: 
     priority: 2
-    status: 0
+    status: 2
     type: 1
+  - name: NPC Range weapon
+    description: 
+    priority: 3
+    status: 1
+    type: 1
+  - name: NPC Jump
+    description: 'Jump
+
+      Animation Jump'
+    priority: 3
+    status: 0
+    type: 2

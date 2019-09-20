@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEditor;
+using UnityEditorInternal;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -18,9 +19,7 @@ public class EnemyEditor : Editor
   public override void OnInspectorGUI()
   {
     Color defaultColor = GUI.backgroundColor;
-    //base.OnInspectorGUI();
     bool editing = false;
-
     
     //Body transform
     EditorGUI.BeginChangeCheck();
@@ -31,6 +30,7 @@ public class EnemyEditor : Editor
       enemy.body = bTransform;
       editing = true;
     }
+
     //Projectile parent
     EditorGUI.BeginChangeCheck();
     bTransform = EditorGUILayout.ObjectField("Projectile transform", enemy.rangeParent, typeof(Transform), true) as Transform;
@@ -95,23 +95,35 @@ public class EnemyEditor : Editor
       enemy.viewDistance = bDist;
       editing = true;
     }
-    //Attack distance
+
     EditorGUI.BeginChangeCheck();
-    float bADist = EditorGUILayout.Slider("Attack distance", enemy.attackDistance, 1, enemy.viewDistance);
+    LayerMask mask = EditorGUILayout.MaskField("Check layer", enemy.seeCheckLayer, InternalEditorUtility.layers);
     if (EditorGUI.EndChangeCheck())
     {
-      Undo.RecordObject(target, "Changed sign distance");
-      enemy.attackDistance = bADist;
+      Undo.RecordObject(target, "Changed layer mask");
+      enemy.seeCheckLayer = mask;
       editing = true;
     }
+
     EditorGUI.indentLevel = 0;
     GUI.backgroundColor = defaultColor;
     EditorGUILayout.EndVertical();
     #endregion
 
     #region ATTACK
+
     EditorGUILayout.LabelField("Attack", EditorStyles.boldLabel);
     EditorGUI.indentLevel = 1;
+
+    EditorGUI.BeginChangeCheck();
+    EnemyType eType = (EnemyType)EditorGUILayout.EnumPopup(enemy.attackType);
+    if (EditorGUI.EndChangeCheck())
+    {
+      Undo.RecordObject(target, "Changed attack type");
+      enemy.attackType = eType;
+      editing = true;
+    }
+
     GUI.backgroundColor = RaStyle.HexColor("#B3B3B3");
     EditorGUILayout.BeginVertical("Box");
 
@@ -133,6 +145,20 @@ public class EnemyEditor : Editor
       enemy.attackDamage = bCool;
       editing = true;
     }
+
+    if (enemy.attackType == EnemyType.meele)
+    {
+      //Attack distance
+      EditorGUI.BeginChangeCheck();
+      float bADist = EditorGUILayout.Slider("Attack distance", enemy.attackDistance, 1, enemy.viewDistance);
+      if (EditorGUI.EndChangeCheck())
+      {
+        Undo.RecordObject(target, "Changed sign distance");
+        enemy.attackDistance = bADist;
+        editing = true;
+      }
+    }
+
     EditorGUI.indentLevel = 0;
     GUI.backgroundColor = defaultColor;
     EditorGUILayout.EndVertical();
@@ -275,7 +301,9 @@ public class EnemyEditor : Editor
       if (GUILayout.Button("Add Node"))
       {
         Undo.RecordObject(target, "Add node");
-        Vector3 last = enemy.nodes[enemy.nodes.Count - 1].position + new Vector3(2, 0);
+        Vector3 last = Vector3.right;
+        if (enemy.nodes.Count > 0)
+          last = enemy.nodes[enemy.nodes.Count - 1].position + new Vector3(2, 0);
         enemy.nodes.Add(new EnemyNode() { position = last });
         EditorUtility.SetDirty(target);
       }

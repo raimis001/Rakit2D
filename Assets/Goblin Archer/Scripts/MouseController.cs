@@ -4,6 +4,11 @@ using System.Collections;
 public class MouseController : MonoBehaviour
 {
 
+    
+    public Transform arrowPrefab;
+    public Transform hand;
+    public float arrowDelay=0.4f;
+
     public LayerMask ground;
     private Vector3 targetPosition;
     public float speed=5;
@@ -15,8 +20,15 @@ public class MouseController : MonoBehaviour
 	{
 	    targetPosition = transform.position;
 	    animator = GetComponent<Animator>();
+        
 	}
 	
+    IEnumerator makeArrow(float delay, bool right)
+    {
+        yield return new WaitForSeconds(delay);
+        var go = Instantiate(arrowPrefab, hand.position, Quaternion.identity) as Transform;
+        go.GetComponent<Arrow>().right = right;
+    }
 
 	void Update () {
         if (Input.GetMouseButtonDown(0))
@@ -36,6 +48,7 @@ public class MouseController : MonoBehaviour
                 animator.SetTrigger("attack");
             else
                 animator.SetTrigger("special");
+            StartCoroutine(makeArrow(arrowDelay, lookRight));
         }
 
        if (targetPosition.x > transform.position.x && !lookRight)

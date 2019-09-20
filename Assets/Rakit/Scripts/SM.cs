@@ -51,7 +51,8 @@ public class SM : MonoBehaviour
     Hp -= hp;
     if (Hp > 0)
     {
-      OnLivesChange.Invoke();
+      if (OnLivesChange != null)
+        OnLivesChange.Invoke();
       return;
     }
 
@@ -62,9 +63,10 @@ public class SM : MonoBehaviour
       Hp = 0;
       Lives = 0;
       Debug.Log("Death");
-      
+
       //TODO ded
-      OnLivesChange.Invoke();
+      if (OnLivesChange != null)
+        OnLivesChange.Invoke();
       return;
     }
     Hp = 1;

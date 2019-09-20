@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 2004512313114679602}
   - component: {fileID: 2004512313114679603}
   - component: {fileID: 2004512313114679612}
-  m_Layer: 0
+  m_Layer: 14
   m_Name: New SpriteShapeController (5)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -47,7 +47,6 @@ SpriteShapeRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
-  m_RayTracingMode: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -181,7 +180,7 @@ GameObject:
   - component: {fileID: 2004512313227177871}
   - component: {fileID: 2004512313227177864}
   - component: {fileID: 2004512313227177865}
-  m_Layer: 0
+  m_Layer: 14
   m_Name: New SpriteShapeController (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -216,7 +215,6 @@ SpriteShapeRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
-  m_RayTracingMode: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -350,7 +348,7 @@ GameObject:
   - component: {fileID: 2004512313806439335}
   - component: {fileID: 2004512313806439328}
   - component: {fileID: 2004512313806439329}
-  m_Layer: 0
+  m_Layer: 14
   m_Name: New SpriteShapeController (3)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -385,7 +383,6 @@ SpriteShapeRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
-  m_RayTracingMode: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -519,7 +516,7 @@ GameObject:
   - component: {fileID: 2004512314118861630}
   - component: {fileID: 2004512314118861631}
   - component: {fileID: 2004512314118861628}
-  m_Layer: 0
+  m_Layer: 14
   m_Name: DestroyWall
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -533,7 +530,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2004512314118861624}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 73.58, y: 0, z: 0}
   m_LocalScale: {x: 0.43877953, y: 0.8568234, z: 1}
   m_Children:
@@ -557,6 +554,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b5c2ea99a5b997243bd61df306482c2f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  rangeParent: {fileID: 0}
   hitPoints: 5
 --- !u!50 &2004512314118861631
 Rigidbody2D:
@@ -610,7 +608,7 @@ GameObject:
   - component: {fileID: 2004512314174351583}
   - component: {fileID: 2004512314174351576}
   - component: {fileID: 2004512314174351577}
-  m_Layer: 0
+  m_Layer: 14
   m_Name: New SpriteShapeController (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -645,7 +643,6 @@ SpriteShapeRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
-  m_RayTracingMode: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -779,7 +776,7 @@ GameObject:
   - component: {fileID: 2004512314655122295}
   - component: {fileID: 2004512314655122288}
   - component: {fileID: 2004512314655122289}
-  m_Layer: 0
+  m_Layer: 14
   m_Name: New SpriteShapeController (4)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -814,7 +811,6 @@ SpriteShapeRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
-  m_RayTracingMode: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:

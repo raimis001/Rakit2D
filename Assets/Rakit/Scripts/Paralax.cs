@@ -16,14 +16,12 @@ public class Paralax : MonoBehaviour
     spriteMaterial = render.material;
   }
 
-  void Start()
-  {
-
-  }
-
   Vector2 offset = Vector2.zero;
   void Update()
   {
+    if (!spriteMaterial)
+      return;
+
     offset.x = transform.position.x * speed;
     spriteMaterial.SetTextureOffset("_MainTex", offset);
   }

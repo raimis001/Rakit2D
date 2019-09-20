@@ -10,6 +10,10 @@ public class EnemyNode
   public float waitOnNode = 0;
 }
 
+public enum EnemyType
+{
+  meele, range
+}
 public class Enemy : Interact
 {
   public Animator anim;
@@ -22,18 +26,22 @@ public class Enemy : Interact
   public bool bothDirection;
 
   public float attackDistance = 1;
-  
+
   public float attackDamage = 1;
   public float attackCoolDown = 2;
 
+  public EnemyType attackType = EnemyType.meele;
+
   public float damageMeele = 33f;
   public float damageRange = 2f;
-  public bool destroyOnDeath  = false;
+  public bool destroyOnDeath = false;
   public float destroyTime = 1;
 
   public GameObject canvas;
   public Image progress;
   public bool alwaysShowCanvas;
+
+  public LayerMask seeCheckLayer;
 
   internal float hitpoints = 1;
   internal bool isDeath = false;
@@ -57,36 +65,44 @@ public class Enemy : Interact
   {
     if (!anim)
       anim = GetComponentInChildren<Animator>();
-      StartCoroutine(Patrolling());
+    StartCoroutine(Patrolling());
 
     if (canvas)
       canvas.SetActive(alwaysShowCanvas);
   }
 
-
   IEnumerator Patrolling()
   {
-    if (nodes.Count < 1)
-    {
-      yield break;
-    }
 
     int targetNode = 0;
     int direction = 1;
     while (!isDeath)
     {
       anim.SetFloat("speed", 1);
-      yield return MoveToNode(targetNode);
-      yield return ProcessNode(targetNode);
 
-      if (direction == -1 && targetNode == 0 || direction == 1 && targetNode == nodes.Count - 1)
+      if (nodes.Count > 0)
       {
-        //Reach end node
-        direction *= -1;
+        yield return MoveToNode(targetNode);
+        yield return ProcessNode(targetNode);
+
+        if (direction == -1 && targetNode == 0 || direction == 1 && targetNode == nodes.Count - 1)
+          direction *= -1;
+
+        targetNode += direction;
       }
+      else
+      {
+        yield return new WaitForSeconds(0.5f);
 
-      targetNode += direction;
-
+        if (SeePlayer())
+        {
+          StopAllCoroutines();
+          if (attackType == EnemyType.meele)
+            StartCoroutine(GotoPlayer());
+          else
+            StartCoroutine(RangeAttack());
+        }
+      }
     }
   }
 
@@ -123,13 +139,33 @@ public class Enemy : Interact
       if (SeePlayer())
       {
         StopAllCoroutines();
-        StartCoroutine(GotoPlayer());
+        if (attackType == EnemyType.meele)
+          StartCoroutine(GotoPlayer());
+        else
+          StartCoroutine(RangeAttack());
       }
 
     }
 
     body.localPosition = targetPos;
   }
+
+  IEnumerator RangeAttack()
+  {
+    while (true)
+    {
+      if (!SeePlayer())
+        break;
+
+      anim.SetTrigger("attack");
+      isRight = body.position.x < Player.position.x;
+      yield return new WaitForSeconds(attackCoolDown);
+    }
+
+    StopAllCoroutines();
+    StartCoroutine(Patrolling());
+  }
+
   IEnumerator GotoPlayer()
   {
     bool attackSequence = true;
@@ -146,7 +182,8 @@ public class Enemy : Interact
         {
           anim.SetFloat("speed", 1);
           body.position = Vector3.MoveTowards(body.position, new Vector3(Player.position.x, body.position.y, body.position.z), Time.deltaTime * speed * speedBooster);
-        } else
+        }
+        else
         {
           StopAllCoroutines();
           StartCoroutine(Patrolling());
@@ -181,18 +218,29 @@ public class Enemy : Interact
     if (Mathf.Abs(player.y - self.y) > 1)
       return false;
 
-    if (!bothDirection)
-    {
-      bool right = body.localScale.x > 0;
-      bool pright = player.x - self.x >= 0;
-      if (right && pright)
-        return Vector2.Distance(player, self) <= viewDistance;
-      if (!right && !pright)
-        return Vector2.Distance(player, self) <= viewDistance;
-      return false;
-    }
+    float dist = Vector2.Distance(player, self);
+    Debug.Log(dist);
 
-    return Vector2.Distance(player, self) <= viewDistance;
+    if (dist > viewDistance)
+      return false;
+
+    self.y += 0.5f;
+    player.y += 0.5f;
+
+    Vector2 dir = player - self;
+    RaycastHit2D hit = Physics2D.Raycast(self, dir, dist, seeCheckLayer);
+   
+    Debug.DrawRay(self, dir );
+    if (hit)
+      return false;
+
+    if (bothDirection)
+      return true;
+
+    bool right = isRight;
+    bool pright = player.x - self.x >= 0;
+
+    return right == pright;
   }
   private bool AttackPlayer()
   {
@@ -219,12 +267,11 @@ public class Enemy : Interact
       isDeath = true;
       StopAllCoroutines();
       anim.SetTrigger("death");
-      if (destroyOnDeath )
+      if (destroyOnDeath)
         Destroy(gameObject, destroyTime);
     }
     return true;
   }
-
   private void OnTriggerEnter2D(Collider2D collision)
   {
     Debug.Log(collision.name);
@@ -257,9 +304,11 @@ public class Enemy : Interact
     Gizmos.color = new Color(0, 1, 0, 0.4f);
     Gizmos.DrawCube(body.position + offset, size);
 
-    UnityEditor.Handles.color = new Color(1.0f, 0, 0, 0.2f);
-    UnityEditor.Handles.DrawSolidArc(body.position, -Vector3.forward, Vector3.left, 180, attackDistance);
-
+    if (attackType == EnemyType.meele)
+    {
+      UnityEditor.Handles.color = new Color(1.0f, 0, 0, 0.2f);
+      UnityEditor.Handles.DrawSolidArc(body.position, -Vector3.forward, Vector3.left, 180, attackDistance);
+    }
   }
 #endif
 

@@ -25,12 +25,13 @@ public class Enemy : Interact
   public float viewDistance = 3;
   public bool bothDirection;
 
+  public EnemyType attackType = EnemyType.meele;
   public float attackDistance = 1;
-
   public float attackDamage = 1;
   public float attackCoolDown = 2;
+  public GameObject rangeProjectile;
+  public Transform projectileParent;
 
-  public EnemyType attackType = EnemyType.meele;
 
   public float damageMeele = 33f;
   public float damageRange = 2f;
@@ -78,31 +79,23 @@ public class Enemy : Interact
     int direction = 1;
     while (!isDeath)
     {
+      if (nodes.Count < 1)
+      {
+        anim.SetFloat("speed", 0);
+        yield return new WaitForSeconds(0.5f);
+        CheckForPlayer();
+        continue;
+      }
+
       anim.SetFloat("speed", 1);
 
-      if (nodes.Count > 0)
-      {
-        yield return MoveToNode(targetNode);
-        yield return ProcessNode(targetNode);
+      yield return MoveToNode(targetNode);
+      yield return ProcessNode(targetNode);
 
-        if (direction == -1 && targetNode == 0 || direction == 1 && targetNode == nodes.Count - 1)
-          direction *= -1;
+      if (direction == -1 && targetNode == 0 || direction == 1 && targetNode == nodes.Count - 1)
+        direction *= -1;
 
-        targetNode += direction;
-      }
-      else
-      {
-        yield return new WaitForSeconds(0.5f);
-
-        if (SeePlayer())
-        {
-          StopAllCoroutines();
-          if (attackType == EnemyType.meele)
-            StartCoroutine(GotoPlayer());
-          else
-            StartCoroutine(RangeAttack());
-        }
-      }
+      targetNode += direction;
     }
   }
 
@@ -117,12 +110,7 @@ public class Enemy : Interact
     {
       yield return null;
       wait -= Time.deltaTime;
-      if (SeePlayer())
-      {
-        Debug.Log("I see player");
-        StopAllCoroutines();
-        StartCoroutine(GotoPlayer());
-      }
+      CheckForPlayer();
     }
   }
   IEnumerator MoveToNode(int node)
@@ -135,19 +123,22 @@ public class Enemy : Interact
     {
       body.localPosition = Vector3.MoveTowards(body.localPosition, targetPos, Time.deltaTime * speed);
       yield return null;
-
-      if (SeePlayer())
-      {
-        StopAllCoroutines();
-        if (attackType == EnemyType.meele)
-          StartCoroutine(GotoPlayer());
-        else
-          StartCoroutine(RangeAttack());
-      }
-
+      CheckForPlayer();
     }
 
     body.localPosition = targetPos;
+  }
+
+  void CheckForPlayer()
+  {
+    if (SeePlayer())
+    {
+      StopAllCoroutines();
+      if (attackType == EnemyType.meele)
+        StartCoroutine(GotoPlayer());
+      else
+        StartCoroutine(RangeAttack());
+    }
   }
 
   IEnumerator RangeAttack()
@@ -157,6 +148,7 @@ public class Enemy : Interact
       if (!SeePlayer())
         break;
 
+      Debug.Log("Attack range");
       anim.SetTrigger("attack");
       isRight = body.position.x < Player.position.x;
       yield return new WaitForSeconds(attackCoolDown);
@@ -219,7 +211,6 @@ public class Enemy : Interact
       return false;
 
     float dist = Vector2.Distance(player, self);
-    Debug.Log(dist);
 
     if (dist > viewDistance)
       return false;
@@ -229,8 +220,8 @@ public class Enemy : Interact
 
     Vector2 dir = player - self;
     RaycastHit2D hit = Physics2D.Raycast(self, dir, dist, seeCheckLayer);
-   
-    Debug.DrawRay(self, dir );
+
+    Debug.DrawRay(self, dir);
     if (hit)
       return false;
 
@@ -296,7 +287,7 @@ public class Enemy : Interact
     Vector3 offset = new Vector3(0, 0.5f);
     if (!bothDirection)
     {
-      offset.x = (body.localScale.x > 0 ? viewDistance : -viewDistance) / 2f;
+      offset.x = ((Application.isPlaying ? isRight : body.localScale.x > 0) ? viewDistance : -viewDistance) / 2f;
     }
 
     Vector3 size = new Vector3(bothDirection ? viewDistance * 2 : viewDistance, 1);

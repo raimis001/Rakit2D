@@ -156,6 +156,27 @@ public class EnemyEditor : Editor
         Undo.RecordObject(target, "Changed sign distance");
         enemy.attackDistance = bADist;
         editing = true;
+      } else
+      {
+        //Projectile spawnpoint
+        EditorGUI.BeginChangeCheck();
+        bTransform = EditorGUILayout.ObjectField("Projectile spawn point", enemy.projectileParent, typeof(Transform), true) as Transform;
+        if (EditorGUI.EndChangeCheck())
+        {
+          Undo.RecordObject(target, "Changed spawn point");
+          enemy.projectileParent = bTransform;
+          editing = true;
+        }
+
+        //Projectile prefab
+        EditorGUI.BeginChangeCheck();
+        GameObject pProj = EditorGUILayout.ObjectField("Projectile prefab", enemy.rangeProjectile, typeof(GameObject), true) as GameObject;
+        if (EditorGUI.EndChangeCheck())
+        {
+          Undo.RecordObject(target, "Changed projectile prefab");
+          enemy.rangeProjectile = pProj;
+          editing = true;
+        }
       }
     }
 

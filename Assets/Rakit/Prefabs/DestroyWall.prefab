@@ -555,6 +555,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rangeParent: {fileID: 0}
+  interactLayer: 1
   hitPoints: 5
 --- !u!50 &2004512314118861631
 Rigidbody2D:

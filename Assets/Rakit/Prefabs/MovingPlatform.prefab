@@ -44,10 +44,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d81b8ff310f9c2949afc9498bbb88d3d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  rangeParent: {fileID: 0}
   platform: {fileID: 3201776159108347032}
   speed: 1
   kind: 2
   nodes: []
+  zeroDelay: 0
 --- !u!1 &3201776159108347033
 GameObject:
   m_ObjectHideFlags: 0
@@ -96,7 +98,6 @@ SpriteRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
-  m_RayTracingMode: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:

@@ -1448,26 +1448,33 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rangeParent: {fileID: 5198654116197411991}
+  interactLayer: 1
   anim: {fileID: 0}
   body: {fileID: 5198654116197411991}
   speed: 0.8
   speedBooster: 1.1
-  viewDistance: 2.21
+  viewDistance: 3.5
   bothDirection: 1
+  attackType: 0
   attackDistance: 1.213
   attackDamage: 10
   attackCoolDown: 2
+  rangeProjectile: {fileID: 0}
+  projectileParent: {fileID: 0}
   damageMeele: 34
-  damageRange: 10
-  destroyOnDeath: 0
+  damageRange: 15
+  destroyOnDeath: 1
   destroyTime: 2
   canvas: {fileID: 3031008480971319446}
   progress: {fileID: 5545802152851032982}
   alwaysShowCanvas: 1
+  seeCheckLayer:
+    serializedVersion: 2
+    m_Bits: 257
   nodes:
   - position: {x: 0.045623776, y: 0, z: 0}
     waitOnNode: 3
-  - position: {x: 23.798565, y: 0, z: 0}
+  - position: {x: 11.396571, y: 0, z: 0}
     waitOnNode: 2
 --- !u!1 &5753957766103052538
 GameObject:

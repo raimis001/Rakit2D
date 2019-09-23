@@ -29,9 +29,11 @@ public class Enemy : Interact
   public float attackDistance = 1;
   public float attackDamage = 1;
   public float attackCoolDown = 2;
-  public GameObject rangeProjectile;
-  public Transform projectileParent;
 
+  public Projectile rangeProjectile;
+  public Transform projectileStart;
+  public bool destroyProjectile;
+  public float destroyProjectileTime;
 
   public float damageMeele = 33f;
   public float damageRange = 2f;
@@ -148,9 +150,23 @@ public class Enemy : Interact
       if (!SeePlayer())
         break;
 
-      Debug.Log("Attack range");
+      //Debug.Log("Attack range");
       anim.SetTrigger("attack");
       isRight = body.position.x < Player.position.x;
+
+
+      Projectile proj = Instantiate(rangeProjectile);
+
+      Vector3 rot = projectileStart.eulerAngles;
+      rot.z = Mathf.Atan2(projectileStart.right.y, projectileStart.right.x) * Mathf.Rad2Deg + (isRight ? 0 : 180);
+
+      //Debug.Log(rot);
+
+      proj.transform.eulerAngles = rot;
+      proj.transform.position = projectileStart.position;
+
+      proj.Shot(attackDamage, isRight ? -1 : 1, destroyProjectile ? destroyProjectileTime : -1);
+
       yield return new WaitForSeconds(attackCoolDown);
     }
 

@@ -163,15 +163,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aaad15f077ae3ec48991b8480605ec72, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  rangeParent: {fileID: 0}
+  interactLayer: 0
   speed: 1
   jumpSpeed: 1
   isMeele: 1
   meeleTrigger: {fileID: 5737779480654449570}
   meeleCooldown: 0.5
   isRange: 1
-  rangeProjectile: {fileID: 0}
+  rangeProjectile: {fileID: 1657685960448790446, guid: 79747b4b27a853348b74b1fa156f55f9,
+    type: 3}
   projectileStart: {fileID: 7131642401300866238}
-  projectileForce: 1
+  projectileForce: 2
   destroyAfterShot: 1
   destroyTime: 2
   animator: {fileID: 4942875929760949116}
@@ -4073,10 +4076,10 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6638770216798972397}
-  m_LocalRotation: {x: 0, y: 0, z: 0.9848078, w: 0.17364825}
+  m_LocalRotation: {x: -0, y: -0, z: 0.99895924, w: 0.04561373}
   m_LocalPosition: {x: -1.88, y: 0.806, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 5033429480058981116}
   m_RootOrder: 2
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 160}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 174.77101}

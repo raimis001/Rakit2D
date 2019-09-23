@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class Projectile : MonoBehaviour
 {
+  public InteractLayer interactLayer;
+
+
   Rigidbody2D body;
   bool disabled;
   float direction = 1;
@@ -12,19 +15,13 @@ public class Projectile : MonoBehaviour
 
     body = GetComponent<Rigidbody2D>();
     body.isKinematic = true;
-    //Invoke("Shot", 1);
   }
 
-  void Update()
-  {
-    if (body.isKinematic)
-      return;
-
-    //Debug.Log(body.velocity);
-  }
   void FixedUpdate()
   {
     if (body.isKinematic)
+      return;
+    if (body.velocity.y < 0.1f)
       return;
 
     transform.Rotate(new Vector3(0, 0,  360.0f + direction * Vector3.Angle(transform.right, body.velocity.normalized)));
@@ -38,7 +35,7 @@ public class Projectile : MonoBehaviour
     if (destroyTime > -1)
       Destroy(gameObject, destroyTime);
   }
-
+  
   private void OnTriggerEnter2D(Collider2D collision)
   {
     if (disabled)
@@ -48,6 +45,9 @@ public class Projectile : MonoBehaviour
     if (!actor)
       return;
 
+    if (actor.interactLayer != interactLayer)
+      return;
+    Debug.Log("Attacked:" + actor.gameObject.name);
     if (!actor.Attacked(2))
       return;
 

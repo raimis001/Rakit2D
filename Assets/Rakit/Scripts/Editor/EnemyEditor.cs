@@ -116,13 +116,23 @@ public class EnemyEditor : Editor
     EditorGUI.indentLevel = 1;
 
     EditorGUI.BeginChangeCheck();
-    EnemyType eType = (EnemyType)EditorGUILayout.EnumPopup(enemy.attackType);
+    InteractLayer lInteract = (InteractLayer)EditorGUILayout.EnumPopup("Current layer", enemy.interactLayer);
+    if (EditorGUI.EndChangeCheck())
+    {
+      Undo.RecordObject(target, "Changed attack layer");
+      enemy.interactLayer = lInteract;
+      editing = true;
+    }
+
+    EditorGUI.BeginChangeCheck();
+    EnemyType eType = (EnemyType)EditorGUILayout.EnumPopup("Attack type", enemy.attackType);
     if (EditorGUI.EndChangeCheck())
     {
       Undo.RecordObject(target, "Changed attack type");
       enemy.attackType = eType;
       editing = true;
     }
+
 
     GUI.backgroundColor = RaStyle.HexColor("#B3B3B3");
     EditorGUILayout.BeginVertical("Box");
@@ -156,28 +166,30 @@ public class EnemyEditor : Editor
         Undo.RecordObject(target, "Changed sign distance");
         enemy.attackDistance = bADist;
         editing = true;
-      } else
-      {
-        //Projectile spawnpoint
-        EditorGUI.BeginChangeCheck();
-        bTransform = EditorGUILayout.ObjectField("Projectile spawn point", enemy.projectileParent, typeof(Transform), true) as Transform;
-        if (EditorGUI.EndChangeCheck())
-        {
-          Undo.RecordObject(target, "Changed spawn point");
-          enemy.projectileParent = bTransform;
-          editing = true;
-        }
-
-        //Projectile prefab
-        EditorGUI.BeginChangeCheck();
-        GameObject pProj = EditorGUILayout.ObjectField("Projectile prefab", enemy.rangeProjectile, typeof(GameObject), true) as GameObject;
-        if (EditorGUI.EndChangeCheck())
-        {
-          Undo.RecordObject(target, "Changed projectile prefab");
-          enemy.rangeProjectile = pProj;
-          editing = true;
-        }
       }
+    }
+    else
+    {
+      //Projectile spawnpoint
+      EditorGUI.BeginChangeCheck();
+      bTransform = EditorGUILayout.ObjectField("Projectile spawn point", enemy.projectileStart, typeof(Transform), true) as Transform;
+      if (EditorGUI.EndChangeCheck())
+      {
+        Undo.RecordObject(target, "Changed spawn point");
+        enemy.projectileStart = bTransform;
+        editing = true;
+      }
+
+      //Projectile prefab
+      EditorGUI.BeginChangeCheck();
+      Projectile pProj = EditorGUILayout.ObjectField("Projectile prefab", enemy.rangeProjectile, typeof(Projectile), true) as Projectile;
+      if (EditorGUI.EndChangeCheck())
+      {
+        Undo.RecordObject(target, "Changed projectile prefab");
+        enemy.rangeProjectile = pProj;
+        editing = true;
+      }
+    
     }
 
     EditorGUI.indentLevel = 0;

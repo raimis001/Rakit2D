@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Player : MonoBehaviour
+public class Player : Interact
 {
   public static bool IsDeath;
   private static Vector2 checkPoint;
@@ -126,6 +126,12 @@ public class Player : MonoBehaviour
       return;
     }
 
+    Vector3 rot1 = projectileStart.eulerAngles;
+    if (!isRight)
+      rot1.z = 180 - rot1.z;
+
+    Debug.DrawRay(projectileStart.position, projectileStart.right * (isRight ? 3 : -3) ,Color.green);
+
     if (_currentWeapon > 0 && SM.keyAttack)
     {
       if (_currentWeapon == 1)
@@ -140,13 +146,14 @@ public class Player : MonoBehaviour
       if (_currentWeapon == 2)
       {
         Projectile proj = Instantiate(rangeProjectile);
-        proj.transform.position = projectileStart.position;
-        Vector3 rot = proj.transform.eulerAngles;
-        if (isRight)
-          rot.z = 180 - rot.z;
+
+        Vector3 rot = projectileStart.eulerAngles;
+        rot.z = Mathf.Atan2(projectileStart.right.y, projectileStart.right.x) * Mathf.Rad2Deg + (isRight ? 0 : 180);
+
+        //Debug.Log(rot);
 
         proj.transform.eulerAngles = rot;
-
+        proj.transform.position = projectileStart.position;
 
         proj.Shot(projectileForce, isRight ? 1 : -1, destroyAfterShot ? destroyTime : -1);
       }

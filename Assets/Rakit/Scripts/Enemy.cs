@@ -172,16 +172,15 @@ public class Enemy : Interact
     Debug.DrawRay(self, dir);
     if (hit)
     {
-      Debug.Log("Hit:" 
-        + hit.collider.name 
-        + ":" + hit.collider.gameObject.layer
-        + ":" + seeCheckLayer.value
-        , hit.collider.gameObject);
+      //Debug.Log("Hit:" 
+      //  + hit.collider.name 
+      //  + ":" + hit.collider.gameObject.layer
+      //  + ":" + seeCheckLayer.value
+      //  , hit.collider.gameObject);
       return false;
     } else
     {
-      Debug.Log("No hit:" + ":" + LayerMask.GetMask("Ground"));
-
+      //Debug.Log("No hit:" + ":" + LayerMask.GetMask("Ground"));
     }
 
 

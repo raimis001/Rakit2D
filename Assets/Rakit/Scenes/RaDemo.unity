@@ -9129,6 +9129,12 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 8893969634326698035}
   m_PrefabAsset: {fileID: 0}
+--- !u!4 &1073677698 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 3614794996835037668, guid: 572e84bceb548e84187d49c82a66ae41,
+    type: 3}
+  m_PrefabInstance: {fileID: 8595122896191978325}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1121530486
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -13975,6 +13981,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5198654118180490843, guid: 0c4424b680131ba419cc5eff0f0d9a5a,
+        type: 3}
+      propertyPath: seeCheckLayer.m_Bits
+      value: 513
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0c4424b680131ba419cc5eff0f0d9a5a, type: 3}
 --- !u!4 &4631401316043233 stripped
@@ -15147,7 +15158,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2034546432, guid: cd7e024ea06b4764a9c63e1ab81783eb, type: 3}
       propertyPath: timeScale
-      value: 0.112
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 205275322, guid: cd7e024ea06b4764a9c63e1ab81783eb, type: 3}
       propertyPath: m_LocalPosition.x
@@ -15261,6 +15272,31 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4580486367337290687, guid: 572e84bceb548e84187d49c82a66ae41,
+        type: 3}
+      propertyPath: projectileForce
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4580486367337290687, guid: 572e84bceb548e84187d49c82a66ae41,
+        type: 3}
+      propertyPath: destroyProjectileTime
+      value: 1.09
+      objectReference: {fileID: 0}
+    - target: {fileID: 4580486367337290687, guid: 572e84bceb548e84187d49c82a66ae41,
+        type: 3}
+      propertyPath: projectileStart
+      value: 
+      objectReference: {fileID: 1073677698}
+    - target: {fileID: 4580486367337290687, guid: 572e84bceb548e84187d49c82a66ae41,
+        type: 3}
+      propertyPath: destroyProjectile
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4580486367337290687, guid: 572e84bceb548e84187d49c82a66ae41,
+        type: 3}
+      propertyPath: seeCheckLayer.m_Bits
+      value: 513
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 572e84bceb548e84187d49c82a66ae41, type: 3}

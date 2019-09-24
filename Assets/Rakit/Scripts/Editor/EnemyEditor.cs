@@ -137,8 +137,9 @@ public class EnemyEditor : Editor
         editing = true;
 
       //Destroy time
-      if (RaStyle.Slider(target, "Projectile TTL", ref enemy.destroyProjectileTime, 0, 5))
-        editing = true;
+      if (enemy.destroyProjectile)
+        if (RaStyle.Slider(target, "Projectile TTL", ref enemy.destroyProjectileTime, 0, 5))
+          editing = true;
 
     }
 

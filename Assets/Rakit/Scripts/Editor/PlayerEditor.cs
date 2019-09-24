@@ -7,22 +7,13 @@ using UnityEditor;
 public class PlayerEditor : Editor
 {
   Player player;
-
-
-  SerializedProperty weaponTrigger;
-  SerializedProperty rangeProjectile;
-  SerializedProperty projectileStart;
   SerializedProperty groundFilter;
-  SerializedProperty animator;
+
   private void OnEnable()
   {
     player = (Player)target;
 
-    weaponTrigger = serializedObject.FindProperty("meeleTrigger");
-    rangeProjectile = serializedObject.FindProperty("rangeProjectile");
-    projectileStart = serializedObject.FindProperty("projectileStart");
     groundFilter = serializedObject.FindProperty("groundFilter");
-    animator = serializedObject.FindProperty("animator");
   }
 
   public override void OnInspectorGUI()
@@ -33,12 +24,8 @@ public class PlayerEditor : Editor
     bool editing = false;
     Color defaultColor = GUI.backgroundColor;
 
-    EditorGUI.BeginChangeCheck();
-    EditorGUILayout.PropertyField(animator);
-    if (EditorGUI.EndChangeCheck())
-    {
+    if (RaStyle.ObjectField(target, "Animator", ref player.animator))
       editing = true;
-    }
 
     #region SPEED
     EditorGUILayout.LabelField("Speed", EditorStyles.boldLabel);
@@ -46,28 +33,15 @@ public class PlayerEditor : Editor
     GUI.backgroundColor = RaStyle.HexColor("#B3B3B3");
     EditorGUILayout.BeginVertical("Box");
 
-
-    //Range damage
+    //Speed
     //float rangeX = Mathf.FloorToInt(player.speed - 0.5f);
     //float rangeY = Mathf.CeilToInt(player.speed + 0.5f);
-    EditorGUI.BeginChangeCheck();
-    float speed = EditorGUILayout.Slider("Speed", player.speed, 0, 10);
-    if (EditorGUI.EndChangeCheck())
-    {
-      Undo.RecordObject(target, "Speed change");
-      player.speed = speed;
+    if (RaStyle.Slider(target, "Speed", ref player.speed, 0, 10))
       editing = true;
-    }
 
-    EditorGUI.BeginChangeCheck();
-    float jSpeed = EditorGUILayout.Slider("Jump speed", player.jumpSpeed, 0.5f, 5f);
-    if (EditorGUI.EndChangeCheck())
-    {
-      Undo.RecordObject(target, "Jump speed change");
-      player.jumpSpeed = jSpeed;
+    //Jump speed
+    if (RaStyle.Slider(target, "Jump speed", ref player.jumpSpeed, 0.5f, 5f))
       editing = true;
-    }
-
 
     EditorGUI.indentLevel = 0;
     GUI.backgroundColor = defaultColor;
@@ -78,14 +52,8 @@ public class PlayerEditor : Editor
     //EditorGUILayout.LabelField("Attack", EditorStyles.boldLabel);
 
     //Meele 
-    EditorGUI.BeginChangeCheck();
-    bool weapon = EditorGUILayout.ToggleLeft("Meele attack",player.isMeele);
-    if (EditorGUI.EndChangeCheck())
-    {
-      Undo.RecordObject(target, "Attack change");
-      player.isMeele = weapon;
+    if (RaStyle.ToggleLeft(target, "Meele attack", ref player.isMeele))
       editing = true;
-    }
 
     if (player.isMeele)
     {
@@ -93,36 +61,20 @@ public class PlayerEditor : Editor
       GUI.backgroundColor = RaStyle.HexColor("#B3B3B3");
       EditorGUILayout.BeginVertical("Box");
 
-      EditorGUI.BeginChangeCheck();
-      float mCool = EditorGUILayout.Slider("Cool down time", player.meeleCooldown, 0f, 5f);
-      if (EditorGUI.EndChangeCheck())
-      {
-        Undo.RecordObject(target, "Cool down change");
-        player.meeleCooldown = mCool;
+      //Attack cool down
+      if (RaStyle.Slider(target, "Cool down time", ref player.meeleCooldown, 0f, 5f))
         editing = true;
-      }
 
-
-      EditorGUI.BeginChangeCheck();
-      EditorGUILayout.PropertyField(weaponTrigger);
-      if (EditorGUI.EndChangeCheck())
-      {
+      if (RaStyle.ObjectField(target, "Weapon collider", ref player.meeleTrigger))
         editing = true;
-      }
 
       EditorGUI.indentLevel = 0;
       GUI.backgroundColor = defaultColor;
       EditorGUILayout.EndVertical();
     }
 
-    EditorGUI.BeginChangeCheck();
-    weapon = EditorGUILayout.ToggleLeft("Range attack", player.isRange);
-    if (EditorGUI.EndChangeCheck())
-    {
-      Undo.RecordObject(target, "Range attack change");
-      player.isRange = weapon;
+    if (RaStyle.ToggleLeft(target, "Range attack", ref player.isRange))
       editing = true;
-    }
 
     if (player.isRange)
     {
@@ -130,52 +82,24 @@ public class PlayerEditor : Editor
       GUI.backgroundColor = RaStyle.HexColor("#B3B3B3");
       EditorGUILayout.BeginVertical("Box");
 
-      EditorGUI.BeginChangeCheck();
-      EditorGUILayout.PropertyField(rangeProjectile);
-      if (EditorGUI.EndChangeCheck())
-      {
-        Debug.Log("Change projectile");
+      //Projectiole prefab
+      if (RaStyle.ObjectField(target, "Projectile prefab", ref player.rangeProjectile))
         editing = true;
-      }
 
-      EditorGUI.BeginChangeCheck();
-      EditorGUILayout.PropertyField(projectileStart);
-      if (EditorGUI.EndChangeCheck())
-      {
-        Debug.Log("Change projectile start");
+      //Projectile start transform
+      if (RaStyle.ObjectField(target, "Start transform", ref player.projectileStart))
         editing = true;
-      }
 
-      EditorGUI.BeginChangeCheck();
-      float mCool = EditorGUILayout.Slider("Projectile force", player.projectileForce, 0.1f, 10f);
-      if (EditorGUI.EndChangeCheck())
-      {
-        Undo.RecordObject(target, "Force change");
-        player.projectileForce= mCool;
+      if (RaStyle.Slider(target, "Projectile force", ref player.projectileForce, 0.1f, 10f))
         editing = true;
-      }
 
-
-      EditorGUI.BeginChangeCheck();
-      weapon = EditorGUILayout.Toggle("Destroy after shot", player.destroyAfterShot);
-      if (EditorGUI.EndChangeCheck())
-      {
-        Undo.RecordObject(target, "Destroy on shot change");
-        player.destroyAfterShot = weapon;
+      if (RaStyle.Toggle(target, "Destroy after shot", ref player.destroyAfterShot))
         editing = true;
-      }
 
       if (player.destroyAfterShot)
-      {
-        EditorGUI.BeginChangeCheck();
-        mCool = EditorGUILayout.Slider("Dstroy time", player.destroyTime, 1f, 10f);
-        if (EditorGUI.EndChangeCheck())
-        {
-          Undo.RecordObject(target, "Destroy time change");
-          player.destroyTime = mCool;
+        if (RaStyle.Slider(target, "Destroy time", ref player.destroyTime, 1f, 10f))
           editing = true;
-        }
-      }
+
       EditorGUI.indentLevel = 0;
       GUI.backgroundColor = defaultColor;
       EditorGUILayout.EndVertical();

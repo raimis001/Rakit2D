@@ -54,6 +54,19 @@ public static class RaStyle
 
     return false;
   }
+  public static bool ToggleLeft(Object target, string caption, ref bool value)
+  {
+    EditorGUI.BeginChangeCheck();
+    bool val = EditorGUILayout.ToggleLeft(caption, value);
+    if (EditorGUI.EndChangeCheck())
+    {
+      Undo.RecordObject(target, "Changed " + caption);
+      value = val;
+      return true;
+    }
+
+    return false;
+  }
 
   public static bool FloatField(Object target, string caption, ref float value)
   {

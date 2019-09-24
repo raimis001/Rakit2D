@@ -51,7 +51,7 @@ MonoBehaviour:
   - name: NPC Range weapon
     description: 
     priority: 3
-    status: 1
+    status: 2
     type: 1
   - name: NPC Jump
     description: 'Jump
@@ -60,3 +60,10 @@ MonoBehaviour:
     priority: 3
     status: 0
     type: 2
+  - name: Pickup items
+    description: 'Life
+
+      Health'
+    priority: 1
+    status: 0
+    type: 1

@@ -277,6 +277,8 @@ public class Player : Interact
 
   public override bool Attacked(int weapon, float damage = 0)
   {
+    SM.SetHp(damage / 100f);
+
     return true;
   }
 }

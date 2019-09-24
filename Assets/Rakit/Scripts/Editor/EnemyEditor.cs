@@ -13,12 +13,10 @@ public class EnemyEditor : Editor
   private Transform transform => enemy.transform;
   private bool nodesFold;
 
-  SerializedProperty seeCheckLayer;
 
   private void OnEnable()
   {
     enemy = (Enemy)target;
-    seeCheckLayer = serializedObject.FindProperty("seeCheckLayer");
   }
   public override void OnInspectorGUI()
   {

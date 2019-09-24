@@ -14465,6 +14465,16 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5029064407519728107, guid: aff71a220e332304dbc1753f67bdf240,
+        type: 3}
+      propertyPath: isMeele
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5029064407519728107, guid: aff71a220e332304dbc1753f67bdf240,
+        type: 3}
+      propertyPath: isRange
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: aff71a220e332304dbc1753f67bdf240, type: 3}
 --- !u!1001 &5031833707807831001
@@ -15217,6 +15227,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: EnemyArcher
       objectReference: {fileID: 0}
+    - target: {fileID: 206655529425241567, guid: 572e84bceb548e84187d49c82a66ae41,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1085674493965371295, guid: 572e84bceb548e84187d49c82a66ae41,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -15271,6 +15286,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4580486367337290687, guid: 572e84bceb548e84187d49c82a66ae41,
+        type: 3}
+      propertyPath: attackDamage
+      value: 20
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 572e84bceb548e84187d49c82a66ae41, type: 3}

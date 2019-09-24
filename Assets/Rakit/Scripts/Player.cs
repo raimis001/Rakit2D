@@ -145,17 +145,14 @@ public class Player : Interact
 
       if (_currentWeapon == 2)
       {
-        Projectile proj = Instantiate(rangeProjectile);
-
-        Vector3 rot = projectileStart.eulerAngles;
-        rot.z = Mathf.Atan2(projectileStart.right.y, projectileStart.right.x) * Mathf.Rad2Deg + (isRight ? 0 : 180);
-
-        //Debug.Log(rot);
-
-        proj.transform.eulerAngles = rot;
-        proj.transform.position = projectileStart.position;
-
-        proj.Shot(projectileForce, isRight ? 1 : -1, destroyAfterShot ? destroyTime : -1);
+        Projectile.Shot(
+          rangeProjectile,
+          projectileStart,
+          isRight,
+          projectileForce,
+          isRight ? 1 : -1,
+          destroyAfterShot ? destroyTime : -1
+        );
       }
 
       animator.SetTrigger("Attack");
@@ -273,5 +270,10 @@ public class Player : Interact
     SM.SetHp(enemy.attackDamage / 100f);
     coolDownHp = 1;
     
+  }
+
+  public override bool Attacked(int weapon)
+  {
+    return true;
   }
 }

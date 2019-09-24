@@ -12,7 +12,6 @@ public class Projectile : MonoBehaviour
   float direction = 1;
   void Awake()
   {
-
     body = GetComponent<Rigidbody2D>();
     body.isKinematic = true;
   }
@@ -35,7 +34,22 @@ public class Projectile : MonoBehaviour
     if (destroyTime > -1)
       Destroy(gameObject, destroyTime);
   }
-  
+
+  public static void Shot(Projectile prefab, Transform startTransform, bool isRight, float force, float dir, float destroyTime)
+  {
+    Projectile proj = Instantiate(prefab);
+
+    Vector3 rot = startTransform.eulerAngles;
+    rot.z = Mathf.Atan2(startTransform.right.y, startTransform.right.x) * Mathf.Rad2Deg + (isRight ? 0 : 180);
+
+    //Debug.Log(rot);
+
+    proj.transform.eulerAngles = rot;
+    proj.transform.position = startTransform.position;
+
+    proj.Shot(force, dir, destroyTime);
+  }
+
   private void OnTriggerEnter2D(Collider2D collision)
   {
     if (disabled)
@@ -53,9 +67,15 @@ public class Projectile : MonoBehaviour
 
     disabled = true;
 
-    body.isKinematic = true;
+    body.bodyType = RigidbodyType2D.Kinematic;
     body.velocity = Vector2.zero;
     body.angularVelocity = 0;
+
+    Collider2D[] colls = GetComponentsInChildren<Collider2D>();
+    foreach (Collider2D c in colls)
+    {
+      c.enabled = false;
+    }
 
     transform.SetParent(actor.rangeParent ? actor.rangeParent : actor.transform);
   }

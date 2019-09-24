@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEditor;
 
 public static class RaStyle 
 {
@@ -25,5 +26,45 @@ public static class RaStyle
     return result;
   }
 
+  public static bool Slider(Object target,string caption,ref float value, float min, float max)
+  {
+    EditorGUI.BeginChangeCheck();
+    float val = EditorGUILayout.Slider(caption, value, min , max);
+    if (EditorGUI.EndChangeCheck())
+    {
+      Undo.RecordObject(target, "Changed " + caption);
+      value = val;
+      return true;
+    }
 
+    return false;
+  }
+
+  public static bool Toggle(Object target, string caption, ref bool value)
+  {
+    EditorGUI.BeginChangeCheck();
+    bool val = EditorGUILayout.Toggle(caption, value);
+    if (EditorGUI.EndChangeCheck())
+    {
+      Undo.RecordObject(target, "Changed " + caption);
+      value = val;
+      return true;
+    }
+
+    return false;
+  }
+
+  public static bool FloatField(Object target, string caption, ref float value)
+  {
+    EditorGUI.BeginChangeCheck();
+    float val = EditorGUILayout.FloatField(caption, value);
+    if (EditorGUI.EndChangeCheck())
+    {
+      Undo.RecordObject(target, "Changed " + caption);
+      value = val;
+      return true;
+    }
+
+    return false;
+  }
 }

@@ -41,6 +41,16 @@ public class EnemyEditor : Editor
       editing = true;
     }
 
+    //Default rotation
+    EditorGUI.BeginChangeCheck();
+    bool dRight = EditorGUILayout.Toggle("Default is right?", enemy.defaultIsRight);
+    if (EditorGUI.EndChangeCheck())
+    {
+      Undo.RecordObject(target, "Changed right default");
+      enemy.defaultIsRight = dRight;
+      editing = true;
+    }
+
     #region SPEED
     EditorGUILayout.LabelField("Speed", EditorStyles.boldLabel);
     EditorGUI.indentLevel = 1;
@@ -138,37 +148,22 @@ public class EnemyEditor : Editor
     EditorGUILayout.BeginVertical("Box");
 
     //Attack damage
-    EditorGUI.BeginChangeCheck();
-    float bADam = EditorGUILayout.Slider("Attack damage", enemy.attackDamage, 1, 100);
-    if (EditorGUI.EndChangeCheck())
-    {
-      Undo.RecordObject(target, "Changed damage ");
-      enemy.attackDamage = bADam;
+    if (RaStyle.Slider(target, "Attack damage", ref enemy.attackDamage, 1f, 100))
       editing = true;
-    }
-    //Attack cooldown
-    EditorGUI.BeginChangeCheck();
-    float bCool = EditorGUILayout.FloatField("Attack cool dwon", enemy.attackCoolDown);
-    if (EditorGUI.EndChangeCheck())
-    {
-      Undo.RecordObject(target, "Changed cooldown");
-      enemy.attackDamage = bCool;
-      editing = true;
-    }
 
+    //Attack cooldown
+    if (RaStyle.FloatField(target, "Attack cool dwon", ref enemy.attackCoolDown))
+      editing = true;
+
+    //MEELE attack
     if (enemy.attackType == EnemyType.meele)
     {
       //Attack distance
-      EditorGUI.BeginChangeCheck();
-      float bADist = EditorGUILayout.Slider("Attack distance", enemy.attackDistance, 1, enemy.viewDistance);
-      if (EditorGUI.EndChangeCheck())
-      {
-        Undo.RecordObject(target, "Changed sign distance");
-        enemy.attackDistance = bADist;
+      if (RaStyle.Slider(target, "Projectile force", ref enemy.attackDistance, 1f, enemy.viewDistance))
         editing = true;
-      }
+
     }
-    else
+    else //RANGE attack
     {
       //Projectile spawnpoint
       EditorGUI.BeginChangeCheck();
@@ -189,7 +184,19 @@ public class EnemyEditor : Editor
         enemy.rangeProjectile = pProj;
         editing = true;
       }
-    
+
+      //Projectile force
+      if (RaStyle.Slider(target, "Projectile force", ref enemy.projectileForce, 0.1f, 10))
+        editing = true;
+
+      //Destroy projectile
+      if (RaStyle.Toggle(target, "Destroy prejectile", ref enemy.destroyProjectile))
+        editing = true;
+
+      //Destroy time
+      if (RaStyle.Slider(target,"Projectile TTL",ref enemy.destroyProjectileTime, 0,5))
+        editing = true;
+
     }
 
     EditorGUI.indentLevel = 0;
@@ -383,25 +390,7 @@ public class EnemyEditor : Editor
 
 
   }
-  //#if UNITY_EDITOR
-  //  private void OnDrawGizmosSelected()
-  //  {
-  //    //draw the cone of view
-  //    Vector3 forward = spriteFaceLeft ? Vector2.left : Vector2.right;
-  //    forward = Quaternion.Euler(0, 0, spriteFaceLeft ? -viewDirection : viewDirection) * forward;
 
-  //    if (GetComponent<SpriteRenderer>().flipX) forward.x = -forward.x;
-
-  //    Vector3 endpoint = transform.position + (Quaternion.Euler(0, 0, viewFov * 0.5f) * forward);
-
-  //    Handles.color = new Color(0, 1.0f, 0, 0.2f);
-  //    Handles.DrawSolidArc(transform.position, -Vector3.forward, (endpoint - transform.position).normalized, viewFov, viewDistance);
-
-  //    //Draw attack range
-  //    Handles.color = new Color(1.0f, 0, 0, 0.1f);
-  //    Handles.DrawSolidDisc(transform.position, Vector3.back, meleeRange);
-  //  }
-  //#endif
 }
 
 

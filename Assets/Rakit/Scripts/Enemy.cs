@@ -18,6 +18,8 @@ public class Enemy : Interact
 {
   public Animator anim;
   public Transform body;
+  public bool defaultIsRight = true;
+
   public float speed = 1;
   public float speedBooster = 1;
 
@@ -34,6 +36,7 @@ public class Enemy : Interact
   public Transform projectileStart;
   public bool destroyProjectile;
   public float destroyProjectileTime;
+  public float projectileForce;
 
   public float damageMeele = 33f;
   public float damageRange = 2f;
@@ -74,6 +77,7 @@ public class Enemy : Interact
       canvas.SetActive(alwaysShowCanvas);
   }
 
+  #region MOVE
   IEnumerator Patrolling()
   {
 
@@ -100,7 +104,6 @@ public class Enemy : Interact
       targetNode += direction;
     }
   }
-
   IEnumerator ProcessNode(int node)
   {
     if (nodes[node].waitOnNode == 0)
@@ -130,7 +133,9 @@ public class Enemy : Interact
 
     body.localPosition = targetPos;
   }
+  #endregion
 
+  #region PLAYER visibility
   void CheckForPlayer()
   {
     if (SeePlayer())
@@ -142,38 +147,40 @@ public class Enemy : Interact
         StartCoroutine(RangeAttack());
     }
   }
-
-  IEnumerator RangeAttack()
+  private bool SeePlayer()
   {
-    while (true)
-    {
-      if (!SeePlayer())
-        break;
+    if (Player.IsDeath)
+      return false;
 
-      //Debug.Log("Attack range");
-      anim.SetTrigger("attack");
-      isRight = body.position.x < Player.position.x;
+    Vector2 player = Player.position;
+    Vector2 self = body.position;
 
+    if (Mathf.Abs(player.y - self.y) > 1)
+      return false;
 
-      Projectile proj = Instantiate(rangeProjectile);
+    float dist = Vector2.Distance(player, self);
 
-      Vector3 rot = projectileStart.eulerAngles;
-      rot.z = Mathf.Atan2(projectileStart.right.y, projectileStart.right.x) * Mathf.Rad2Deg + (isRight ? 0 : 180);
+    if (dist > viewDistance)
+      return false;
 
-      //Debug.Log(rot);
+    self.y += 0.5f;
+    player.y += 0.5f;
 
-      proj.transform.eulerAngles = rot;
-      proj.transform.position = projectileStart.position;
+    Vector2 dir = player - self;
+    RaycastHit2D hit = Physics2D.Raycast(self, dir, dist, seeCheckLayer);
 
-      proj.Shot(attackDamage, isRight ? -1 : 1, destroyProjectile ? destroyProjectileTime : -1);
+    Debug.DrawRay(self, dir);
+    if (hit)
+      return false;
 
-      yield return new WaitForSeconds(attackCoolDown);
-    }
+    if (bothDirection)
+      return true;
 
-    StopAllCoroutines();
-    StartCoroutine(Patrolling());
+    bool right = isRight;
+    bool pright = player.x - self.x >= 0;
+
+    return right == pright;
   }
-
   IEnumerator GotoPlayer()
   {
     bool attackSequence = true;
@@ -215,39 +222,41 @@ public class Enemy : Interact
     }
 
   }
-  private bool SeePlayer()
+  #endregion
+
+  #region ATTACK
+  IEnumerator RangeAttack()
   {
-    if (Player.IsDeath)
-      return false;
 
-    Vector2 player = Player.position;
-    Vector2 self = body.position;
+    bool oldRight = isRight;
+    while (true)
+    {
+      if (!SeePlayer())
+        break;
 
-    if (Mathf.Abs(player.y - self.y) > 1)
-      return false;
+      //Debug.Log("Attack range");
+      anim.SetTrigger("attack");
+      bool right = body.position.x < Player.position.x;
+      if (oldRight != right)
+      {
+        oldRight = isRight = right;
+        yield return new WaitForSeconds(0.5f);
+      }
 
-    float dist = Vector2.Distance(player, self);
+      Projectile.Shot(
+        rangeProjectile,
+        projectileStart,
+        isRight,
+        projectileForce,
+        isRight ? -1 : 1,
+        destroyProjectile ? destroyProjectileTime : -1
+        );
 
-    if (dist > viewDistance)
-      return false;
+      yield return new WaitForSeconds(attackCoolDown);
+    }
 
-    self.y += 0.5f;
-    player.y += 0.5f;
-
-    Vector2 dir = player - self;
-    RaycastHit2D hit = Physics2D.Raycast(self, dir, dist, seeCheckLayer);
-
-    Debug.DrawRay(self, dir);
-    if (hit)
-      return false;
-
-    if (bothDirection)
-      return true;
-
-    bool right = isRight;
-    bool pright = player.x - self.x >= 0;
-
-    return right == pright;
+    StopAllCoroutines();
+    StartCoroutine(Patrolling());
   }
   private bool AttackPlayer()
   {
@@ -256,6 +265,9 @@ public class Enemy : Interact
 
     return Vector3.Distance(body.position, Player.position) <= attackDistance;
   }
+  #endregion
+
+  #region ATTACKED
   public override bool Attacked(int weapon)
   {
 
@@ -279,11 +291,9 @@ public class Enemy : Interact
     }
     return true;
   }
-  private void OnTriggerEnter2D(Collider2D collision)
-  {
-    Debug.Log(collision.name);
-  }
+  #endregion
 
+  #region EDITOR
 #if UNITY_EDITOR
   private void OnDrawGizmos()
   {
@@ -318,5 +328,5 @@ public class Enemy : Interact
     }
   }
 #endif
-
+  #endregion
 }

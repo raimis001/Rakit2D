@@ -20,36 +20,18 @@ public class EnemyEditor : Editor
   {
     Color defaultColor = GUI.backgroundColor;
     bool editing = false;
-    
+
     //Body transform
-    EditorGUI.BeginChangeCheck();
-    Transform bTransform = EditorGUILayout.ObjectField("Body", enemy.body, typeof(Transform), true) as Transform;
-    if (EditorGUI.EndChangeCheck())
-    {
-      Undo.RecordObject(target, "Changed body");
-      enemy.body = bTransform;
+    if (RaStyle.ObjectField(target, "Body", ref enemy.body))
       editing = true;
-    }
 
     //Projectile parent
-    EditorGUI.BeginChangeCheck();
-    bTransform = EditorGUILayout.ObjectField("Projectile transform", enemy.rangeParent, typeof(Transform), true) as Transform;
-    if (EditorGUI.EndChangeCheck())
-    {
-      Undo.RecordObject(target, "Changed body");
-      enemy.rangeParent = bTransform;
+    if (RaStyle.ObjectField(target, "Projectile transform", ref enemy.rangeParent))
       editing = true;
-    }
 
     //Default rotation
-    EditorGUI.BeginChangeCheck();
-    bool dRight = EditorGUILayout.Toggle("Default is right?", enemy.defaultIsRight);
-    if (EditorGUI.EndChangeCheck())
-    {
-      Undo.RecordObject(target, "Changed right default");
-      enemy.defaultIsRight = dRight;
+    if (RaStyle.Toggle(target, "Default is right?", ref enemy.defaultIsRight))
       editing = true;
-    }
 
     #region SPEED
     EditorGUILayout.LabelField("Speed", EditorStyles.boldLabel);
@@ -88,32 +70,16 @@ public class EnemyEditor : Editor
     EditorGUILayout.BeginVertical("Box");
 
     //Direction
-    EditorGUI.BeginChangeCheck();
-    bool bDir = EditorGUILayout.Toggle("Both direction", enemy.bothDirection);
-    if (EditorGUI.EndChangeCheck())
-    {
-      Undo.RecordObject(target, "Changed sign direction");
-      enemy.bothDirection = bDir;
+    if (RaStyle.Toggle(target, "Both direction", ref enemy.bothDirection))
       editing = true;
-    }
-    //Distance
-    EditorGUI.BeginChangeCheck();
-    float bDist = EditorGUILayout.Slider("Sign distance", enemy.viewDistance, 1, 10);
-    if (EditorGUI.EndChangeCheck())
-    {
-      Undo.RecordObject(target, "Changed sign distance");
-      enemy.viewDistance = bDist;
-      editing = true;
-    }
 
-    EditorGUI.BeginChangeCheck();
-    LayerMask mask = EditorGUILayout.MaskField("Check layer", enemy.seeCheckLayer, InternalEditorUtility.layers);
-    if (EditorGUI.EndChangeCheck())
-    {
-      Undo.RecordObject(target, "Changed layer mask");
-      enemy.seeCheckLayer = mask;
+    //Distance
+    if (RaStyle.Slider(target, "Sign distance", ref enemy.viewDistance, 1, 10))
       editing = true;
-    }
+
+    //Checked layers
+    if (RaStyle.LayerMask(target, "Check layer", ref enemy.seeCheckLayer))
+      editing = true;
 
     EditorGUI.indentLevel = 0;
     GUI.backgroundColor = defaultColor;
@@ -125,24 +91,13 @@ public class EnemyEditor : Editor
     EditorGUILayout.LabelField("Attack", EditorStyles.boldLabel);
     EditorGUI.indentLevel = 1;
 
-    EditorGUI.BeginChangeCheck();
-    InteractLayer lInteract = (InteractLayer)EditorGUILayout.EnumPopup("Current layer", enemy.interactLayer);
-    if (EditorGUI.EndChangeCheck())
-    {
-      Undo.RecordObject(target, "Changed attack layer");
-      enemy.interactLayer = lInteract;
+    //Attacking layer
+    if (RaStyle.EnumPopup(target, "Current layer", ref enemy.interactLayer))
       editing = true;
-    }
 
-    EditorGUI.BeginChangeCheck();
-    EnemyType eType = (EnemyType)EditorGUILayout.EnumPopup("Attack type", enemy.attackType);
-    if (EditorGUI.EndChangeCheck())
-    {
-      Undo.RecordObject(target, "Changed attack type");
-      enemy.attackType = eType;
+    //Attack type
+    if (RaStyle.EnumPopup(target, "Attack type", ref enemy.attackType))
       editing = true;
-    }
-
 
     GUI.backgroundColor = RaStyle.HexColor("#B3B3B3");
     EditorGUILayout.BeginVertical("Box");
@@ -166,24 +121,12 @@ public class EnemyEditor : Editor
     else //RANGE attack
     {
       //Projectile spawnpoint
-      EditorGUI.BeginChangeCheck();
-      bTransform = EditorGUILayout.ObjectField("Projectile spawn point", enemy.projectileStart, typeof(Transform), true) as Transform;
-      if (EditorGUI.EndChangeCheck())
-      {
-        Undo.RecordObject(target, "Changed spawn point");
-        enemy.projectileStart = bTransform;
+      if (RaStyle.ObjectField(target, "Projectile spawn point", ref enemy.projectileStart))
         editing = true;
-      }
 
       //Projectile prefab
-      EditorGUI.BeginChangeCheck();
-      Projectile pProj = EditorGUILayout.ObjectField("Projectile prefab", enemy.rangeProjectile, typeof(Projectile), true) as Projectile;
-      if (EditorGUI.EndChangeCheck())
-      {
-        Undo.RecordObject(target, "Changed projectile prefab");
-        enemy.rangeProjectile = pProj;
+      if (RaStyle.ObjectField(target, "Projectile prefab", ref enemy.rangeProjectile))
         editing = true;
-      }
 
       //Projectile force
       if (RaStyle.Slider(target, "Projectile force", ref enemy.projectileForce, 0.1f, 10))
@@ -194,7 +137,7 @@ public class EnemyEditor : Editor
         editing = true;
 
       //Destroy time
-      if (RaStyle.Slider(target,"Projectile TTL",ref enemy.destroyProjectileTime, 0,5))
+      if (RaStyle.Slider(target, "Projectile TTL", ref enemy.destroyProjectileTime, 0, 5))
         editing = true;
 
     }
@@ -211,43 +154,22 @@ public class EnemyEditor : Editor
     EditorGUILayout.BeginVertical("Box");
 
     //Meele damage
-    EditorGUI.BeginChangeCheck();
-    float mDam = EditorGUILayout.Slider("Meele damage", enemy.damageMeele, 1, 100);
-    if (EditorGUI.EndChangeCheck())
-    {
-      Undo.RecordObject(target, "Meele damage");
-      enemy.damageMeele = mDam;
+    if (RaStyle.Slider(target, "Meele damage", ref enemy.damageMeele, 1, 100))
       editing = true;
-    }
 
     //Range damage
-    EditorGUI.BeginChangeCheck();
-    float rDam = EditorGUILayout.Slider("Range damage", enemy.damageRange, 1, 100);
-    if (EditorGUI.EndChangeCheck())
-    {
-      Undo.RecordObject(target, "Range damage");
-      enemy.damageRange = rDam;
+    if (RaStyle.Slider(target, "Range damage", ref enemy.damageRange, 1, 100))
       editing = true;
-    }
+
     //Destroy on ded
-    EditorGUI.BeginChangeCheck();
-    bool bDestr = EditorGUILayout.Toggle("Destroy on death", enemy.destroyOnDeath );
-    if (EditorGUI.EndChangeCheck())
-    {
-      Undo.RecordObject(target, "Range damage");
-      enemy.destroyOnDeath = bDestr;
+    if (RaStyle.Toggle(target, "Destroy on death", ref enemy.destroyOnDeath))
       editing = true;
-    }
 
     //Destroy time
-    EditorGUI.BeginChangeCheck();
-    float fDestr = EditorGUILayout.FloatField("Destroy time", enemy.destroyTime);
-    if (EditorGUI.EndChangeCheck())
-    {
-      Undo.RecordObject(target, "Range damage");
-      enemy.destroyTime= fDestr;
-      editing = true;
-    }
+    if (enemy.destroyOnDeath)
+      if (RaStyle.FloatField(target, "Destroy time", ref enemy.destroyTime))
+        editing = true;
+
 
     EditorGUI.indentLevel = 0;
     GUI.backgroundColor = defaultColor;
@@ -261,34 +183,16 @@ public class EnemyEditor : Editor
     EditorGUILayout.BeginVertical("Box");
 
     //Always show canvas
-    EditorGUI.BeginChangeCheck();
-    bool always = EditorGUILayout.Toggle("Always show canvas", enemy.alwaysShowCanvas);
-    if (EditorGUI.EndChangeCheck())
-    {
-      Undo.RecordObject(target, "Changed canvas");
-      enemy.alwaysShowCanvas = always;
+    if (RaStyle.Toggle(target, "Always show canvas", ref enemy.alwaysShowCanvas))
       editing = true;
-    }
 
     //Canvas
-    EditorGUI.BeginChangeCheck();
-    GameObject canvas = (GameObject)EditorGUILayout.ObjectField("Canvas", enemy.canvas, typeof(GameObject), true);
-    if (EditorGUI.EndChangeCheck())
-    {
-      Undo.RecordObject(target, "Changed canvas");
-      enemy.canvas = canvas;
+    if (RaStyle.ObjectField(target, "Canvas", ref enemy.canvas))
       editing = true;
-    }
 
-    //Canvas
-    EditorGUI.BeginChangeCheck();
-    Image cImage = (Image)EditorGUILayout.ObjectField("Progress bar", enemy.progress, typeof(Image), true);
-    if (EditorGUI.EndChangeCheck())
-    {
-      Undo.RecordObject(target, "Changed progress bar");
-      enemy.progress = cImage;
+    //Progress bar
+    if (RaStyle.ObjectField(target, "Progress bar", ref enemy.progress))
       editing = true;
-    }
 
     EditorGUI.indentLevel = 0;
     GUI.backgroundColor = defaultColor;

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEditor;
+using UnityEditorInternal;
 
 public static class RaStyle 
 {
@@ -65,6 +66,45 @@ public static class RaStyle
       return true;
     }
 
+    return false;
+  }
+
+  public static bool ObjectField<T>(Object target, string caption, ref T value) where T : Object
+  {
+    EditorGUI.BeginChangeCheck();
+    var val = EditorGUILayout.ObjectField(caption, value, typeof(T), true);
+    if (EditorGUI.EndChangeCheck())
+    {
+      Undo.RecordObject(target, "Changed " + caption);
+      value = (T)val;
+      return true;
+    }
+    return false;
+  }
+
+  public static bool EnumPopup<T>(Object target, string caption, ref T value) where T : System.Enum
+  {
+    EditorGUI.BeginChangeCheck();
+    var val = EditorGUILayout.EnumPopup(caption, value);
+    if (EditorGUI.EndChangeCheck())
+    {
+      Undo.RecordObject(target, "Changed " + caption);
+      value = (T)val;
+      return true;
+    }
+    return false;
+  }
+
+  public static bool LayerMask(Object target, string caption, ref LayerMask value)
+  {
+    EditorGUI.BeginChangeCheck();
+    LayerMask mask = EditorGUILayout.MaskField(caption, value, InternalEditorUtility.layers);
+    if (EditorGUI.EndChangeCheck())
+    {
+      Undo.RecordObject(target, "Changed " + caption);
+      value = mask;
+      return true;
+    }
     return false;
   }
 }

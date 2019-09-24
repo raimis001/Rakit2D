@@ -6,6 +6,7 @@ public class Projectile : MonoBehaviour
 {
   public InteractLayer interactLayer;
 
+  internal float damage;
 
   Rigidbody2D body;
   bool disabled;
@@ -35,7 +36,7 @@ public class Projectile : MonoBehaviour
       Destroy(gameObject, destroyTime);
   }
 
-  public static void Shot(Projectile prefab, Transform startTransform, bool isRight, float force, float dir, float destroyTime)
+  public static void Shot(Projectile prefab, Transform startTransform,float damage, bool isRight, float force, float dir, float destroyTime)
   {
     Projectile proj = Instantiate(prefab);
 
@@ -47,6 +48,7 @@ public class Projectile : MonoBehaviour
     proj.transform.eulerAngles = rot;
     proj.transform.position = startTransform.position;
 
+    proj.damage = damage;
     proj.Shot(force, dir, destroyTime);
   }
 
@@ -62,7 +64,7 @@ public class Projectile : MonoBehaviour
     if (actor.interactLayer != interactLayer)
       return;
     Debug.Log("Attacked:" + actor.gameObject.name);
-    if (!actor.Attacked(2))
+    if (!actor.Attacked(2, damage))
       return;
 
     disabled = true;

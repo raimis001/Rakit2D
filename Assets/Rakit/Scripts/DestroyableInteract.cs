@@ -11,7 +11,7 @@ public class DestroyableInteract : Interact
     hitMax = hitPoints;
     anim = GetComponent<Animator>();
   }
-  public override bool Attacked(int weapon)
+  public override bool Attacked(int weapon, float damage = 0)
   {
     if (hitPoints < 1)
       return false;

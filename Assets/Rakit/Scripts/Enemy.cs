@@ -171,7 +171,19 @@ public class Enemy : Interact
 
     Debug.DrawRay(self, dir);
     if (hit)
+    {
+      Debug.Log("Hit:" 
+        + hit.collider.name 
+        + ":" + hit.collider.gameObject.layer
+        + ":" + seeCheckLayer.value
+        , hit.collider.gameObject);
       return false;
+    } else
+    {
+      Debug.Log("No hit:" + ":" + LayerMask.GetMask("Ground"));
+
+    }
+
 
     if (bothDirection)
       return true;
@@ -246,9 +258,10 @@ public class Enemy : Interact
       Projectile.Shot(
         rangeProjectile,
         projectileStart,
+        attackDamage,
         isRight,
         projectileForce,
-        isRight ? -1 : 1,
+        isRight ? (defaultIsRight ? -1 : 1) : (defaultIsRight ? 1 : -1),
         destroyProjectile ? destroyProjectileTime : -1
         );
 
@@ -268,7 +281,7 @@ public class Enemy : Interact
   #endregion
 
   #region ATTACKED
-  public override bool Attacked(int weapon)
+  public override bool Attacked(int weapon, float damage = 0)
   {
 
     if (isDeath)

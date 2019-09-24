@@ -1451,6 +1451,7 @@ MonoBehaviour:
   interactLayer: 1
   anim: {fileID: 0}
   body: {fileID: 5198654116197411991}
+  defaultIsRight: 1
   speed: 0.8
   speedBooster: 1.1
   viewDistance: 3.5
@@ -1460,7 +1461,10 @@ MonoBehaviour:
   attackDamage: 10
   attackCoolDown: 2
   rangeProjectile: {fileID: 0}
-  projectileParent: {fileID: 0}
+  projectileStart: {fileID: 0}
+  destroyProjectile: 0
+  destroyProjectileTime: 0
+  projectileForce: 0
   damageMeele: 34
   damageRange: 15
   destroyOnDeath: 1
@@ -1470,7 +1474,7 @@ MonoBehaviour:
   alwaysShowCanvas: 1
   seeCheckLayer:
     serializedVersion: 2
-    m_Bits: 257
+    m_Bits: 16384
   nodes:
   - position: {x: 0.045623776, y: 0, z: 0}
     waitOnNode: 3

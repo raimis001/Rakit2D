@@ -27,6 +27,9 @@ public class PlayerEditor : Editor
     if (RaStyle.ObjectField(target, "Animator", ref player.animator))
       editing = true;
 
+    if (RaStyle.Toggle(target, "Default is right", ref player.defaultIsRight))
+      editing = true;
+
     #region SPEED
     EditorGUILayout.LabelField("Speed", EditorStyles.boldLabel);
     EditorGUI.indentLevel = 1;

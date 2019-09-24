@@ -16,7 +16,7 @@ public class Interact : MonoBehaviour
   public Transform rangeParent;
   public InteractLayer interactLayer;
 
-  public virtual bool Attacked(int weapon)
+  public virtual bool Attacked(int weapon, float damage = 0)
   {
     return false;
   }

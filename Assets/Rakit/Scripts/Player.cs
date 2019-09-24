@@ -9,10 +9,10 @@ public class Player : Interact
   public static Vector3 position => SM.player.transform.position;
 
   [Header("Move params")]
-	[Range(0.5f, 10f)]
-	public float speed = 1;
-	[Range(0.5f, 5f)]
-	public float jumpSpeed = 1;
+  [Range(0.5f, 10f)]
+  public float speed = 1;
+  [Range(0.5f, 5f)]
+  public float jumpSpeed = 1;
 
   [Header("Weapons")]
   public bool isMeele;
@@ -25,6 +25,7 @@ public class Player : Interact
   public float projectileForce = 1;
   public bool destroyAfterShot;
   public float destroyTime = 1;
+  public bool defaultIsRight;
 
   private int _currentWeapon;
   internal int currentWeapon
@@ -43,23 +44,23 @@ public class Player : Interact
 
   [Header("Components")]
   public Animator animator;
-	public ContactFilter2D groundFilter;
+  public ContactFilter2D groundFilter;
 
-	private Rigidbody2D body;
+  private Rigidbody2D body;
 
   public static bool IsPlayer(Collider2D collider)
-	{
-		return collider.GetComponent<Player>() != null;
-	}
+  {
+    return collider.GetComponent<Player>() != null;
+  }
 
-	private void Awake()
-	{
-		SM.player = this;
-		body = GetComponent<Rigidbody2D>();
-		if (!body)
-		{
-			Debug.LogWarning("No rigidbody for player");
-		}
+  private void Awake()
+  {
+    SM.player = this;
+    body = GetComponent<Rigidbody2D>();
+    if (!body)
+    {
+      Debug.LogWarning("No rigidbody for player");
+    }
     checkPoint = transform.position;
 
     groundFilter.useLayerMask = true;
@@ -68,24 +69,24 @@ public class Player : Interact
     groundFilter.maxNormalAngle = 285;
   }
 
-	private void Start()
-	{
+  private void Start()
+  {
     //Time.timeScale = 0.1f;\
     meeleTrigger.coolDown = meeleCooldown;
   }
 
-	private void OnEnable()
-	{
-		body.isKinematic = false;
-	}
+  private void OnEnable()
+  {
+    body.isKinematic = false;
+  }
 
-	private void OnDisable()
-	{
-		body.isKinematic = true;
-	}
+  private void OnDisable()
+  {
+    body.isKinematic = true;
+  }
 
-	private void Update()
-	{
+  private void Update()
+  {
     if (IsDeath)
     {
       if (SM.keyJump)
@@ -103,16 +104,16 @@ public class Player : Interact
     if (SM.dialogOpened)
       return;
 
-		if (SM.keyJump)
-		{
-			if (!isGrounded)
-				return;
+    if (SM.keyJump)
+    {
+      if (!isGrounded)
+        return;
 
-			body.AddForce(new Vector2(0, 5) * jumpSpeed, ForceMode2D.Impulse);
-			_isGrounded = false;
+      body.AddForce(new Vector2(0, 5) * jumpSpeed, ForceMode2D.Impulse);
+      _isGrounded = false;
       animator.SetTrigger("Jump");
-			return;
-		}
+      return;
+    }
 
     if (isMeele && SM.keyWeapon1)
     {
@@ -130,7 +131,7 @@ public class Player : Interact
     if (!isRight)
       rot1.z = 180 - rot1.z;
 
-    Debug.DrawRay(projectileStart.position, projectileStart.right * (isRight ? 3 : -3) ,Color.green);
+    Debug.DrawRay(projectileStart.position, projectileStart.right * (isRight ? 3 : -3), Color.green);
 
     if (_currentWeapon > 0 && SM.keyAttack)
     {
@@ -148,9 +149,10 @@ public class Player : Interact
         Projectile.Shot(
           rangeProjectile,
           projectileStart,
+          0,
           isRight,
           projectileForce,
-          isRight ? 1 : -1,
+          isRight ? (defaultIsRight ? -1 : 1) : (defaultIsRight ? 1 : -1),
           destroyAfterShot ? destroyTime : -1
         );
       }
@@ -159,31 +161,32 @@ public class Player : Interact
       return;
     }
 
-	}
+  }
 
-	private void FixedUpdate()
-	{
+  private void FixedUpdate()
+  {
     if (IsDeath)
       return;
 
 
     groundChecked = false;
-		Vector2 move = body.velocity;
-		move.x = SM.keyMove * Time.deltaTime * speed * 100f;
+    Vector2 move = body.velocity;
+    move.x = SM.keyMove * Time.deltaTime * speed * 100f;
 
     animator.SetBool("Falling", move.y < -0.1f);
     animator.SetBool("Grounded", isGrounded);
 
     if (Mathf.Abs(move.x) < 0.1f)
     {
-      animator.SetFloat("Speed",0);
+      animator.SetFloat("Speed", 0);
       move.x = 0;
     }
     else
     {
       bool nRight = move.x < 0;
       //bool isRight = animator.GetBool("Right");
-      if (nRight != isRight) {
+      if (nRight != isRight)
+      {
 
         animator.SetBool("Right", nRight);
         animator.SetTrigger("ChangeDirection");
@@ -197,16 +200,16 @@ public class Player : Interact
 
 
   bool groundChecked;
-	bool _isGrounded;
-	bool isGrounded => groundChecked ? _isGrounded : GroundCheck();
+  bool _isGrounded;
+  bool isGrounded => groundChecked ? _isGrounded : GroundCheck();
   bool isRight => animator.GetBool("Right");
 
   bool GroundCheck()
-	{
-		groundChecked = true;
-		_isGrounded = body.IsTouching(groundFilter);
-		return _isGrounded;
-	}
+  {
+    groundChecked = true;
+    _isGrounded = body.IsTouching(groundFilter);
+    return _isGrounded;
+  }
   private bool GetGroundCollider(out Collider2D collider)
   {
     collider = null;
@@ -269,10 +272,10 @@ public class Player : Interact
 
     SM.SetHp(enemy.attackDamage / 100f);
     coolDownHp = 1;
-    
+
   }
 
-  public override bool Attacked(int weapon)
+  public override bool Attacked(int weapon, float damage = 0)
   {
     return true;
   }

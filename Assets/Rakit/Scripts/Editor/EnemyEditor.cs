@@ -12,9 +12,13 @@ public class EnemyEditor : Editor
   private Enemy enemy;
   private Transform transform => enemy.transform;
   private bool nodesFold;
+
+  SerializedProperty seeCheckLayer;
+
   private void OnEnable()
   {
     enemy = (Enemy)target;
+    seeCheckLayer = serializedObject.FindProperty("seeCheckLayer");
   }
   public override void OnInspectorGUI()
   {
@@ -81,6 +85,7 @@ public class EnemyEditor : Editor
     if (RaStyle.LayerMask(target, "Check layer", ref enemy.seeCheckLayer))
       editing = true;
 
+
     EditorGUI.indentLevel = 0;
     GUI.backgroundColor = defaultColor;
     EditorGUILayout.EndVertical();
@@ -107,7 +112,7 @@ public class EnemyEditor : Editor
       editing = true;
 
     //Attack cooldown
-    if (RaStyle.FloatField(target, "Attack cool dwon", ref enemy.attackCoolDown))
+    if (RaStyle.FloatField(target, "Attack cool down", ref enemy.attackCoolDown))
       editing = true;
 
     //MEELE attack
@@ -121,7 +126,7 @@ public class EnemyEditor : Editor
     else //RANGE attack
     {
       //Projectile spawnpoint
-      if (RaStyle.ObjectField(target, "Projectile spawn point", ref enemy.projectileStart))
+      if (RaStyle.ObjectField(target, "Projectile spawn", ref enemy.projectileStart))
         editing = true;
 
       //Projectile prefab
@@ -199,7 +204,6 @@ public class EnemyEditor : Editor
     GUI.backgroundColor = defaultColor;
     EditorGUILayout.EndVertical();
     #endregion
-
 
     if (editing)
       EditorUtility.SetDirty(target);
@@ -297,15 +301,3 @@ public class EnemyEditor : Editor
   }
 
 }
-
-
-
-
-
-
-
-
-
-
-
-

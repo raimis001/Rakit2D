@@ -971,6 +971,16 @@ PrefabInstance:
       propertyPath: item.itemName
       value: keyGreen
       objectReference: {fileID: 0}
+    - target: {fileID: 1128395949477427293, guid: 96283ac85cbd1534db3b723c2e6e2942,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 1.221
+      objectReference: {fileID: 0}
+    - target: {fileID: 1128395949477427293, guid: 96283ac85cbd1534db3b723c2e6e2942,
+        type: 3}
+      propertyPath: m_LocalScale.y
+      value: 2.4976723
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 96283ac85cbd1534db3b723c2e6e2942, type: 3}
 --- !u!1001 &305494902
@@ -1254,7 +1264,7 @@ MeshRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 1633507171
-  m_SortingLayer: 3
+  m_SortingLayer: 4
   m_SortingOrder: 0
 --- !u!1 &359225297
 GameObject:
@@ -12488,12 +12498,12 @@ PrefabInstance:
     - target: {fileID: 1128395949537235291, guid: 96283ac85cbd1534db3b723c2e6e2942,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 20.83
+      value: 20.86
       objectReference: {fileID: 0}
     - target: {fileID: 1128395949537235291, guid: 96283ac85cbd1534db3b723c2e6e2942,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: 0.01
       objectReference: {fileID: 0}
     - target: {fileID: 1128395949537235291, guid: 96283ac85cbd1534db3b723c2e6e2942,
         type: 3}
@@ -12539,11 +12549,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1128395949537235269, guid: 96283ac85cbd1534db3b723c2e6e2942,
-        type: 3}
-      propertyPath: operate
-      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 96283ac85cbd1534db3b723c2e6e2942, type: 3}
@@ -15196,6 +15201,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalPosition.x
       value: 74.302
+      objectReference: {fileID: 0}
+    - target: {fileID: 7054282739874018078, guid: cd7e024ea06b4764a9c63e1ab81783eb,
+        type: 3}
+      propertyPath: m_ApplyToSortingLayers.Array.size
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 7054282739874018078, guid: cd7e024ea06b4764a9c63e1ab81783eb,
+        type: 3}
+      propertyPath: m_ApplyToSortingLayers.Array.data[4]
+      value: 161852653
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: cd7e024ea06b4764a9c63e1ab81783eb, type: 3}

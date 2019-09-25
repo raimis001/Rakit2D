@@ -24,7 +24,7 @@ Futures
     - [x] animations
     - [x] fall down animation
   - [x] meele attack
-  - [ ] range attack
+  - [x] range attack
   - [x] ded
     - [x] animation
   - [ ] sounds
@@ -34,8 +34,8 @@ Futures
   - [x] path
   - [x] dialog
   - [x] meele attack
-  - [ ] range attack
-  - [ ] ded
+  - [x] range attack
+  - [x] ded
   - [ ] sounds
   
 * Traps

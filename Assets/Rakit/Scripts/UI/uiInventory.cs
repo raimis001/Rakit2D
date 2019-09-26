@@ -37,6 +37,8 @@ public class uiInventory : MonoBehaviour
     line.SetLine(item);
     line.gameObject.SetActive(true);
 
+    line.OnLineClick.AddListener(OnLineClick);
+
     lines.Add(item.name, line);
     contentSize.y += lineHeight;
   }
@@ -64,5 +66,22 @@ public class uiInventory : MonoBehaviour
 
     AddLine(item);
     content.sizeDelta = contentSize;
+  }
+
+  private void OnLineClick(InventoryItem item)
+  {
+    Debug.LogFormat("On line click:{0}", item.name);
+
+    if (item.kind == InventoryItemKind.HealthPotion)
+    {
+      if (SM.Hp >= 1)
+        return;
+
+      SM.FillHp();
+      Inventory.Remove(item.name);
+      return;
+    }
+
+
   }
 }

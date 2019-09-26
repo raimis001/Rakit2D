@@ -13,8 +13,8 @@ Futures
   - inventory system
     - [x] define items
     - [x] items in scene
-	- [ ] Health item
-	- [ ] Add life item
+	- [x] Health item
+	- [x] Add life item
   - checkpoint
     - [x] save
     - [x] load
@@ -62,7 +62,7 @@ Futures
 * Switch
   - [x] activate on enter
   - [x] activate on keyboard
-  - [ ] activate/deactivate from objects
+  - [x] activate/deactivate from objects
   - [ ] activate on mass
   - [ ] check inventory item  
   

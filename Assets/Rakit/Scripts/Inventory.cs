@@ -7,7 +7,7 @@ using Random = UnityEngine.Random;
 
 public enum InventoryItemKind
 {
-  Item, MeeleWeapon, RangeWeapon
+  Item, MeeleWeapon, RangeWeapon, LivePotion, HealthPotion
 }
 
 [Serializable]
@@ -41,25 +41,35 @@ public class Inventory : MonoBehaviour
 	{
 		SM.inventory = this;
 	}
-	public static void Add(string item, int count = 1)
+	public static void Add(string itemName, int count = 1)
 	{
-		if (items.ContainsKey(item))
+
+    if (!GetDefine(itemName, out InventoryItem item))
+      return;
+
+    if (item.kind == InventoryItemKind.LivePotion)
+    {
+      SM.AddLive();
+      return;
+    }
+
+    if (items.ContainsKey(itemName))
 		{
-			items[item] += count;
+			items[itemName] += count;
 		} else
 		{
-			items.Add(item, count);
+			items.Add(itemName, count);
 		}
-		Debug.Log("Item added:" + item);
-		SM.inventory.OnInventoryChange.Invoke(item, items[item]);
+		Debug.Log("Item added:" + itemName);
+		SM.inventory.OnInventoryChange.Invoke(itemName, items[itemName]);
 
 	}
-	public static void Remove(string item, int count = 1)
+	public static void Remove(string itemName, int count = 1)
 	{
-		if (items.ContainsKey(item))
+		if (items.ContainsKey(itemName))
 		{
-			items[item] -= count;
-			SM.inventory.OnInventoryChange.Invoke(item, items[item]);
+			items[itemName] -= count;
+			SM.inventory.OnInventoryChange.Invoke(itemName, items[itemName]);
 		}
 	}
 

@@ -1,6 +1,10 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
+
+[System.Serializable]
+public class OnOperateEvent : UnityEvent<Interact> { }
 public enum OperateKind
 {
 	Touch, Keyboard, Interact, Disabled
@@ -16,6 +20,9 @@ public class TriggerInteract : Interact
   public int itemNeeded = 1;
   [Tooltip("Remove item from inventory after use")]
   public bool removeOnUse;
+
+  [Header("Events")]
+  public OnOperateEvent OnOperate;
 
   protected string itemName => item.itemName;
   protected bool isPlayer;
@@ -42,18 +49,16 @@ public class TriggerInteract : Interact
     if (operate != OperateKind.Touch)
       return;
 
-    if (itemName != "")
-    {
-      if (Inventory.Have(itemName) < itemNeeded)
-        return;
-    }
+    if (!CanOperate())
+      return;
 
     if (!Operate(false))
       return;
 
     if (itemName != "" && removeOnUse)
       Inventory.Remove(itemName);
-
+    if (OnOperate != null)
+      OnOperate.Invoke(this);
 	}
 
 	private void Update()
@@ -62,11 +67,29 @@ public class TriggerInteract : Interact
 			return;
 		if (!isPlayer)
 			return;
+    if (!CanOperate())
+      return;
+
 		if (Input.GetKeyDown(KeyCode.E))
 		{
-			Operate(true);
-		}
+			if (Operate(true))
+      {
+        if (OnOperate != null)
+          OnOperate.Invoke(this);
+      }
+    }
 	}
+
+  private bool CanOperate()
+  {
+    if (itemName != "")
+    {
+      if (Inventory.Have(itemName) < itemNeeded)
+        return false;
+    }
+
+    return true;
+  }
 
 
 }

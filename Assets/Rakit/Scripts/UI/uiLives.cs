@@ -8,6 +8,7 @@ public class uiLives : MonoBehaviour
 
   private List<uiLive> lives = new List<uiLive>();
 
+
   private void Start()
   {
     if (SM.MaxLives < 0)
@@ -17,6 +18,7 @@ public class uiLives : MonoBehaviour
     }
 
     lives.Add(livesPrefab);
+
 
     for (int i = 1; i < SM.MaxLives; i++)
     {
@@ -39,6 +41,15 @@ public class uiLives : MonoBehaviour
   private void OnLivesChange()
   {
    // Debug.LogFormat("L:{0} H:{1}", SM.Lives, SM.Hp);
+
+    if (lives.Count  < SM.MaxLives)
+    {
+      //TODO make new live
+      uiLive live = Instantiate(livesPrefab, transform);
+      live.gameObject.SetActive(true);
+      lives.Add(live);
+      return;
+    }
 
     for (int i = 0; i < lives.Count; i++)
     {

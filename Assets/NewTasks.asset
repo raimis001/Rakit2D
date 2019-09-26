@@ -65,5 +65,5 @@ MonoBehaviour:
 
       Health'
     priority: 1
-    status: 0
+    status: 1
     type: 1

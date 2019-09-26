@@ -167,13 +167,16 @@ public class Enemy : Interact
     player.y += 0.5f;
 
     Vector2 dir = player - self;
+    bool oldTriggers = Physics2D.queriesHitTriggers;
+    Physics2D.queriesHitTriggers = false;
     RaycastHit2D hit = Physics2D.Raycast(self, dir, dist, seeCheckLayer);
+    Physics2D.queriesHitTriggers = oldTriggers;
 
     Debug.DrawRay(self, dir);
     if (hit)
     {
-      //Debug.Log("Hit:" 
-      //  + hit.collider.name 
+      //Debug.Log("Hit:"
+      //  + hit.collider.name
       //  + ":" + hit.collider.gameObject.layer
       //  + ":" + seeCheckLayer.value
       //  , hit.collider.gameObject);

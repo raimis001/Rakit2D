@@ -13,6 +13,8 @@ Futures
   - inventory system
     - [x] define items
     - [x] items in scene
+	- [ ] Health item
+	- [ ] Add life item
   - checkpoint
     - [x] save
     - [x] load

@@ -47,7 +47,6 @@ SpriteRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
-  m_RayTracingMode: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -187,11 +186,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b9bb13f2bf9cb324985e45fe1127f2b0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  rangeParent: {fileID: 0}
+  interactLayer: 0
   operate: 0
   item:
     itemName: 
   itemNeeded: 1
   removeOnUse: 0
+  OnOperate:
+    m_PersistentCalls:
+      m_Calls: []
   closeAfter: 1
 --- !u!61 &5328493455308829911
 BoxCollider2D:
@@ -264,7 +268,6 @@ SpriteMask:
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
-  m_RayTracingMode: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -295,7 +298,7 @@ SpriteMask:
   m_BackSortingLayerID: 0
   m_FrontSortingLayer: 0
   m_BackSortingLayer: 0
-  m_FrontSortingOrder: 0
+  m_FrontSortingOrder: 4
   m_BackSortingOrder: -1
   m_IsCustomRangeActive: 1
   m_SpriteSortPoint: 0

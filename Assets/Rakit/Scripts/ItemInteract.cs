@@ -21,7 +21,7 @@ public class ItemInteract : TriggerInteract
     if (destroyOnGet)
     {
       markAsDestroy = true;
-      Destroy(gameObject, 1f);
+      Destroy(gameObject, 0.2f);
     }
     return true;
   }

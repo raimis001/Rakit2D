@@ -70,8 +70,30 @@ public class SM : MonoBehaviour
       return;
     }
     Hp = 1;
-    OnLivesChange.Invoke();
+    if (OnLivesChange != null)
+      OnLivesChange.Invoke();
 
+  }
+
+  public static void AddLive()
+  {
+
+    if (Lives < instance.maxLives)
+      Lives++;
+    else
+    {
+      Lives = ++instance.maxLives;
+    }
+    if (OnLivesChange != null)
+      OnLivesChange.Invoke();
+  }
+  public static void FillHp()
+  {
+    if (Hp >= 1)
+      return;
+    Hp = 1;
+    if (OnLivesChange != null)
+      OnLivesChange.Invoke();
   }
 
   private void Awake()

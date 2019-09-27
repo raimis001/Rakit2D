@@ -1,34 +1,34 @@
 fileFormatVersion: 2
-guid: adb54bbc3ffb16f419dc638cbbe9a8c8
+guid: 24132194e6dd99742be93f617c75a04f
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 8506734184870756830
-    second: TileGrass_TL
+      213: -5157720553279893196
+    second: GroundLeft
   - first:
-      213: 6857814540832230130
-    second: TileGrass_TC
+      213: -4576592027488371452
+    second: GroundCenter
   - first:
-      213: -1715439877467824573
-    second: TileGrass_TR
+      213: -7273995886928417929
+    second: GroundRight
   - first:
-      213: -774234907291820363
-    second: TileGrass_ML
+      213: 6682738439518977790
+    second: Ground_0
   - first:
-      213: 3822838870254047190
-    second: TileGrass_C
+      213: -562605217060080129
+    second: Ground_1
   - first:
-      213: 1016221962918806849
-    second: TileGrass_MR
+      213: -4970410492042351176
+    second: Ground_2
   - first:
-      213: 4418620345590908527
-    second: TileGrass_BL
+      213: -5930158604282628446
+    second: Ground_3
   - first:
-      213: -3384150068999273640
-    second: TileGrass_BC
+      213: -4233739483619845583
+    second: Ground_4
   - first:
-      213: -4434870762189760163
-    second: TileGrass_BR
+      213: -6551456632857933372
+    second: Ground_5
   externalObjects: {}
   serializedVersion: 10
   mipmaps:
@@ -61,9 +61,9 @@ TextureImporter:
     filterMode: -1
     aniso: -1
     mipBias: -100
-    wrapU: 0
-    wrapV: 0
-    wrapW: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
@@ -72,7 +72,7 @@ TextureImporter:
   spriteMeshType: 0
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 30
+  spritePixelsToUnits: 300
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -109,29 +109,17 @@ TextureImporter:
     overridden: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
-  - serializedVersion: 3
-    buildTarget: Android
-    maxTextureSize: 2048
-    resizeAlgorithm: 0
-    textureFormat: -1
-    textureCompression: 1
-    compressionQuality: 50
-    crunchedCompression: 0
-    allowsAlphaSplitting: 0
-    overridden: 0
-    androidETC2FallbackOverride: 0
-    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: TileGrass_TL
+      name: GroundLeft
       rect:
         serializedVersion: 2
         x: 0
-        y: 32
-        width: 16
-        height: 16
+        y: 400
+        width: 200
+        height: 200
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -139,20 +127,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 9c8b351d7cfb95a46bc516b183a9e681
-      internalID: 8506734184870756830
+      spriteID: 8f6ca4dc96ecd5147a7d5bd1634e9068
+      internalID: -5157720553279893196
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: TileGrass_TC
+      name: GroundCenter
       rect:
         serializedVersion: 2
-        x: 16
-        y: 32
-        width: 16
-        height: 16
+        x: 200
+        y: 400
+        width: 200
+        height: 200
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -160,20 +148,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: abaa04ab3613a7d4e88cea90eedbd671
-      internalID: 6857814540832230130
+      spriteID: 6a3a0fee6a890b24aa134bf299ee4c5d
+      internalID: -4576592027488371452
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: TileGrass_TR
+      name: GroundRight
       rect:
         serializedVersion: 2
-        x: 32
-        y: 32
-        width: 16
-        height: 16
+        x: 400
+        y: 400
+        width: 200
+        height: 200
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -181,20 +169,41 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 179af67f5467b6a4d9e6850d334f423f
-      internalID: -1715439877467824573
+      spriteID: c8721d3b8f414d142a1002b9600fcc0c
+      internalID: -7273995886928417929
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: TileGrass_ML
+      name: Ground_0
+      rect:
+        serializedVersion: 2
+        x: 200
+        y: 200
+        width: 200
+        height: 200
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 19f0456c0f89e2e4a9c2cbf2d36f7fca
+      internalID: 6682738439518977790
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ground_1
       rect:
         serializedVersion: 2
         x: 0
-        y: 16
-        width: 16
-        height: 16
+        y: 200
+        width: 200
+        height: 200
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -202,20 +211,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 902376c36d50b3346b502ecf033255a0
-      internalID: -774234907291820363
+      spriteID: a95e5e631877681489276a2cfee7243f
+      internalID: -562605217060080129
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: TileGrass_C
+      name: Ground_2
       rect:
         serializedVersion: 2
-        x: 16
-        y: 16
-        width: 16
-        height: 16
+        x: 400
+        y: 200
+        width: 200
+        height: 200
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -223,41 +232,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 5bb7648240c29f44c8fafb14e8c4b234
-      internalID: 3822838870254047190
+      spriteID: a27f1a372b8405942bad373549349b38
+      internalID: -4970410492042351176
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: TileGrass_MR
-      rect:
-        serializedVersion: 2
-        x: 32
-        y: 16
-        width: 16
-        height: 16
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 4fc4b270233210b47afdc16d275ffcfc
-      internalID: 1016221962918806849
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: TileGrass_BL
+      name: Ground_3
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 16
-        height: 16
+        width: 200
+        height: 200
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -265,20 +253,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 64a6047db5ee8e946b901d8fa9ab9a8c
-      internalID: 4418620345590908527
+      spriteID: 086966f3af1337b4aa71f962a38f995e
+      internalID: -5930158604282628446
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: TileGrass_BC
+      name: Ground_4
       rect:
         serializedVersion: 2
-        x: 16
+        x: 200
         y: 0
-        width: 16
-        height: 16
+        width: 200
+        height: 200
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -286,20 +274,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 21b19126ff8ff2a4ba53c4e3101e703e
-      internalID: -3384150068999273640
+      spriteID: 02e7083cece624b43bd4fde88b24bfdf
+      internalID: -4233739483619845583
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: TileGrass_BR
+      name: Ground_5
       rect:
         serializedVersion: 2
-        x: 32
+        x: 400
         y: 0
-        width: 16
-        height: 16
+        width: 200
+        height: 200
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -307,8 +295,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: d3579b05cd3aa25409199cb57c76e712
-      internalID: -4434870762189760163
+      spriteID: 702cc9672e16c1a448cccdc5ec73313c
+      internalID: -6551456632857933372
       vertices: []
       indices: 
       edges: []

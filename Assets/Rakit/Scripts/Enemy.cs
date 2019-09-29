@@ -149,7 +149,7 @@ public class Enemy : Interact
   }
   private bool SeePlayer()
   {
-    if (Player.IsDeath)
+    if (SM.IsDeath)
       return false;
 
     Vector2 player = Player.position;
@@ -275,7 +275,7 @@ public class Enemy : Interact
   }
   private bool AttackPlayer()
   {
-    if (Player.IsDeath)
+    if (SM.IsDeath)
       return false;
 
     return Vector3.Distance(body.position, Player.position) <= attackDistance;

@@ -10,6 +10,8 @@ public class SM : MonoBehaviour
   public static Inventory inventory;
   public static Player player;
 
+  public static bool IsDeath;
+
   #region KEYS
   public static float keyMove => Input.GetAxis(Keys.instance.horizontal);
   public static bool keyInteract => Keys.instance.interactKey.IsKey;
@@ -42,7 +44,7 @@ public class SM : MonoBehaviour
 
   public static void SetHp(float hp)
   {
-    if (Player.IsDeath)
+    if (IsDeath)
       return;
 
     if (MaxLives < 0)

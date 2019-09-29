@@ -4,15 +4,10 @@ using UnityEngine;
 
 public class Player : Interact
 {
-  public static bool IsDeath;
   private static Vector2 checkPoint;
   public static Vector3 position => SM.player.transform.position;
 
-  [Header("Move params")]
-  [Range(0.5f, 10f)]
-  public float speed = 1;
-  [Range(0.5f, 5f)]
-  public float jumpSpeed = 1;
+  public Animator animator;
 
   [Header("Weapons")]
   public bool isMeele;
@@ -25,7 +20,6 @@ public class Player : Interact
   public float projectileForce = 1;
   public bool destroyAfterShot;
   public float destroyTime = 1;
-  public bool defaultIsRight;
 
   private int _currentWeapon;
   internal int currentWeapon
@@ -42,15 +36,11 @@ public class Player : Interact
     }
   }
 
-  [Header("Components")]
-  public Animator animator;
-  public ContactFilter2D groundFilter;
-
-  private Rigidbody2D body;
+  private PlayerMove body;
 
   public static bool IsPlayer(Collider2D collider)
   {
-    if (IsDeath)
+    if (SM.IsDeath)
       return false;
 
     return collider.GetComponent<Player>() != null;
@@ -59,17 +49,11 @@ public class Player : Interact
   private void Awake()
   {
     SM.player = this;
-    body = GetComponent<Rigidbody2D>();
+    body = GetComponent<PlayerMove>();
     if (!body)
-    {
-      Debug.LogWarning("No rigidbody for player");
-    }
-    checkPoint = transform.position;
+      Debug.LogError("No player move defined");
 
-    groundFilter.useLayerMask = true;
-    groundFilter.useOutsideNormalAngle = true;
-    groundFilter.minNormalAngle = 255;
-    groundFilter.maxNormalAngle = 285;
+    checkPoint = transform.position;
   }
 
   private void Start()
@@ -78,19 +62,10 @@ public class Player : Interact
     meeleTrigger.coolDown = meeleCooldown;
   }
 
-  private void OnEnable()
-  {
-    body.isKinematic = false;
-  }
-
-  private void OnDisable()
-  {
-    body.isKinematic = true;
-  }
 
   private void Update()
   {
-    if (IsDeath)
+    if (SM.IsDeath)
     {
       if (SM.keyJump)
       {
@@ -107,17 +82,6 @@ public class Player : Interact
     if (SM.dialogOpened)
       return;
 
-    if (SM.keyJump)
-    {
-      if (!isGrounded)
-        return;
-
-      body.AddForce(new Vector2(0, 5) * jumpSpeed, ForceMode2D.Impulse);
-      _isGrounded = false;
-      animator.SetTrigger("Jump");
-      return;
-    }
-
     if (isMeele && SM.keyWeapon1)
     {
 
@@ -131,10 +95,10 @@ public class Player : Interact
     }
 
     Vector3 rot1 = projectileStart.eulerAngles;
-    if (!isRight)
+    if (!body.isRight)
       rot1.z = 180 - rot1.z;
 
-    Debug.DrawRay(projectileStart.position, projectileStart.right * (isRight ? 3 : -3), Color.green);
+    Debug.DrawRay(projectileStart.position, projectileStart.right * (body.isRight ? 3 : -3), Color.green);
 
     if (_currentWeapon > 0 && SM.keyAttack)
     {
@@ -153,9 +117,9 @@ public class Player : Interact
           rangeProjectile,
           projectileStart,
           0,
-          isRight,
+          body.isRight,
           projectileForce,
-          isRight ? (defaultIsRight ? -1 : 1) : (defaultIsRight ? 1 : -1),
+          body.isRight ? (body.defaultIsRight ? -1 : 1) : (body.defaultIsRight ? 1 : -1),
           destroyAfterShot ? destroyTime : -1
         );
       }
@@ -166,90 +130,26 @@ public class Player : Interact
 
   }
 
-  private void FixedUpdate()
-  {
-    if (IsDeath)
-      return;
-
-
-    groundChecked = false;
-    Vector2 move = body.velocity;
-    move.x = SM.keyMove * Time.deltaTime * speed * 100f;
-
-    animator.SetBool("Falling", move.y < -0.1f);
-    animator.SetBool("Grounded", isGrounded);
-
-    if (Mathf.Abs(move.x) < 0.1f)
-    {
-      animator.SetFloat("Speed", 0);
-      move.x = 0;
-    }
-    else
-    {
-      bool nRight = move.x < 0;
-      //bool isRight = animator.GetBool("Right");
-      if (nRight != isRight)
-      {
-
-        animator.SetBool("Right", nRight);
-        animator.SetTrigger("ChangeDirection");
-      }
-
-      animator.SetFloat("Speed", 1);
-    }
-
-    body.velocity = move;
-  }
-
-
-  bool groundChecked;
-  bool _isGrounded;
-  bool isGrounded => groundChecked ? _isGrounded : GroundCheck();
-  bool isRight => animator.GetBool("Right");
-
-  bool GroundCheck()
-  {
-    groundChecked = true;
-    _isGrounded = body.IsTouching(groundFilter);
-    return _isGrounded;
-  }
-  private bool GetGroundCollider(out Collider2D collider)
-  {
-    collider = null;
-    if (!isGrounded)
-      return false;
-
-    Collider2D[] colliders = new Collider2D[1];
-    if (body.GetContacts(groundFilter, colliders) < 1)
-      return false;
-
-    //Debug.Log("Ground - " + colliders[0].name);
-    collider = colliders[0];
-    return true;
-  }
   public void Death()
   {
-    if (IsDeath)
+    if (SM.IsDeath)
       return;
 
-    IsDeath = true;
-    body.isKinematic = true;
-    body.velocity = Vector2.zero;
-    animator.SetTrigger("Death");
+    SM.IsDeath = true;
+
+    body.StopBody();
 
     Debug.Log("Player is death");
   }
   public void SetSpawn(Vector2 pos)
   {
-    if (!IsDeath)
+    if (!SM.IsDeath)
       return;
 
-    IsDeath = false;
+    SM.IsDeath = false;
     transform.position = pos;
-    body.isKinematic = false;
-    body.velocity = Vector2.zero;
-    animator.SetTrigger("Respawn");
-    animator.SetFloat("Speed", 0);
+
+    body.RestoreBody();
 
     Debug.Log("Player is respawn");
   }

@@ -20,7 +20,15 @@ public class InventoryEditor : Editor
     //base.OnInspectorGUI();
 
     serializedObject.Update();
+    bool editing = false;
+
+    EditorGUI.BeginChangeCheck();
     EditorGUILayout.PropertyField(this.serializedObject.FindProperty("OnInventoryChange"), true);
+    if (EditorGUI.EndChangeCheck())
+    {
+      editing = true;
+      Undo.RecordObject(target, "Changed Event");
+    }
 
     int delete = -1;
     itemsFold = EditorGUILayout.Foldout(itemsFold, "Iems");
@@ -43,15 +51,15 @@ public class InventoryEditor : Editor
         );
 
         EditorGUILayout.BeginVertical();
-        string iName = EditorGUILayout.TextField("Item name",item.name);
+        string iName = EditorGUILayout.TextField("Item name", item.name);
 
-        InventoryItemKind kind = (InventoryItemKind)EditorGUILayout.EnumPopup("Type",item.kind);
+        InventoryItemKind kind = (InventoryItemKind)EditorGUILayout.EnumPopup("Type", item.kind);
 
         Color iColor = EditorGUILayout.ColorField("Tint color", item.iconTint);
 
         GameObject prefab = (GameObject)EditorGUILayout.ObjectField("Prefab", item.prefab, typeof(GameObject), true);
 
-        if (GUILayout.Button("Delete")) 
+        if (GUILayout.Button("Delete"))
         {
           delete = i;
         }
@@ -93,7 +101,7 @@ public class InventoryEditor : Editor
 
           float ratio = sourceTex.width / sourceTex.height;
 
-          GUILayout.Box(destTex,GUILayout.Width(65 * ratio), GUILayout.Height(65));
+          GUILayout.Box(destTex, GUILayout.Width(65 * ratio), GUILayout.Height(65));
         }
         EditorGUILayout.EndVertical();
 
@@ -101,6 +109,7 @@ public class InventoryEditor : Editor
 
         if (EditorGUI.EndChangeCheck())
         {
+          editing = true;
           Undo.RecordObject(target, "Changed item " + i);
           item.name = iName;
           item.icon = iIcon;
@@ -112,6 +121,7 @@ public class InventoryEditor : Editor
     }
     if (GUILayout.Button("Add item"))
     {
+      editing = true;
       Undo.RecordObject(target, "added node");
       inventory.itemsDefine.Add(new InventoryItem() { name = "New item" });
       itemsFold = true;
@@ -120,13 +130,16 @@ public class InventoryEditor : Editor
     if (delete >= 0)
     {
       inventory.itemsDefine.RemoveAt(delete);
+      editing = true;
     }
 
-    serializedObject.ApplyModifiedProperties();
-    EditorUtility.SetDirty(target);
-
+    if (editing)
+    {
+      serializedObject.ApplyModifiedProperties();
+      EditorUtility.SetDirty(target);
+    }
   }
-    
+
   private void OnSceneGUI()
   {
 

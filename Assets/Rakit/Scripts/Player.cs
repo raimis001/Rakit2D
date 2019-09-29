@@ -50,6 +50,9 @@ public class Player : Interact
 
   public static bool IsPlayer(Collider2D collider)
   {
+    if (IsDeath)
+      return false;
+
     return collider.GetComponent<Player>() != null;
   }
 

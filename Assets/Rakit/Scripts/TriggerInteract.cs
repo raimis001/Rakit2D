@@ -40,8 +40,11 @@ public class TriggerInteract : Interact
 	}
 	private void OnTriggerEnter2D(Collider2D collision)
 	{
+    Debug.Log("Enter trigger");
     if (!Player.IsPlayer(collision))
       return;
+
+    Debug.Log("Enter trigger player");
 
     isPlayer = true;
     OnPlayerEnter();
@@ -49,11 +52,17 @@ public class TriggerInteract : Interact
     if (operate != OperateKind.Touch)
       return;
 
+    Debug.Log("Touch");
+
     if (!CanOperate())
       return;
 
+    Debug.Log("Can operate");
+
     if (!Operate(false))
       return;
+
+    Debug.Log("Operate");
 
     if (itemName != "" && removeOnUse)
       Inventory.Remove(itemName);

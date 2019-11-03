@@ -39,8 +39,8 @@ public class SM : MonoBehaviour
   public int maxLives = 3;
 
   [Header("Debug")]
-  [Range(0, 1)]
-  public float timeScale = 3;
+  [Range(0, 5)]
+  public float timeScale = 1;
 
   public static void SetHp(float hp)
   {

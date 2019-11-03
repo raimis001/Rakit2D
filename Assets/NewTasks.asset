@@ -67,3 +67,13 @@ MonoBehaviour:
     priority: 1
     status: 2
     type: 1
+  - name: Enemy physics
+    description: Enemy need use phisics (climb up, fall down)
+    priority: 2
+    status: 0
+    type: 2
+  - name: Dialog rework
+    description: Rework to trigger klass
+    priority: 2
+    status: 0
+    type: 1

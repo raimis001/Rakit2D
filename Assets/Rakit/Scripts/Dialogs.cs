@@ -46,6 +46,7 @@ public class Dialogs : MonoBehaviour
   int currentDialog = -1;
   float distance => Vector2.Distance(cameraTransform.position, transform.position);
 
+  static Dialogs selectedDialog;
   private void Start()
   {
     if (!canvas)
@@ -65,6 +66,7 @@ public class Dialogs : MonoBehaviour
 
     cameraTransform = Camera.main.transform;
     group = canvas.GetComponent<CanvasGroup>();
+    canvas.gameObject.SetActive(false);
 
     if (dialogs != null && dialogs.Count > 0)
       currentDialog = 0;
@@ -122,6 +124,8 @@ public class Dialogs : MonoBehaviour
 
   void HitChoice(int choice)
   {
+    if (selectedDialog != this)
+      return;
 
     DialogItem item = dialogs[currentDialog];
 
@@ -162,62 +166,73 @@ public class Dialogs : MonoBehaviour
   {
     if (distance > 2)
     {
-      SM.dialogOpened = false;
-      canvas.gameObject.SetActive(false);
+      if (selectedDialog == this)
+      {
+        SM.dialogOpened = false;
+        canvas.gameObject.SetActive(false);
+        selectedDialog = null;
+      }
       return;
     }
 
-    if (SM.dialogOpened)
+    if (selectedDialog != null)
       return;
 
     if (!SM.keyInteract)
       return;
 
+    selectedDialog = this;
     SM.dialogOpened = true;
     canvas.gameObject.SetActive(true);
     DrawDialog();
-
   }
 
   void CheckDistance()
   {
-    if (!group)
-      return;
-
     float dist = distance;
 
     if (dist > 4)
     {
-      SM.dialogOpened = false;
-      group.alpha = 0;
-      canvas.gameObject.SetActive(false);
+      if (selectedDialog == this)
+      {
+        SM.dialogOpened = false;
+        if (group) group.alpha = 0;
+        canvas.gameObject.SetActive(false);
+        selectedDialog = null;
+      }
+      return;
+    }
+    
+    if (selectedDialog == null)
+    {
+      selectedDialog = this;
+      if (kind == DialogKind.FadeInOut)
+      {
+        if (group) group.alpha = 0;
+        canvas.gameObject.SetActive(true);
+        DrawDialog();
+      }
       return;
     }
 
-    if (!canvas.gameObject.activeInHierarchy)
-    {
-      SM.dialogOpened = true;
-      canvas.gameObject.SetActive(true);
-      DrawDialog();
-    }
+    if (selectedDialog != this)
+      return;
 
-    if (dist < 2)
+    if (dist >= 2)
     {
-      SM.dialogOpened = true;
-      group.alpha = 1;
+      if (kind == DialogKind.FadeInOut)
+      {
+        dist -= 2;
+        if (group) group.alpha = Mathf.Lerp(0, 1, 1 - dist / 2f);
+      }
       return;
     }
 
-    if (kind == DialogKind.OnEnter)
-    {
-      SM.dialogOpened = false;
-      group.alpha = 0;
-      canvas.gameObject.SetActive(false);
-      return;
-    }
+    SM.dialogOpened = true;
+    if (group) group.alpha = 1;
+    canvas.gameObject.SetActive(true);
+    DrawDialog();
 
-    dist -= 2;
-    group.alpha = Mathf.Lerp(0, 1, 1 - dist / 2f);
   }
 
   void DrawDialog()

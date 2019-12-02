@@ -15,6 +15,7 @@ public class PlatformNode
 public class PlatformMoving : Interact
 {
 	public Transform platform;
+  public bool moveOnStart;
 	public float speed = 1;
 	public PlatformMovingKind kind;
 	public List<PlatformNode> nodes = new List<PlatformNode>();
@@ -47,11 +48,15 @@ public class PlatformMoving : Interact
 		for (int i = 0; i < nodesCount; i++)
 			localNodes[i + 1] = nodes[i].position;
 
-		
+    if (moveOnStart)
+      StartMove(this);
 	}
 
 	IEnumerator Move(float delay = 0)
 	{
+    if (nodes.Count < 1)
+      yield break;
+
 		isMoving = true;
 		if (delay > 0)
 			yield return new WaitForSeconds(delay);
@@ -62,7 +67,10 @@ public class PlatformMoving : Interact
 		int nodesCount = startNode == 0 ? nodes.Count : 0;
 		int sign = startNode == 0 ? 1 : -1;
 
-		while (startNode != nodesCount)
+    if (startNode == 0 && zeroDelay > 0)
+      yield return new WaitForSeconds(zeroDelay);
+
+    while (startNode != nodesCount)
 		{
 			Vector3 target = localNodes[startNode + sign];
 			platform.localPosition = Vector3.MoveTowards(platform.localPosition, target , Time.deltaTime * speed);
@@ -95,9 +103,6 @@ public class PlatformMoving : Interact
 				yield break;
 			}
 		}
-
-		if (currentNode == 0 && zeroDelay > 0)
-			yield return new WaitForSeconds(zeroDelay);
 
 		StartCoroutine(Move());
 	}

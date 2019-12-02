@@ -33,9 +33,16 @@ public class PlatformMovingEditor : Editor
 	public override void OnInspectorGUI()
 	{
 
-		//base.OnInspectorGUI();
+    //base.OnInspectorGUI();
+    EditorGUI.BeginChangeCheck();
+    bool startMove = EditorGUILayout.Toggle("Move on start", platform.moveOnStart);
+    if (EditorGUI.EndChangeCheck())
+    {
+      Undo.RecordObject(target, "Changed Moving Platform action");
+      platform.moveOnStart = startMove;
+    }
 
-		EditorGUI.BeginChangeCheck();
+    EditorGUI.BeginChangeCheck();
 		PlatformMovingKind kind = (PlatformMovingKind)EditorGUILayout.EnumPopup("Looping", platform.kind);
 		if (EditorGUI.EndChangeCheck())
 		{
